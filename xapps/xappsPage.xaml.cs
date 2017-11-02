@@ -7,6 +7,7 @@ namespace xapps
         public xappsPage()
         {
             InitializeComponent();
+            ////
         }
     }
 }
