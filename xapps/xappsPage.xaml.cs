@@ -8,6 +8,10 @@ namespace xapps
         {
             InitializeComponent();
             ////
+
+            // reqeust data with netManager( get method )
+            App.netManager.requestMovieList();
+            App.netManager.requestMovieDetail("20161725");
         }
     }
 }

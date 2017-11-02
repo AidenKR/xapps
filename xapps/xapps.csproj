@@ -42,6 +42,23 @@
     <Compile Include="DatabaseHelper\MovieFavoritesDB.cs" />
     <Compile Include="DatabaseHelper\Interface\IDBFilePath.cs" />
     <Compile Include="DatabaseHelper\Model\MovieFavoritesDataItem.cs" />
+    <Compile Include="network\Service\RestService.cs" />
+    <Compile Include="network\Service\Request\MovieDetail.cs" />
+    <Compile Include="network\Service\Request\MovieList.cs" />
+    <Compile Include="network\Service\Request\RequestData.cs" />
+    <Compile Include="network\Service\Response\DefaultParser.cs" />
+    <Compile Include="network\Service\Response\MovieDetailParser.cs" />
+    <Compile Include="network\Service\Response\MovieListParser.cs" />
+    <Compile Include="network\Model\MovieDetail\Audit.cs" />
+    <Compile Include="network\Model\MovieDetail\Company.cs" />
+    <Compile Include="network\Model\MovieDetail\People.cs" />
+    <Compile Include="network\Model\MovieDetail\ShowType.cs" />
+    <Compile Include="network\Model\dataItem.cs" />
+    <Compile Include="network\Model\MovieDetailData.cs" />
+    <Compile Include="network\Model\MovieListData.cs" />
+    <Compile Include="network\Model\MovieList\MovieListItem.cs" />
+    <Compile Include="network\Manager\NetworkManager.cs" />
+    <Compile Include="network\Interface\INetworkManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -75,13 +92,7 @@
   <ItemGroup>
     <Folder Include="network\" />
     <Folder Include="network\Service\" />
-    <Folder Include="network\Service\Request\" />
-    <Folder Include="network\Service\Response\" />
     <Folder Include="network\Model\" />
-    <Folder Include="network\Model\MovieDetail\" />
-    <Folder Include="network\Model\MovieList\" />
-    <Folder Include="network\Manager\" />
-    <Folder Include="network\Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
