@@ -39,6 +39,23 @@
       <DependentUpon>xappsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="network\Service\RestService.cs" />
+    <Compile Include="network\Service\Request\MovieDetail.cs" />
+    <Compile Include="network\Service\Request\MovieList.cs" />
+    <Compile Include="network\Service\Request\RequestData.cs" />
+    <Compile Include="network\Service\Response\DefaultParser.cs" />
+    <Compile Include="network\Service\Response\MovieDetailParser.cs" />
+    <Compile Include="network\Service\Response\MovieListParser.cs" />
+    <Compile Include="network\Interface\INetworkManager.cs" />
+    <Compile Include="network\Model\dataItem.cs" />
+    <Compile Include="network\Model\MovieDetailData.cs" />
+    <Compile Include="network\Model\MovieListData.cs" />
+    <Compile Include="network\Model\MovieDetail\Audit.cs" />
+    <Compile Include="network\Model\MovieDetail\Company.cs" />
+    <Compile Include="network\Model\MovieDetail\People.cs" />
+    <Compile Include="network\Model\MovieDetail\ShowType.cs" />
+    <Compile Include="network\Model\MovieList\MovieListItem.cs" />
+    <Compile Include="network\Manager\NetworkManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

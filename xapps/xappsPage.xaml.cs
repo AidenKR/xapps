@@ -8,5 +8,12 @@ namespace xapps
         {
             InitializeComponent();
         }
+
+        protected async override void OnAppearing() {
+            base.OnAppearing();
+
+            await App.netManager.requestMovieList();
+            await App.netManager.requestMovieDetail("20161725");
+        }
     }
 }

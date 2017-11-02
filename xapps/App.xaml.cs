@@ -4,9 +4,12 @@ namespace xapps
 {
     public partial class App : Application
     {
+        public static NetworkManager netManager { get; private set; }
         public App()
         {
             InitializeComponent();
+
+			netManager = new NetworkManager(new RestService());
 
             MainPage = new xappsPage();
         }
