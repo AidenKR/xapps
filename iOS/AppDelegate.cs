@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using Firebase;
+
 namespace xapps.iOS
 {
     [Register("AppDelegate")]
