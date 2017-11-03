@@ -4,16 +4,11 @@ namespace xapps
 {
     public partial class App : Application
     {
-        public static NetworkManager netManager;
-        static MovieFavoritesDB mMFdatabase;
-
         public App()
         {
             InitializeComponent();
 
-            netManager = new NetworkManager(new RestService());
-
-            MainPage = new xappsPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
@@ -29,21 +24,6 @@ namespace xapps
         protected override void OnResume()
         {
             // Handle when your app resumes
-        }
-
-        /**
-         * MovieFavoritesDB Instance.
-         */
-        public static MovieFavoritesDB MFDatabase
-        {
-            get
-            {
-                if (null == mMFdatabase)
-                {
-                    mMFdatabase = new MovieFavoritesDB(DependencyService.Get<IDBFilePath>().GetLocalFilePath(DatabaseConsts.DataBaseFileFullName));
-                }
-                return mMFdatabase;
-            }
         }
     }
 }
