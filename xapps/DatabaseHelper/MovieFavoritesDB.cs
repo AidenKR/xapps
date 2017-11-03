@@ -61,7 +61,7 @@ namespace xapps.DatabaseHelper
          */
         private Task<List<MovieFavoritesDataItem>> GetItemsSelect(string where)
         {
-            return GetItemsQuery("SELECT * FROM [MovieFavoritesDataItem] WHERE " + where);
+            return GetItemsQuery("SELECT * FROM [" + MovieFavoritesDataItem.getClassName() + "] WHERE " + where);
         }
 
         /**

@@ -42,7 +42,7 @@ namespace xapps
             {
                 if (null == mMFdatabase)
                 {
-                    mMFdatabase = new MovieFavoritesDB(DependencyService.Get<IDBFilePath>().GetLocalFilePath("MFSQLite.db3"));
+                    mMFdatabase = new MovieFavoritesDB(DependencyService.Get<IDBFilePath>().GetLocalFilePath(DatabaseConsts.DataBaseFileFullName));
                 }
                 return mMFdatabase;
             }

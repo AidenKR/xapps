@@ -59,6 +59,7 @@
     <Compile Include="network\Model\MovieList\MovieListItem.cs" />
     <Compile Include="network\Manager\NetworkManager.cs" />
     <Compile Include="network\Interface\INetworkManager.cs" />
+    <Compile Include="DatabaseHelper\DatabaseConsts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
