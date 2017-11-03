@@ -1,4 +1,4 @@
-﻿namespace xapps.DatabaseHelper.Interface
+﻿namespace xapps
 {
     /**
      * DB 물리파일 위치 가져오기

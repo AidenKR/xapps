@@ -1,5 +1,4 @@
-﻿using System;
-namespace xapps.DatabaseHelper
+﻿namespace xapps
 {
     public class DatabaseConsts
     {

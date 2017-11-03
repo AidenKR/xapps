@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace xapps.DatabaseHelper.Model
+namespace xapps
 {
     /**
      * MovieFavorites 관련 데이터객체

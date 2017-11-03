@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
-using xapps.DatabaseHelper.Model;
 
-namespace xapps.DatabaseHelper
+namespace xapps
 {
 
     /**

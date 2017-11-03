@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
-using xapps.DatabaseHelper.Interface;
-using xapps.Droid.DatabaseHelper;
+using xapps.Droid;
 
 [assembly: Dependency(typeof(DBFilePath))]
-namespace xapps.Droid.DatabaseHelper
+namespace xapps.Droid
 {
     /**
      * DB 물리파일 위치 반환 Android

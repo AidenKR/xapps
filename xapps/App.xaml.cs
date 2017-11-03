@@ -1,6 +1,4 @@
 ﻿using Xamarin.Forms;
-using xapps.DatabaseHelper;
-using xapps.DatabaseHelper.Interface;
 
 namespace xapps
 {
