@@ -152,6 +152,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\hamburger.png" />
+    <AndroidResource Include="Resources\drawable\MasterLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mvvm\" />

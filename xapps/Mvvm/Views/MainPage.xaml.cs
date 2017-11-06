@@ -17,12 +17,15 @@ namespace xapps
         void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MasterPageItem;
-            if (item != null)
+            if (item != null && item.TargetType != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                var nextPage = (Page)Activator.CreateInstance(item.TargetType);
+                Detail.Navigation.PushAsync(nextPage);
+
                 masterPage.ListView.SelectedItem = null;
-                IsPresented = false;
             }
+
+            IsPresented = false;
         }
     }
 }

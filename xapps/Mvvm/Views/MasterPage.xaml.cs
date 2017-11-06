@@ -14,15 +14,26 @@ namespace xapps
             InitializeComponent();
 
             var masterPageItems = new List<MasterPageItem>();
+
             masterPageItems.Add(new MasterPageItem
             {
-                Title = "Network Test",
-                TargetType = typeof(NetworkPage)
+                Title = "Send Push & Notification",
+                //TargetType = typeof(DatabasePage)
             });
             masterPageItems.Add(new MasterPageItem
             {
-                Title = "Database Test",
-                TargetType = typeof(DatabasePage)
+                Title = "Move To Bookmark",
+                //TargetType = typeof(DatabasePage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Move To WebviewPage",
+                TargetType = typeof(WebviewPage)
+            });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Move To TestPage",
+                TargetType = typeof(TestingPage)
             });
 
             listView.ItemsSource = masterPageItems;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.TestingPage">
+	<ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
+            <Button Text="Network Test" BorderWidth="1" Clicked="NetTestBtnClicked" />
+            <Button Text="Database Test" BorderWidth="1" Clicked="DBTestBtnClicked" />
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -45,6 +45,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mvvm\Views\TestingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mvvm\Views\WebviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -81,7 +89,6 @@
     <Compile Include="Mvvm\Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Views\MasterPageItem.cs" />
     <Compile Include="Mvvm\Views\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
@@ -101,6 +108,13 @@
     <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\staff.cs" />
     <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\vod.cs" />
     <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\stat.cs" />
+    <Compile Include="Mvvm\Views\TestingPage.xaml.cs">
+      <DependentUpon>TestingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Views\WebviewPage.xaml.cs">
+      <DependentUpon>WebviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Model\View\MasterPageItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -141,6 +155,7 @@
     <Folder Include="Mvvm\Services\Network\Service\Response\NewResponse\" />
     <Folder Include="Mvvm\Model\Network\NewMovieData\" />
     <Folder Include="Mvvm\Model\Network\NewMovieData\NewMovie\" />
+    <Folder Include="Mvvm\Model\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

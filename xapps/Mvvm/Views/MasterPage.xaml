@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.MasterPage" Padding="0,40,0,0" Icon="hamburger.png" Title="Personal Organiser">
-    <StackLayout Margin="20,0,20,10">
-        <ListView x:Name="listView" SeparatorVisibility="Default" >
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.MasterPage" Icon="hamburger.png" Title="Personal Organiser">
+    <StackLayout>
+        <Frame Padding="0">
+            <Image Source="MasterLogo.png" Aspect="AspectFill" />
+        </Frame>
+        <ListView x:Name="listView" SeparatorVisibility="None" Margin="20,20,20,10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -15,13 +18,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Padding="20,0,20,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Text="Net Test" VerticalOptions="CenterAndExpand" BorderWidth="1" BorderColor="Blue" />
-            <Button Grid.Column="1" Text="DB  Test" VerticalOptions="CenterAndExpand" BorderWidth="1" BorderColor="Blue" />
-        </Grid>
     </StackLayout>
 </ContentPage>
