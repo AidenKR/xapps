@@ -1,7 +1,9 @@
 ﻿using System;
-namespace xapps.Mvvm.Model.Network.NewMovieData.NewMovie
+namespace xapps
 {
-    public struct vod
+    public class vod
     {
+        public string vodClass { get; set; }
+        public string vodUrl { get; set; }
     }
 }

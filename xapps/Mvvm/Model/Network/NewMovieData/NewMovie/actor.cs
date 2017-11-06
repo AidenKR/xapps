@@ -1,7 +1,9 @@
 ﻿using System;
-namespace xapps.Mvvm.Model.Network.NewMovieData.NewMovie
+namespace xapps
 {
-    public struct actor
+    public class actor
     {
+        public string actorNm { get; set; }
+        public string actorId { get; set; }
     }
 }

@@ -1,7 +1,13 @@
 ﻿using System;
-namespace xapps.Mvvm.Model.Network.NewMovieData.NewMovie
+namespace xapps
 {
-    public struct rating
+    public class rating
     {
+        public string ratingMain { get; set; }
+        public string ratingDate { get; set; }
+        public string ratingNo { get; set; }
+        public string ratingGrade { get; set; }
+        public string releaseDate { get; set; }
+        public string runtime { get; set; }
     }
 }

@@ -15,8 +15,12 @@ namespace xapps
 
             netManager = new NetworkManager(new RestService());
 
-            netManager.requestMovieList();
-            netManager.requestMovieDetail("20161725");
+            //netManager.requestMovieList();
+            //netManager.requestMovieDetail("20161725");
+
+            netManager.requestNewMovieList();
+
+            //netManager.requestNewMovieDetail("05313");  // 독도 KOREA
         }
 
 

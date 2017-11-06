@@ -1,7 +1,12 @@
 ﻿using System;
-namespace xapps.Mvvm.Model.Network.NewMovieData.NewMovie
+namespace xapps
 {
-    public struct staff
+    public class staff
     {
+        public string staffNm { get; set; }
+        public string staffRoleGroup { get; set; }
+        public string staffRole { get; set; }
+        public string staffEtc { get; set; }
+        public string staffId { get; set; }
     }
 }

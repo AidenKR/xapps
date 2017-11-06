@@ -32,7 +32,7 @@ namespace xapps
 
             Debug.WriteLine(url);
             var uri = new Uri(string.Format(url, string.Empty));
-
+            MovieListData items = new MovieListData();
             try
             {
                 var response = await client.GetAsync(uri);
@@ -110,13 +110,6 @@ namespace xapps
             string url = NewMovieList.localeListRestUrl + NewMovieList.pageNo + NewMovieList.numOfRows + NewMovieList.ServiceKey + NewMovieList.key
                                      + NewMovieList.detail + NewMovieList.createDts + NewMovieList.createDte + NewMovieList.startCount + NewMovieList.listCount;
 
-
-
-            //collection
-            //startCount
-            //listCount 
-
-
 #else
             string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
 #endif
@@ -135,10 +128,8 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 #if USE_PARSE_XML
-                    NewMovieDetailParser parser = new NewMovieDetailParser();
+                    NewMovieListParser parser = new NewMovieListParser();
                     item = parser.parseXml(content);
-                    //MovieDetailParser parser = new MovieDetailParser();
-                    //items = parser.parseXml(content);
 #else
                     items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
 #endif
@@ -153,23 +144,9 @@ namespace xapps
         }
 
         public async Task<NewMovieData> requestNewMovieDetail(string movieSeq) {
-            //NewMovieData detailData = new NewMovieData();
-
-            //// 05274 sample seq
-
-            //return detailData;
-
 #if USE_PARSE_XML
             string url = NewMovieDetail.localeListRestUrl + NewMovieDetail.pageNo + NewMovieDetail.numOfRows + NewMovieDetail.ServiceKey + NewMovieDetail.key
                                        + NewMovieDetail.detail + NewMovieDetail.listCount + NewMovieDetail.movieSeq + movieSeq;
-
-
-
-            //collection
-            //startCount
-            //listCount 
-
-
 #else
             string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
 #endif
@@ -190,8 +167,6 @@ namespace xapps
 #if USE_PARSE_XML
                     NewMovieDetailParser parser = new NewMovieDetailParser();
                     item = parser.parseXml(content);
-                    //MovieDetailParser parser = new MovieDetailParser();
-                    //items = parser.parseXml(content);
 #else
                     items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
 #endif
