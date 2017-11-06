@@ -1,7 +1,11 @@
 ﻿using System;
-namespace xapps.Mvvm.Model.Network.NewMovieData
+using System.Collections.Generic;
+namespace xapps
 {
-    public struct NewMovieData
+    public class NewMovieData : dataItem
     {
+        public List<NewMovie> MovieList { get; set; }       // List
+
+        public NewMovie movie { get; set; }     // one item
     }
 }

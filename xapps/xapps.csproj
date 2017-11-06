@@ -94,6 +94,13 @@
     <Compile Include="Mvvm\Services\Network\Service\Response\NewResponse\NewMovieListParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\NewResponse\NewMovieDetailParser.cs" />
     <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovieData.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\NewMovie.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\director.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\actor.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\rating.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\staff.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\vod.cs" />
+    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\stat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -133,6 +140,7 @@
     <Folder Include="Mvvm\Services\Network\Service\Request\New\" />
     <Folder Include="Mvvm\Services\Network\Service\Response\NewResponse\" />
     <Folder Include="Mvvm\Model\Network\NewMovieData\" />
+    <Folder Include="Mvvm\Model\Network\NewMovieData\NewMovie\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

@@ -104,5 +104,105 @@ namespace xapps
 
             return items; 
         }
+
+        public async Task<NewMovieData> requestNewMovieList() {
+#if USE_PARSE_XML
+            string url = NewMovieList.localeListRestUrl + NewMovieList.pageNo + NewMovieList.numOfRows + NewMovieList.ServiceKey + NewMovieList.key
+                                     + NewMovieList.detail + NewMovieList.createDts + NewMovieList.createDte + NewMovieList.startCount + NewMovieList.listCount;
+
+
+
+            //collection
+            //startCount
+            //listCount 
+
+
+#else
+            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
+#endif
+
+            Debug.WriteLine(url);
+            var uri = new Uri(string.Format(url, string.Empty));
+            NewMovieData item = new NewMovieData();
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine(content);
+                    Debug.WriteLine("==========================================================");
+#if USE_PARSE_XML
+                    NewMovieDetailParser parser = new NewMovieDetailParser();
+                    item = parser.parseXml(content);
+                    //MovieDetailParser parser = new MovieDetailParser();
+                    //items = parser.parseXml(content);
+#else
+                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
+#endif
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
+}
+
+            return item;
+        }
+
+        public async Task<NewMovieData> requestNewMovieDetail(string movieSeq) {
+            //NewMovieData detailData = new NewMovieData();
+
+            //// 05274 sample seq
+
+            //return detailData;
+
+#if USE_PARSE_XML
+            string url = NewMovieDetail.localeListRestUrl + NewMovieDetail.pageNo + NewMovieDetail.numOfRows + NewMovieDetail.ServiceKey + NewMovieDetail.key
+                                       + NewMovieDetail.detail + NewMovieDetail.listCount + NewMovieDetail.movieSeq + movieSeq;
+
+
+
+            //collection
+            //startCount
+            //listCount 
+
+
+#else
+            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
+#endif
+
+            Debug.WriteLine(url);
+            var uri = new Uri(string.Format(url, string.Empty));
+            NewMovieData item = new NewMovieData();
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine(content);
+                    Debug.WriteLine("==========================================================");
+#if USE_PARSE_XML
+                    NewMovieDetailParser parser = new NewMovieDetailParser();
+                    item = parser.parseXml(content);
+                    //MovieDetailParser parser = new MovieDetailParser();
+                    //items = parser.parseXml(content);
+#else
+                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
+#endif
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
+            }
+
+            return item;
+        }
     }
 }
