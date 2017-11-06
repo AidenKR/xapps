@@ -115,6 +115,8 @@
       <DependentUpon>WebviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\Model\View\MasterPageItem.cs" />
+    <Compile Include="Mvvm\Services\Network\Manager\ImageManager.cs" />
+    <Compile Include="Mvvm\Services\Network\Interface\IImageManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
