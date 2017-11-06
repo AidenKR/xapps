@@ -18,5 +18,7 @@ namespace xapps
             netManager.requestMovieList();
             netManager.requestMovieDetail("20161725");
         }
+
+
     }
 }

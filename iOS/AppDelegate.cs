@@ -77,8 +77,7 @@ namespace xapps.iOS
         {
 #if DEBUG
             Firebase.InstanceID.InstanceId.SharedInstance.SetApnsToken(deviceToken, Firebase.InstanceID.ApnsTokenType.Sandbox);
-#endif
-#if RELEASE
+#else
             Firebase.InstanceID.InstanceId.SharedInstance.SetApnsToken(deviceToken, Firebase.InstanceID.ApnsTokenType.Prod);
 #endif
         }
