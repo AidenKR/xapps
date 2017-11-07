@@ -134,6 +134,7 @@
     <Compile Include="Mvvm\Model\Network\MovieData\staff.cs" />
     <Compile Include="Mvvm\Model\Network\MovieData\stat.cs" />
     <Compile Include="Mvvm\Model\Network\MovieData\vod.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieDetail\PerformerData.cs" />
     <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\MovieListPageViewModel.cs" />
   </ItemGroup>

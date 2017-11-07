@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.MovieDetailPage">
-	<ContentPage.Content>
-        <StackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
-        </StackLayout>
-	</ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="Olive" Orientation="Vertical" Spacing="0">
+                <!-- Movie Image -->
+                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieImagePanel" Padding="0,0,0,0" Orientation="Horizontal">
+                    <!-- 포스터 이미지 -->
+                    <Image x:Name="mdpMovieImageIvPoster" BackgroundColor="Silver" WidthRequest="80" HeightRequest="120" Aspect="AspectFit" />
+                    <!-- 미리보기 -->
+                    <AbsoluteLayout BackgroundColor="Black" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                        <Image x:Name="mdpMovieImageIvBg" Aspect="AspectFit" />
+                        <Button x:Name="mdpMovieImageBtnPlay" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" />
+                    </AbsoluteLayout>
+                </StackLayout>
+                <!-- Share -->
+                <Grid Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="mdpShareBtnWishList" BackgroundColor="White" Text="위시리스트" TextColor="Maroon" FontSize="10" />
+                    <Button Grid.Row="0" Grid.Column="1" x:Name="mdpShareBtnShare" BackgroundColor="White" Text="같이볼래?" TextColor="Maroon" FontSize="10" />
+                    <Button Grid.Row="0" Grid.Column="2" x:Name="mdpShareBtnNowTicketing" BackgroundColor="White" Text="지금예매" TextColor="Maroon" FontSize="10" />
+                </Grid>
+                <!-- Now Playing -->
+                <StackLayout IsVisible="true" BackgroundColor="Gray" x:Name="mdpNowPlayingPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0" Orientation="Horizontal" HeightRequest="30">
+                    <Label x:Name="mdpNowPlayingTvState" XAlign="Center" YAlign="Center" WidthRequest="50" HeightRequest="12" BackgroundColor="Red" VerticalOptions="Center" FontSize="8" TextColor="White" Margin="10,0,0,0" />
+                    <Label Text="예매율 " TextColor="Black" VerticalOptions="Center" FontSize="10" />
+                    <Label x:Name="mdpNowPlayingTvAdvanceRate" Text="22.5%" TextColor="Red" VerticalOptions="Center" FontSize="10" />
+                    <Label x:Name="mdpNowPlayingTvReleaseDate" Text="2017.10.25 개봉" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0" />
+                </StackLayout>
+                <!-- Movie Info -->
+                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieInfoPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
+                    <Label x:Name="mdpMovieInfoTvTitle" Text="영화 제목" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
+                    <Label x:Name="mdpMovieInfoTvDesc" Text="상영시간 장르" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
+                    <Label x:Name="mdpMovieInfoTvStory" Text="영화 줄거리" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" />
+                    <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" Text="더보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
+                </StackLayout>
+                <!-- Graph -->
+                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="400">
+                    <Label Text="Golden EGG 지수" TextColor="Black" HorizontalOptions="Center" FontSize="11" />
+                </StackLayout>
+                <!-- List 
+                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
+                    <ListView x:Name="mdpListView" SeparatorColor="Gray">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Spacing="0" VerticalOptions="Center" Orientation="Horizontal">
+                                        <Label Text="{Binding name}" LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding role}" TextColor="Gray" HorizontalOptions="End" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout> -->
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
