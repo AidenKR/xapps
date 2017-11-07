@@ -11,7 +11,7 @@ namespace xapps
         {
             InitializeComponent();
 
-            Browser.Source = "https://m.cgv.co.kr";
+            Browser.Source = "http://13.124.169.220/movie.html";
         }
 
         private void backClicked(object sender, EventArgs e)
