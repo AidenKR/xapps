@@ -4,6 +4,7 @@
         <StackLayout VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
             <Button Text="Network Test" BorderWidth="1" Clicked="NetTestBtnClicked" />
             <Button Text="Database Test" BorderWidth="1" Clicked="DBTestBtnClicked" />
+            <Button Text="즐겨찾기화면 Test" BorderWidth="1" Clicked="FavoriteBtnClicked" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

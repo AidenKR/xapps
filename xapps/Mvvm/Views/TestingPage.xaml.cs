@@ -23,5 +23,10 @@ namespace xapps
         {
             Navigation.PushAsync(new DatabasePage());
         }
+
+        void FavoriteBtnClicked(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new FavoritePage());
+        }
     }
 }

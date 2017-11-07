@@ -53,6 +53,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mvvm\Views\FavoritePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -117,6 +121,9 @@
     <Compile Include="Mvvm\Model\View\MasterPageItem.cs" />
     <Compile Include="Mvvm\Services\Network\Manager\ImageManager.cs" />
     <Compile Include="Mvvm\Services\Network\Interface\IImageManager.cs" />
+    <Compile Include="Mvvm\Views\FavoritePage.xaml.cs">
+      <DependentUpon>FavoritePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
