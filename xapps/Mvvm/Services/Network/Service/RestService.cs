@@ -105,10 +105,10 @@ namespace xapps
         //    return items; 
         //}
 
-        public async Task<List<NewMovie>> requestMovieList() {
+        public async Task<List<MovieData>> requestMovieList() {
 #if USE_PARSE_XML
-            string url = NewMovieList.localeListRestUrl + NewMovieList.pageNo + NewMovieList.numOfRows + NewMovieList.ServiceKey + NewMovieList.key
-                                     + NewMovieList.detail + NewMovieList.createDts + NewMovieList.createDte + NewMovieList.startCount + NewMovieList.listCount;
+            string url = MovieDataListRequest.localeListRestUrl + MovieDataListRequest.pageNo + MovieDataListRequest.numOfRows + MovieDataListRequest.ServiceKey + MovieDataListRequest.key
+                                             + MovieDataListRequest.detail + MovieDataListRequest.createDts + MovieDataListRequest.createDte + MovieDataListRequest.startCount + MovieDataListRequest.listCount;
 
 #else
             string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
@@ -116,7 +116,7 @@ namespace xapps
 
             Debug.WriteLine(url);
             var uri = new Uri(string.Format(url, string.Empty));
-            List<NewMovie> item = new List<NewMovie>();
+            List<MovieData> item = new List<MovieData>();
             try
             {
                 var response = await client.GetAsync(uri);
@@ -128,7 +128,7 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 #if USE_PARSE_XML
-                    NewMovieListParser parser = new NewMovieListParser();
+                    MovieDataListParser parser = new MovieDataListParser();
                     item = parser.parseXml(content);
 #else
                     items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
@@ -143,17 +143,17 @@ namespace xapps
             return item;
         }
 
-        public async Task<NewMovie> requestMovieDetail(string movieSeq) {
+        public async Task<MovieData> requestMovieDetail(string movieSeq) {
 #if USE_PARSE_XML
-            string url = NewMovieDetail.localeListRestUrl + NewMovieDetail.pageNo + NewMovieDetail.numOfRows + NewMovieDetail.ServiceKey + NewMovieDetail.key
-                                       + NewMovieDetail.detail + NewMovieDetail.listCount + NewMovieDetail.movieSeq + movieSeq;
+            string url = MovieDataRequest.localeListRestUrl + MovieDataRequest.pageNo + MovieDataRequest.numOfRows + MovieDataRequest.ServiceKey + MovieDataRequest.key
+                                         + MovieDataRequest.detail + MovieDataRequest.listCount + MovieDataRequest.movieSeq + movieSeq;
 #else
             string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
 #endif
 
             Debug.WriteLine(url);
             var uri = new Uri(string.Format(url, string.Empty));
-            NewMovie item = new NewMovie();
+            MovieData item = new MovieData();
             try
             {
                 var response = await client.GetAsync(uri);
@@ -165,7 +165,7 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 #if USE_PARSE_XML
-                    NewMovieDetailParser parser = new NewMovieDetailParser();
+                    MovieDataParser parser = new MovieDataParser();
                     item = parser.parseXml(content);
 #else
                     items = JsonConvert.DeserializeObject<MovieDetailItem>(content);

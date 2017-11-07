@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace xapps
 {
-    public class NewMovie : dataItem
+    public class MovieData : dataItem
     {
         public string DOCID { get; set; }
         public string movieId { get; set; }

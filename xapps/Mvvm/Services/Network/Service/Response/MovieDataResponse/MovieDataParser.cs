@@ -4,12 +4,12 @@ using System.Xml.Linq;
 
 namespace xapps
 {
-    public class NewMovieListParser : DefaultParser
+    public class MovieDataParser : DefaultParser
     {
-        public List<NewMovie> parseXml(string contents)
+        public MovieData parseXml(string contents)
         {
 
-            List<NewMovie> items = new List<NewMovie>();
+            MovieData items = new MovieData();
 
             //Xml Parsing  
 
@@ -18,19 +18,17 @@ namespace xapps
 
             foreach (XElement list in doc.Descendants("Row"))
             {
-                NewMovie movie = new NewMovie();
+                items.DOCID = getElementData(list.Element("DOCID"));
+                items.movieId = getElementData(list.Element("movieId"));
+                items.movieSeq = getElementData(list.Element("movieSeq"));
 
-                movie.DOCID = getElementData(list.Element("DOCID"));
-                movie.movieId = getElementData(list.Element("movieId"));
-                movie.movieSeq = getElementData(list.Element("movieSeq"));
+                items.title = getElementData(list.Element("title"));
+                items.titleEng = getElementData(list.Element("titleEng"));
+                items.titleOrg = getElementData(list.Element("titleOrg"));
+                items.titleEtc = getElementData(list.Element("titleEtc"));
+                items.prodYear = getElementData(list.Element("prodYear"));
 
-                movie.title = getElementData(list.Element("title"));
-                movie.titleEng = getElementData(list.Element("titleEng"));
-                movie.titleOrg = getElementData(list.Element("titleOrg"));
-                movie.titleEtc = getElementData(list.Element("titleEtc"));
-                movie.prodYear = getElementData(list.Element("prodYear"));
-
-                movie.directors = new List<director>();
+                items.directors = new List<director>();
                 foreach (XElement listItem in list.Descendants("directors"))
                 {
                     foreach (XElement item in listItem.Descendants("director"))
@@ -39,11 +37,11 @@ namespace xapps
                         itemObj.directorNm = getElementData(item.Element("directorNm"));
                         itemObj.directorId = getElementData(item.Element("directorId"));
 
-                        movie.directors.Add(itemObj);
+                        items.directors.Add(itemObj);
                     }
                 }
 
-                movie.actors = new List<actor>();
+                items.actors = new List<actor>();
                 foreach (XElement listItem in list.Descendants("actors"))
                 {
                     foreach (XElement item in listItem.Descendants("actor"))
@@ -52,28 +50,28 @@ namespace xapps
                         itemObj.actorNm = getElementData(item.Element("actorNm"));
                         itemObj.actorId = getElementData(item.Element("actorId"));
 
-                        movie.actors.Add(itemObj);
+                        items.actors.Add(itemObj);
                     }
                 }
 
 
-                movie.nation = getElementData(list.Element("nation"));
-                movie.company = getElementData(list.Element("company"));
-                movie.plot = getElementData(list.Element("plot"));
+                items.nation = getElementData(list.Element("nation"));
+                items.company = getElementData(list.Element("company"));
+                items.plot = getElementData(list.Element("plot"));
 
-                movie.runtime = getElementData(list.Element("runtime"));
-                movie.rating = getElementData(list.Element("rating"));
-                movie.genre = getElementData(list.Element("genre"));
-                movie.kmdbUrl = getElementData(list.Element("kmdbUrl"));
-                movie.type = getElementData(list.Element("type"));
-                movie.use = getElementData(list.Element("use"));
+                items.runtime = getElementData(list.Element("runtime"));
+                items.rating = getElementData(list.Element("rating"));
+                items.genre = getElementData(list.Element("genre"));
+                items.kmdbUrl = getElementData(list.Element("kmdbUrl"));
+                items.type = getElementData(list.Element("type"));
+                items.use = getElementData(list.Element("use"));
 
-                movie.episodes = getElementData(list.Element("episodes"));
-                movie.ratedYn = getElementData(list.Element("ratedYn"));
-                movie.repRatDate = getElementData(list.Element("repRatDate"));
-                movie.repRlsDate = getElementData(list.Element("repRlsDate"));
+                items.episodes = getElementData(list.Element("episodes"));
+                items.ratedYn = getElementData(list.Element("ratedYn"));
+                items.repRatDate = getElementData(list.Element("repRatDate"));
+                items.repRlsDate = getElementData(list.Element("repRlsDate"));
 
-                movie.ratings = new List<rating>();
+                items.ratings = new List<rating>();
                 foreach (XElement listItem in list.Descendants("ratings"))
                 {
                     foreach (XElement item in listItem.Descendants("rating"))
@@ -85,15 +83,15 @@ namespace xapps
                         itemObj.ratingGrade = getElementData(item.Element("ratingGrade"));
                         itemObj.releaseDate = getElementData(item.Element("releaseDate"));
                         itemObj.runtime = getElementData(item.Element("runtime"));
-                        movie.ratings.Add(itemObj);
+                        items.ratings.Add(itemObj);
                     }
                 }
 
-                movie.keywords = getElementData(list.Element("keywords"));
-                movie.posters = getElementData(list.Element("posters"));
-                movie.stlls = getElementData(list.Element("stlls"));
+                items.keywords = getElementData(list.Element("keywords"));
+                items.posters = getElementData(list.Element("posters"));
+                items.stlls = getElementData(list.Element("stlls"));
 
-                movie.staffs = new List<staff>();
+                items.staffs = new List<staff>();
                 foreach (XElement listItem in list.Descendants("staffs"))
                 {
                     foreach (XElement item in listItem.Descendants("staff"))
@@ -105,11 +103,11 @@ namespace xapps
                         itemObj.staffEtc = getElementData(item.Element("staffEtc"));
                         itemObj.staffId = getElementData(item.Element("staffId"));
 
-                        movie.staffs.Add(itemObj);
+                        items.staffs.Add(itemObj);
                     }
                 }
 
-                movie.vods = new List<vod>();
+                items.vods = new List<vod>();
                 foreach (XElement listItem in list.Descendants("vods"))
                 {
                     foreach (XElement item in listItem.Descendants("vod"))
@@ -118,11 +116,11 @@ namespace xapps
                         itemObj.vodClass = getElementData(item.Element("vodClass"));
                         itemObj.vodUrl = getElementData(item.Element("vodUrl"));
 
-                        movie.vods.Add(itemObj);
+                        items.vods.Add(itemObj);
                     }
                 }
 
-                movie.stats = new List<stat>();
+                items.stats = new List<stat>();
                 foreach (XElement listItem in list.Descendants("stats"))
                 {
                     foreach (XElement item in listItem.Descendants("stat"))
@@ -135,23 +133,21 @@ namespace xapps
                         itemObj.statSouce = getElementData(item.Element("statSouce"));
                         itemObj.statDate = getElementData(item.Element("statDate"));
 
-                        movie.stats.Add(itemObj);
+                        items.stats.Add(itemObj);
                     }
                 }
 
-                movie.themeSong = getElementData(list.Element("themeSong"));
-                movie.soundtrack = getElementData(list.Element("soundtrack"));
-                movie.fLocation = getElementData(list.Element("fLocation"));
+                items.themeSong = getElementData(list.Element("themeSong"));
+                items.soundtrack = getElementData(list.Element("soundtrack"));
+                items.fLocation = getElementData(list.Element("fLocation"));
 
-                movie.Awards1 = getElementData(list.Element("Awards1"));
-                movie.Awards2 = getElementData(list.Element("Awards2"));
-                movie.regDate = getElementData(list.Element("regDate"));
+                items.Awards1 = getElementData(list.Element("Awards1"));
+                items.Awards2 = getElementData(list.Element("Awards2"));
+                items.regDate = getElementData(list.Element("regDate"));
 
-                movie.modDate = getElementData(list.Element("modDate"));
-                movie.isanCode = getElementData(list.Element("isanCode"));
-                movie.ALIAS = getElementData(list.Element("ALIAS"));
-
-                items.Add(movie);
+                items.modDate = getElementData(list.Element("modDate"));
+                items.isanCode = getElementData(list.Element("isanCode"));
+                items.ALIAS = getElementData(list.Element("ALIAS"));
 
             }
 

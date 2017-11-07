@@ -1,7 +1,7 @@
 ﻿using System;
 namespace xapps
 {
-    public class NewMovieList : NewRequestData
+    public class MovieDataListRequest : MovieRequest
     {
         public static string localeListRestUrl = "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_xml.jsp?collection=kmdb_new&query=korea&detail=Y";    // ?collection=kmdb_new&query=korea&detail=Y
         public static string pageNo = "&pageNo=1";

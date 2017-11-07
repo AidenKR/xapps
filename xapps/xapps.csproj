@@ -103,19 +103,11 @@
     <Compile Include="Mvvm\Views\DatabasePage.xaml.cs">
       <DependentUpon>DatabasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\NewMovieList.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\NewMovieDetail.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\NewRequestData.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\NewResponse\NewMovieListParser.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\NewResponse\NewMovieDetailParser.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovieData.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\NewMovie.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\director.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\actor.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\rating.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\staff.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\vod.cs" />
-    <Compile Include="Mvvm\Model\Network\NewMovieData\NewMovie\stat.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieDataListRequest.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieDataRequest.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieRequest.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Response\MovieDataResponse\MovieDataListParser.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Response\MovieDataResponse\MovieDataParser.cs" />
     <Compile Include="Mvvm\Views\TestingPage.xaml.cs">
       <DependentUpon>TestingPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +123,13 @@
     <Compile Include="Mvvm\Views\MovieDetailPage.xaml.cs">
       <DependentUpon>MovieDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mvvm\Model\Network\MovieData.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\actor.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\director.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\rating.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\staff.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\stat.cs" />
+    <Compile Include="Mvvm\Model\Network\MovieData\vod.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -168,9 +167,8 @@
     <Folder Include="Mvvm\ViewModel\" />
     <Folder Include="Mvvm\Views\" />
     <Folder Include="Mvvm\Services\Network\Service\Request\New\" />
-    <Folder Include="Mvvm\Services\Network\Service\Response\NewResponse\" />
-    <Folder Include="Mvvm\Model\Network\NewMovieData\" />
-    <Folder Include="Mvvm\Model\Network\NewMovieData\NewMovie\" />
+    <Folder Include="Mvvm\Services\Network\Service\Response\MovieDataResponse\" />
+    <Folder Include="Mvvm\Model\Network\MovieData\" />
     <Folder Include="Mvvm\Model\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
