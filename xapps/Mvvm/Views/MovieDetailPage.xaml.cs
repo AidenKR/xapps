@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace xapps.Mvvm.Views
+namespace xapps
 {
     public partial class MovieDetailPage : ContentPage
     {
-        public MovieDetailPage()
+        public MovieDetailPage(MovieData item)
         {
             InitializeComponent();
         }

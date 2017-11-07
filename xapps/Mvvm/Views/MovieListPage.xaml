@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:xapps" x:Class="xapps.MovieListPage" Title="{Binding Title}">
+    <StackLayout>
+        <ListView x:Name="listView" SeparatorColor="Gray" RowHeight="100" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5">
+                            <!-- Difinition -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!-- 1st column -->
+                            <Image Grid.Column="0" Source="{Binding posters}" Aspect="AspectFit" />
+                            <!-- 2nd Column -->
+                            <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
+                                <Label Text="{Binding title}" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding genre}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding rating}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding repRlsDate}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

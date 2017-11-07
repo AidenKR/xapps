@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -28,7 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Mvvm\Views\xappsPage.xaml" />
+    <EmbeddedResource Include="Mvvm\Views\MovieListPage.xaml" />
     <EmbeddedResource Include="Mvvm\Views\NetworkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -88,8 +88,8 @@
     <Compile Include="Mvvm\Services\Network\Service\Response\MovieDetailParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\MovieListParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\RestService.cs" />
-    <Compile Include="Mvvm\Views\xappsPage.xaml.cs">
-      <DependentUpon>..\..\Views\xappsPage.xaml</DependentUpon>
+    <Compile Include="Mvvm\Views\MovieListPage.xaml.cs">
+      <DependentUpon>MovieListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\Views\NetworkPage.xaml.cs">
       <DependentUpon>NetworkPage.xaml</DependentUpon>
@@ -130,6 +130,8 @@
     <Compile Include="Mvvm\Model\Network\MovieData\staff.cs" />
     <Compile Include="Mvvm\Model\Network\MovieData\stat.cs" />
     <Compile Include="Mvvm\Model\Network\MovieData\vod.cs" />
+    <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
+    <Compile Include="Mvvm\ViewModel\MovieListPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
