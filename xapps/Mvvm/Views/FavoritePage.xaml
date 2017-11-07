@@ -3,7 +3,7 @@
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="20,40,20,20" />
+            <On Platform="iOS" Value="10,10,10,0" />
             <On Platform="Android, UWP" Value="20" />
         </OnPlatform>
     </ContentPage.Padding>
@@ -15,14 +15,14 @@
                 <Button x:Name="deleteButton" Clicked="Handle_Clicked" Text="삭제" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
             </StackLayout>
             
-            <ListView  x:Name="lstView" RowHeight="80" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing">
+            <ListView  x:Name="favoriteListView" RowHeight="80" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                                 
-                                <Image Source="{Binding Image}" HorizontalOptions="End" AbsoluteLayout.LayoutBounds="250.25, 0.25, 50, 50 "/>
+                                <Image x:Name="imageView" Rotation="-15" Source="{Binding url}" HorizontalOptions="Start" AbsoluteLayout.LayoutBounds="100, 0.25, 50, 50 " BackgroundColor="Green"/>
                                 
                                 <StackLayout Orientation="Vertical">
                                     <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>

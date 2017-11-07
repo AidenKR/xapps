@@ -12,7 +12,6 @@ namespace xapps
         public NetworkPage()
         {
             InitializeComponent();
-
             NetworkManager.Instance().requestMovieList();
             NetworkManager.Instance().requestMovieDetail("05313");
 
