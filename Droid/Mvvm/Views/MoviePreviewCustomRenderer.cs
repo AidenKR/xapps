@@ -146,6 +146,12 @@ namespace xapps
                     videoView.Start();
                 };
             });
+
+            videoView.Completion += delegate
+            {
+                activity.OnBackPressed();
+            };
+
         }
 
     }
