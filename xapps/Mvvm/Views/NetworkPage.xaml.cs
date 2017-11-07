@@ -13,14 +13,10 @@ namespace xapps
         {
             InitializeComponent();
 
-            netManager = new NetworkManager(new RestService());
+            NetworkManager.Instance().requestMovieList();
+            NetworkManager.Instance().requestMovieDetail("05313");
 
-            //netManager.requestMovieList();
-            //netManager.requestMovieDetail("20161725");
-
-            netManager.requestNewMovieList();
-
-            //netManager.requestNewMovieDetail("05313");  // 독도 KOREA
+            //NetworkManager.requestMovieDetail("05313");   // // 독도 KOREA
 
             Image image = ImageManager.getImageFromUrl("https://www.w3schools.com/howto/img_fjords.jpg");
             if(image == null) {

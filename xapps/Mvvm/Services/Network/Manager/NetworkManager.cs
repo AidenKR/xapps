@@ -6,31 +6,46 @@ namespace xapps
 {
 	public class NetworkManager
 	{
-        INetworkManager iNetworkManager;
+        private INetworkManager iNetworkManager;
 
-        public NetworkManager (INetworkManager service)
-		{
+        //public Task<MovieListData> requestMovieList()
+        //{
+        //    return iNetworkManager.requestMovieList();
+        //}
+
+        //public Task <MovieDetailData> requestMovieDetail(String movieCd)
+        //{
+        //    return iNetworkManager.requestMovieDetail(movieCd);
+        //}
+
+        private static readonly object _lockObj = new object();
+        private static NetworkManager netManager = null;
+        private NetworkManager(INetworkManager service)
+        {
             iNetworkManager = service;
-		}
+        }
 
-        public Task<MovieListData> requestMovieList()
+        static internal NetworkManager Instance()
+        {
+            // can thread safety
+            lock (_lockObj)
+            {
+                if (netManager == null)
+                {
+                    netManager = new NetworkManager(new RestService());
+                }
+                return netManager;
+            }
+        }
+
+        public Task<List<NewMovie>> requestMovieList()
         {
             return iNetworkManager.requestMovieList();
         }
 
-        public Task <MovieDetailData> requestMovieDetail(String movieCd)
+        public Task<NewMovie> requestMovieDetail(String movieSeq)
         {
-            return iNetworkManager.requestMovieDetail(movieCd);
-        }
-
-        public Task<List<NewMovie>> requestNewMovieList()
-        {
-            return iNetworkManager.requestNewMovieList();
-        }
-
-        public Task<NewMovie> requestNewMovieDetail(String movieSeq)
-        {
-            return iNetworkManager.requestNewMovieDetail(movieSeq);
+            return iNetworkManager.requestMovieDetail(movieSeq);
         }
 	}
 }

@@ -5,12 +5,12 @@ namespace xapps
 {
 	public interface INetworkManager
 	{
-        Task <MovieListData>requestMovieList();
+        //Task <MovieListData>requestMovieList();
 
-        Task <MovieDetailData> requestMovieDetail(string movieCd);
+        //Task <MovieDetailData> requestMovieDetail(string movieCd);
 
-        Task <List<NewMovie>> requestNewMovieList();
+        Task <List<NewMovie>> requestMovieList();
 
-        Task <NewMovie> requestNewMovieDetail(string modieId);
+        Task <NewMovie> requestMovieDetail(string modieId);
 	}
 }
