@@ -9,8 +9,8 @@ namespace xapps
 
         Task <MovieDetailData> requestMovieDetail(string movieCd);
 
-        Task <NewMovieData> requestNewMovieList();
+        Task <List<NewMovie>> requestNewMovieList();
 
-        Task <NewMovieData> requestNewMovieDetail(string modieId);
+        Task <NewMovie> requestNewMovieDetail(string modieId);
 	}
 }

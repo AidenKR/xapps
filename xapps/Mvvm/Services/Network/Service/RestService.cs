@@ -105,7 +105,7 @@ namespace xapps
             return items; 
         }
 
-        public async Task<NewMovieData> requestNewMovieList() {
+        public async Task<List<NewMovie>> requestNewMovieList() {
 #if USE_PARSE_XML
             string url = NewMovieList.localeListRestUrl + NewMovieList.pageNo + NewMovieList.numOfRows + NewMovieList.ServiceKey + NewMovieList.key
                                      + NewMovieList.detail + NewMovieList.createDts + NewMovieList.createDte + NewMovieList.startCount + NewMovieList.listCount;
@@ -116,7 +116,7 @@ namespace xapps
 
             Debug.WriteLine(url);
             var uri = new Uri(string.Format(url, string.Empty));
-            NewMovieData item = new NewMovieData();
+            List<NewMovie> item = new List<NewMovie>();
             try
             {
                 var response = await client.GetAsync(uri);
@@ -143,7 +143,7 @@ namespace xapps
             return item;
         }
 
-        public async Task<NewMovieData> requestNewMovieDetail(string movieSeq) {
+        public async Task<NewMovie> requestNewMovieDetail(string movieSeq) {
 #if USE_PARSE_XML
             string url = NewMovieDetail.localeListRestUrl + NewMovieDetail.pageNo + NewMovieDetail.numOfRows + NewMovieDetail.ServiceKey + NewMovieDetail.key
                                        + NewMovieDetail.detail + NewMovieDetail.listCount + NewMovieDetail.movieSeq + movieSeq;
@@ -153,7 +153,7 @@ namespace xapps
 
             Debug.WriteLine(url);
             var uri = new Uri(string.Format(url, string.Empty));
-            NewMovieData item = new NewMovieData();
+            NewMovie item = new NewMovie();
             try
             {
                 var response = await client.GetAsync(uri);

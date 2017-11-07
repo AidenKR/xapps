@@ -23,12 +23,12 @@ namespace xapps
             return iNetworkManager.requestMovieDetail(movieCd);
         }
 
-        public Task<NewMovieData> requestNewMovieList()
+        public Task<List<NewMovie>> requestNewMovieList()
         {
             return iNetworkManager.requestNewMovieList();
         }
 
-        public Task<NewMovieData> requestNewMovieDetail(String movieSeq)
+        public Task<NewMovie> requestNewMovieDetail(String movieSeq)
         {
             return iNetworkManager.requestNewMovieDetail(movieSeq);
         }

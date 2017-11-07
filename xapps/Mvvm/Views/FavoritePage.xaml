@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.FavoritePage">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20,40,20,20" />
+            <On Platform="Android, UWP" Value="20" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    
 	<ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
+                <Label Text = "Favorite Page" FontSize="24" HorizontalOptions="CenterAndExpand"  XAlign="Center"/>
+                <Button x:Name="deleteButton" Clicked="Handle_Clicked" Text="삭제" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
+            </StackLayout>
+            
+            <ListView  x:Name="lstView" RowHeight="80" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
+                                
+                                <Image Source="{Binding Image}" HorizontalOptions="End" AbsoluteLayout.LayoutBounds="250.25, 0.25, 50, 50 "/>
+                                
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+                                    <Label Text = "{Binding Type}" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

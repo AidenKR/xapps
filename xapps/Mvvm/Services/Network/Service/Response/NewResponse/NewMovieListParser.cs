@@ -6,11 +6,10 @@ namespace xapps
 {
     public class NewMovieListParser : DefaultParser
     {
-        public NewMovieData parseXml(string contents)
+        public List<NewMovie> parseXml(string contents)
         {
 
-            NewMovieData items = new NewMovieData();
-            items.MovieList = new List<NewMovie>();
+            List<NewMovie> items = new List<NewMovie>();
 
             //Xml Parsing  
 
@@ -152,7 +151,7 @@ namespace xapps
                 movie.isanCode = getElementData(list.Element("isanCode"));
                 movie.ALIAS = getElementData(list.Element("ALIAS"));
 
-                items.MovieList.Add(movie);
+                items.Add(movie);
 
             }
 
