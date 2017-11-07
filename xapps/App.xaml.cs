@@ -4,6 +4,9 @@ namespace xapps
 {
     public partial class App : Application
     {
+        //Create two static doubles that will be used to size elements
+        public static double ScreenWidth;
+        public static double ScreenHeight;
         public App()
         {
             InitializeComponent();

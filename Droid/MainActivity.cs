@@ -26,6 +26,15 @@ namespace xapps.Droid
                 ShowLog("refreshedToken : " + refreshedToken);
             }
 
+            var pixelWidth = (int)Resources.DisplayMetrics.WidthPixels;
+            var pixelHeight = (int)Resources.DisplayMetrics.HeightPixels;
+            var screenPixelDensity = (double)Resources.DisplayMetrics.Density;
+
+            App.ScreenHeight = (double)((pixelHeight - 0.5f) / screenPixelDensity);
+            App.ScreenWidth = (double)((pixelWidth - 0.5f) / screenPixelDensity);
+
+            //Set our status bar helper DecorView. This enables us to hide the notification bar for fullscreen
+            StatusBarHelper.DecorView = this.Window.DecorView;
         }
 
         /**

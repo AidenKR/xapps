@@ -28,5 +28,10 @@ namespace xapps
         {
             Navigation.PushAsync(new FavoritePage());
         }
+
+        void MovieBtnClicked(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new MoviePreviewPage());
+        }
     }
 }
