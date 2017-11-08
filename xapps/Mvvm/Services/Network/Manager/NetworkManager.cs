@@ -6,12 +6,13 @@ namespace xapps
 {
 	public class NetworkManager
 	{
-        private INetworkManager iNetworkManager;
+        private INetService iNetService;
+        //private INetworkManager iNetworkManager;
         private static readonly object _lockObj = new object();
         private static NetworkManager netManager = null;
-        private NetworkManager(INetworkManager service)
+        private NetworkManager(INetService service)
         {
-            iNetworkManager = service;
+            iNetService = service;
         }
 
         static internal NetworkManager Instance()
@@ -31,21 +32,21 @@ namespace xapps
             NowPlayingRequest data = (NowPlayingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_NOW_PLAYING);
             data.requestType = NetworkConsts.REQUEST_TYPE_NOW_PLAYING;
             data.makeRequestUrl(page);
-            return iNetworkManager.requestNowPlayingData(data);
+            return iNetService.requestNowPlayingData(data);
         }
 
         public Task<UpCommingData> requestUpCommingData(string page) {
             UpCommingRequest data = (UpCommingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_UP_COMMING);
             data.requestType = NetworkConsts.REQUEST_TYPE_UP_COMMING;
             data.makeRequestUrl(page);
-            return iNetworkManager.requestUpCommingData(data);
+            return iNetService.requestUpCommingData(data);
         }
 
         public Task<DetailData> requestDetailsData(string movieId) {
             DetailsRequest data = (DetailsRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_DETAIL);
             data.requestType = NetworkConsts.REQUEST_TYPE_DETAIL;
             data.makeRequestUrl(movieId);
-            return iNetworkManager.requestDetailsData(data);
+            return iNetService.requestDetailsData(data);
         }
 	}
 }

@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace xapps
 {
-	public interface INetworkManager
-	{
+    public interface INetService
+    {
         Task<NowPlayingData> requestNowPlayingData(BaseRequestData request);
 
         Task<UpCommingData> requestUpCommingData(BaseRequestData request);
 
         Task<DetailData> requestDetailsData(BaseRequestData request);
-	}
+
+    }
 }

@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace xapps
 {
-    public class RestService : INetworkManager
+    public class RestService : INetService
     {
         HttpClient client;
 
@@ -198,6 +198,7 @@ namespace xapps
             try
             {
                 var response = await client.GetAsync(uri);
+                Debug.WriteLine(response.StatusCode);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -217,8 +218,10 @@ namespace xapps
                 }
                 else
                 {
+                    
                     Debug.WriteLine("==========================================================");
                     Debug.WriteLine("==================== response Fail =======================");
+                    Debug.WriteLine("response.StatusCode = " + (int)response.StatusCode);
                     Debug.WriteLine("==========================================================");
                 }
             }

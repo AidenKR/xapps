@@ -74,7 +74,7 @@
     <Compile Include="Mvvm\Services\Database\DatabaseConsts.cs" />
     <Compile Include="Mvvm\Services\Database\Interface\IDBFilePath.cs" />
     <Compile Include="Mvvm\Services\Database\MovieFavoritesDB.cs" />
-    <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
+    <Compile Include="Mvvm\Services\Network\Interface\INetService.cs" />
     <Compile Include="Mvvm\Services\Network\Manager\NetworkManager.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\DefaultParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\MovieDetailParser.cs" />
