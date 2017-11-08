@@ -95,14 +95,14 @@ namespace xapps
         //    return item;
         //}
         #region 현재개봉작 요청 - return NowPlayingData
-        public async Task<NowPlayingData> requestNowPlayingData(string page)
+        public async Task<NowPlayingData> requestNowPlayingData(BaseRequestData request)
         {
-            string url = NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
+            string url = request.baseUrl + request.requestUrl;
+                //NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
             Debug.WriteLine(url);
 
             var uri = new Uri(string.Format(url, string.Empty));
-            List<NowPlayingData> playing = new List<NowPlayingData>();
-            NowPlayingData playingData = new NowPlayingData();
+            NowPlayingData playingData = null;
             try
             {
                 var response = await client.GetAsync(uri);
@@ -114,10 +114,7 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 
-                    if (content != "")
-                    {
-                        playingData = JsonConvert.DeserializeObject<NowPlayingData>(content);
-                    }
+                    playingData = (NowPlayingData)this.parseData(request.requestType, content);
 
                     Debug.WriteLine(playingData);
                 }
@@ -133,19 +130,23 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
+            if(playingData == null) {
+                
+            }
+
             return playingData;
         }
         #endregion
 
 
         #region 상영예정작 요청 - return UpCommingData
-        public async Task<UpCommingData> requestUpCommingData(string page)
+        public async Task<UpCommingData> requestUpCommingData(BaseRequestData request)
         {
-            string url = UpCommingRequest.localeListRestUrl + UpCommingRequest.api_key + UpCommingRequest.language + UpCommingRequest.page + page;
+            string url = request.baseUrl + request.requestUrl;
             Debug.WriteLine(url);
 
             var uri = new Uri(string.Format(url, string.Empty));
-            UpCommingData upCommingData = new UpCommingData();
+            UpCommingData upCommingData = null;
             try
             {
                 var response = await client.GetAsync(uri);
@@ -158,12 +159,12 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 
-
-                    if (content != "")
-                    {
-                        //Converting JSON Array Objects into generic list  
-                        upCommingData = JsonConvert.DeserializeObject<UpCommingData>(content);
-                    }
+                    upCommingData = (UpCommingData)this.parseData(request.requestType, content);
+                    //if (content != "")
+                    //{
+                    //    //Converting JSON Array Objects into generic list  
+                    //    upCommingData = JsonConvert.DeserializeObject<UpCommingData>(content);
+                    //}
                 }
                 else
                 {
@@ -177,14 +178,19 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
+            if(upCommingData == null) {
+                
+            }
+
             return upCommingData;
         }
         #endregion
 
         #region 상세데이터 요청 - return DetailData
-        public async Task<DetailData> requestDetailsData(string movieId)
+        public async Task<DetailData> requestDetailsData(BaseRequestData request)
         {
-            string url = DetailsRequest.localeListRestUrl + movieId + DetailsRequest.api_key + DetailsRequest.language;
+            //DetailsRequest request = new DetailsRequest();
+            string url = request.baseUrl + request.requestUrl;
             Debug.WriteLine(url);
 
             var uri = new Uri(string.Format(url, string.Empty));
@@ -201,12 +207,13 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 
-
-                    if (content != "")
-                    {
-                        //Converting JSON Array Objects into generic list  
-                        detailData = JsonConvert.DeserializeObject<DetailData>(content);
-                    }
+                    
+                    detailData = (DetailData)this.parseData(request.requestType, content);
+                    //if (content != "")
+                    //{
+                    //    //Converting JSON Array Objects into generic list  
+                    //    detailData = JsonConvert.DeserializeObject<DetailData>(content);
+                    //}
                 }
                 else
                 {
@@ -220,10 +227,45 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
+            if(detailData == null) {
+                
+            }
+
             return detailData;
         }
 
         #endregion
+
+        public BaseData parseData(int type, string contents) {
+            BaseData returnData = null;
+
+            if (contents != "")
+            {
+                //Converting JSON Array Objects into generic list  
+                switch(type) {
+                    case NetworkConsts.REQUEST_TYPE_NOW_PLAYING:
+                        {
+                            returnData = JsonConvert.DeserializeObject<NowPlayingData>(contents);
+                        }
+                        break;
+
+                    case NetworkConsts.REQUEST_TYPE_UP_COMMING:
+                        {
+                            returnData = JsonConvert.DeserializeObject<UpCommingData>(contents);
+                        }
+                        break;
+
+                    case NetworkConsts.REQUEST_TYPE_DETAIL : {
+                            returnData = JsonConvert.DeserializeObject<DetailData>(contents);
+                        }
+                        break;
+                }
+
+
+            }
+
+            return returnData;
+        }
 
     }
 }

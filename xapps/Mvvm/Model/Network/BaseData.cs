@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace xapps
 {
-    public class dataItem
+    public class BaseData
     {
-        public string requestType { get; set; }
+        
     }
 }

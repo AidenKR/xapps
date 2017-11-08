@@ -28,15 +28,24 @@ namespace xapps
         }
 
         public Task<NowPlayingData> requestNowPlayingData(string page) {
-            return iNetworkManager.requestNowPlayingData(page);
+            NowPlayingRequest data = (NowPlayingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_NOW_PLAYING);
+            data.requestType = NetworkConsts.REQUEST_TYPE_NOW_PLAYING;
+            data.makeRequestUrl(page);
+            return iNetworkManager.requestNowPlayingData(data);
         }
 
         public Task<UpCommingData> requestUpCommingData(string page) {
-            return iNetworkManager.requestUpCommingData(page);
+            UpCommingRequest data = (UpCommingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_UP_COMMING);
+            data.requestType = NetworkConsts.REQUEST_TYPE_UP_COMMING;
+            data.makeRequestUrl(page);
+            return iNetworkManager.requestUpCommingData(data);
         }
 
         public Task<DetailData> requestDetailsData(string movieId) {
-            return iNetworkManager.requestDetailsData(movieId);
+            DetailsRequest data = (DetailsRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_DETAIL);
+            data.requestType = NetworkConsts.REQUEST_TYPE_DETAIL;
+            data.makeRequestUrl(movieId);
+            return iNetworkManager.requestDetailsData(data);
         }
 	}
 }

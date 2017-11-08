@@ -76,7 +76,6 @@
     <Compile Include="Mvvm\Services\Database\MovieFavoritesDB.cs" />
     <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
     <Compile Include="Mvvm\Services\Network\Manager\NetworkManager.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\RequestData.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\DefaultParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\MovieDetailParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\RestService.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Mvvm\Services\Network\Service\Request\NowPlayingRequest.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\NowPlayingParser.cs" />
     <Compile Include="Mvvm\Model\Network\UpCommingData.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\dataItem.cs" />
     <Compile Include="Mvvm\Model\Network\subData\dates.cs" />
     <Compile Include="Mvvm\Model\Network\subData\results.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\UpCommingRequest.cs" />
@@ -126,6 +124,10 @@
     <Compile Include="Mvvm\Views\TestPage\TestingPage.xaml.cs">
       <DependentUpon>TestingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mvvm\Services\Network\Service\Request\BaseRequestData.cs" />
+    <Compile Include="Mvvm\Model\Network\BaseData.cs" />
+    <Compile Include="Mvvm\Services\Network\NetworkConsts.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\ProtocolFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

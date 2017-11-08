@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace xapps
 {
-    public class UpCommingData
+    public class UpCommingData : BaseData
     {
         public List<results> results { get; set; }
         public string page { get; set; }

@@ -5,10 +5,10 @@ namespace xapps
 {
 	public interface INetworkManager
 	{
-        Task<NowPlayingData> requestNowPlayingData(string page);
+        Task<NowPlayingData> requestNowPlayingData(BaseRequestData request);
 
-        Task<UpCommingData> requestUpCommingData(string page);
+        Task<UpCommingData> requestUpCommingData(BaseRequestData request);
 
-        Task<DetailData> requestDetailsData(string movieId);
+        Task<DetailData> requestDetailsData(BaseRequestData request);
 	}
 }
