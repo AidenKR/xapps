@@ -30,5 +30,9 @@ namespace xapps
         public Task<NowPlayingData> requestNowPlayingData(string page) {
             return iNetworkManager.requestNowPlayingData(page);
         }
+
+        public Task<UpCommingData> requestUpCommingData(string page) {
+            return iNetworkManager.requestUpCommingData(page);
+        }
 	}
 }

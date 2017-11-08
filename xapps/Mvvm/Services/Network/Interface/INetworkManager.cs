@@ -6,5 +6,6 @@ namespace xapps
 	public interface INetworkManager
 	{
         Task<NowPlayingData> requestNowPlayingData(string page);
+        Task<UpCommingData> requestUpCommingData(string page);
 	}
 }

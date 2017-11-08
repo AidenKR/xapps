@@ -115,45 +115,6 @@ namespace xapps
                     Debug.WriteLine("==========================================================");
 
 
-                    if (content != "")  
-                    {  
-                        //Converting JSON Array Objects into generic list  
-                        playingData = JsonConvert.DeserializeObject<NowPlayingData>(content);  
-                    }
-
-                    Debug.WriteLine(playingData);
-                } else {
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"ERROR {0}", ex.Message);
-            }
-
-            return playingData;
-        }
-
-        public async Task<NowPlayingData> requestUpCommingData(string page)
-        {
-            string url = NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
-            Debug.WriteLine(url);
-
-            var uri = new Uri(string.Format(url, string.Empty));
-            List<NowPlayingData> playing = new List<NowPlayingData>();
-            NowPlayingData playingData = new NowPlayingData();
-            try
-            {
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-
-                    Debug.WriteLine("==========================================================");
-                    Debug.WriteLine(content);
-                    Debug.WriteLine("==========================================================");
-
-
                     if (content != "")
                     {
                         //Converting JSON Array Objects into generic list  
@@ -164,8 +125,10 @@ namespace xapps
                 }
                 else
                 {
-
-                }
+                        Debug.WriteLine("==========================================================");
+                        Debug.WriteLine("==================== response Fail =======================");
+                        Debug.WriteLine("==========================================================");
+                    }
             }
             catch (Exception ex)
             {
@@ -173,6 +136,47 @@ namespace xapps
             }
 
             return playingData;
+        }
+
+        public async Task<UpCommingData> requestUpCommingData(string page)
+        {
+            string url = UpCommingRequest.localeListRestUrl + UpCommingRequest.api_key + UpCommingRequest.language + UpCommingRequest.page + page;
+            Debug.WriteLine(url);
+
+            var uri = new Uri(string.Format(url, string.Empty));
+            UpCommingData upCommingData = new UpCommingData();
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine("================== response Success ======================");
+                    Debug.WriteLine(content);
+                    Debug.WriteLine("==========================================================");
+
+
+                    if (content != "")
+                    {
+                        //Converting JSON Array Objects into generic list  
+                        upCommingData = JsonConvert.DeserializeObject<UpCommingData>(content);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine("==================== response Fail =======================");
+                    Debug.WriteLine("==========================================================");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
+            }
+
+            return upCommingData;
         }
     }
 }

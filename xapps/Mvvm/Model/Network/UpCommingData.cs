@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace xapps
 {
-    public class NowPlayingData : dataItem
+    public class UpCommingData
     {
         public List<results> results { get; set; }
         public string page { get; set; }
@@ -13,4 +12,3 @@ namespace xapps
         public string total_pages { get; set; }
     }
 }
-
