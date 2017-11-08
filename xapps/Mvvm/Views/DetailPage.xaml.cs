@@ -3,12 +3,12 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class MovieDetailPage : ContentPage
+    public partial class DetailPage : ContentPage
     {
         //MovieData mData;
         //public ObservableCollection<PerformerData> mlistData { get; set; }
 
-        public MovieDetailPage()
+        public DetailPage()
         {
             InitializeComponent();
 

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace xapps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MoviePreviewPage : ContentPage
+    public partial class PreviewPage : ContentPage
     {
-        public MoviePreviewPage()
+        public PreviewPage()
         {
             //InitializeComponent();
         }

@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+using Android.Content.PM;
+using Android.Content.Res;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
-using xapps.Mvvm.Views;
-using xapps;
-using Android.Util;
-using Android.Content.Res;
-using Android.Content.PM;
-using xapps.Droid;
 using Xamarin.Forms.Platform.Android;
+using xapps;
 
-[assembly: ExportRenderer(typeof(xapps.MoviePreviewPage), typeof(MoviePreviewCustomRenderer))]
+[assembly: ExportRenderer(typeof(xapps.PreviewPage), typeof(PreviewCustomRenderer))]
 namespace xapps
 {
-    class MoviePreviewCustomRenderer : PageRenderer
+    class PreviewCustomRenderer : PageRenderer
     {
         private ScreenOrientation _previousOrientation = ScreenOrientation.Unspecified;
 

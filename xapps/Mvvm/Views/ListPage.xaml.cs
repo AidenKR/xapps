@@ -2,15 +2,15 @@
 
 namespace xapps
 {
-    public partial class MovieListPage : ContentPage
+    public partial class ListPage : ContentPage
     {
-        MovieListPageViewModel viewModel;
+        ListPageViewModel viewModel;
 
-        public MovieListPage()
+        public ListPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new MovieListPageViewModel();
+            BindingContext = viewModel = new ListPageViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

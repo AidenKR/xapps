@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:xapps" x:Class="xapps.MovieListPage" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:xapps" x:Class="xapps.ListPage" Title="{Binding Title}">
     <StackLayout>
         <ListView x:Name="listView" SeparatorColor="Gray" RowHeight="100" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>

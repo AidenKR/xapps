@@ -31,7 +31,7 @@ namespace xapps
 
         void MovieBtnClicked(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new MoviePreviewPage());
+            Navigation.PushAsync(new PreviewPage());
         }
     }
 }

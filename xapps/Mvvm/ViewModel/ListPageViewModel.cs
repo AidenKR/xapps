@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace xapps
+﻿namespace xapps
 {
-    public class MovieListPageViewModel : BaseViewModel
+    public class ListPageViewModel : BaseViewModel
     {
         //public ObservableCollection<MovieData> Items { get; set; }
         //public Command LoadItemsCommand { get; set; }
