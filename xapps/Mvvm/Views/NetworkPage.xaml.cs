@@ -17,6 +17,7 @@ namespace xapps
 
             NetworkManager.Instance().requestNowPlayingData("1");
             NetworkManager.Instance().requestUpCommingData("1");
+            NetworkManager.Instance().requestDetailsData("346364");
 
             //NetworkManager.requestMovieDetail("05313");   // // 독도 KOREA
 

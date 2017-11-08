@@ -1,0 +1,9 @@
+﻿using System;
+namespace xapps
+{
+    public class genres
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
+}

@@ -34,5 +34,9 @@ namespace xapps
         public Task<UpCommingData> requestUpCommingData(string page) {
             return iNetworkManager.requestUpCommingData(page);
         }
+
+        public Task<DetailData> requestDetailsData(string movieId) {
+            return iNetworkManager.requestDetailsData(movieId);
+        }
 	}
 }

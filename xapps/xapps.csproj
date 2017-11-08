@@ -120,6 +120,12 @@
     <Compile Include="Mvvm\Model\Network\subData\dates.cs" />
     <Compile Include="Mvvm\Model\Network\subData\results.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\UpCommingRequest.cs" />
+    <Compile Include="Mvvm\Model\Network\DetailData.cs" />
+    <Compile Include="Mvvm\Model\Network\subData\genres.cs" />
+    <Compile Include="Mvvm\Model\Network\subData\production_companies.cs" />
+    <Compile Include="Mvvm\Model\Network\subData\production_contries.cs" />
+    <Compile Include="Mvvm\Model\Network\subData\spoken_languages.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\DetailsRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

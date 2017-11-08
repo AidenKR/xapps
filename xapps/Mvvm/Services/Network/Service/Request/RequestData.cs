@@ -4,8 +4,7 @@ namespace xapps
 {
     public class RequestData
     {
-        public static string key = "key=d9e2b965baacf76f43560f8b51edbc09";
-        public static string responseType_xml = ".xml?";
-        public static string responseType_json = ".json?";
+        public static string api_key = "?api_key=54284155412142a62e518c006e50d5ce";
+        public static string language = "&language=ko-KR";
     }
 }
