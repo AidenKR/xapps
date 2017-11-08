@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public class ListPageViewModel : BaseViewModel
+    public class ListPageViewModel : BaseViewModel, INetworkManager
     {
         public ObservableCollection<results> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
@@ -28,7 +28,7 @@ namespace xapps
             try
             {
                 Items.Clear();
-                var result = await NetworkManager.Instance().requestNowPlayingData("1");
+                var result = await NetworkManager.Instance(this).requestNowPlayingData("1");
                 foreach (var item in result.results)
                 {
                     item.poster_path = "https://image.tmdb.org/t/p/w500/" + item.poster_path;
