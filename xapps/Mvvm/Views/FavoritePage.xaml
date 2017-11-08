@@ -25,7 +25,7 @@
                                 <Image x:Name="imageView" Rotation="-15" Source="{Binding url}" HorizontalOptions="Start" AbsoluteLayout.LayoutBounds="100, 0.25, 50, 50 " BackgroundColor="Green"/>
                                 
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+                                    <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40" />
                                     <Label Text = "{Binding Type}" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
                                 </StackLayout>
                             </StackLayout>

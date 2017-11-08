@@ -5,14 +5,13 @@ namespace xapps
 {
     public partial class MovieDetailPage : ContentPage
     {
-        MovieData mData;
+        //MovieData mData;
         //public ObservableCollection<PerformerData> mlistData { get; set; }
 
-        public MovieDetailPage(MovieData item)
+        public MovieDetailPage()
         {
             InitializeComponent();
 
-            mData = item;
             initView();
             initData();
         }
@@ -26,29 +25,29 @@ namespace xapps
         private void initData()
         {
             // set item
-            string urlPoster = mData.posters;
-            string urlBg = mData.posters;
-            string txtMovieTitle = mData.title;
-            string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
-            if (!string.IsNullOrWhiteSpace(mData.rating)) {
-                txtMovieDesc += " * " + mData.rating;
-            }
-            string txtMovieStory = mData.plot;
-            string stateNowPlaying = getNowPlayState(mData.repRlsDate);
-            string txtNowPlayingAdvanceRate = "25.5%";
-            string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
+            //string urlPoster = mData.posters;
+            //string urlBg = mData.posters;
+            //string txtMovieTitle = mData.title;
+            //string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
+            //if (!string.IsNullOrWhiteSpace(mData.rating)) {
+            //    txtMovieDesc += " * " + mData.rating;
+            //}
+            //string txtMovieStory = mData.plot;
+            //string stateNowPlaying = getNowPlayState(mData.repRlsDate);
+            //string txtNowPlayingAdvanceRate = "25.5%";
+            //string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
 
-            // set view
-            setImage(mdpMovieImageIvPoster, urlPoster);
-            setImage(mdpMovieImageIvBg, urlBg);
+            //// set view
+            //setImage(mdpMovieImageIvPoster, urlPoster);
+            //setImage(mdpMovieImageIvBg, urlBg);
 
-            mdpNowPlayingTvState.Text = stateNowPlaying;
-            mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
-            mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
+            //mdpNowPlayingTvState.Text = stateNowPlaying;
+            //mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
+            //mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
 
-            mdpMovieInfoTvTitle.Text = txtMovieTitle;
-            mdpMovieInfoTvDesc.Text = txtMovieDesc;
-            mdpMovieInfoTvStory.Text = txtMovieStory;
+            //mdpMovieInfoTvTitle.Text = txtMovieTitle;
+            //mdpMovieInfoTvDesc.Text = txtMovieDesc;
+            //mdpMovieInfoTvStory.Text = txtMovieStory;
 
             //setPerformerListData();
         }

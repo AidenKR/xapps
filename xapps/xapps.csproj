@@ -72,24 +72,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mvvm\Model\Database\MovieFavoritesDataItem.cs" />
     <Compile Include="Mvvm\Model\Network\dataItem.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetail\Audit.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetail\Company.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetail\People.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetail\ShowType.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetailData.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieList\MovieListItem.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieListData.cs" />
     <Compile Include="Mvvm\Services\Database\DatabaseConsts.cs" />
     <Compile Include="Mvvm\Services\Database\Interface\IDBFilePath.cs" />
     <Compile Include="Mvvm\Services\Database\MovieFavoritesDB.cs" />
     <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
     <Compile Include="Mvvm\Services\Network\Manager\NetworkManager.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\MovieDetail.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\MovieList.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\RequestData.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\DefaultParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Response\MovieDetailParser.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\MovieListParser.cs" />
     <Compile Include="Mvvm\Services\Network\Service\RestService.cs" />
     <Compile Include="Mvvm\Views\MovieListPage.xaml.cs">
       <DependentUpon>MovieListPage.xaml</DependentUpon>
@@ -106,11 +96,6 @@
     <Compile Include="Mvvm\Views\DatabasePage.xaml.cs">
       <DependentUpon>DatabasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieDataListRequest.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieDataRequest.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\New\MovieRequest.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\MovieDataResponse\MovieDataListParser.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\MovieDataResponse\MovieDataParser.cs" />
     <Compile Include="Mvvm\Views\TestingPage.xaml.cs">
       <DependentUpon>TestingPage.xaml</DependentUpon>
     </Compile>
@@ -126,16 +111,11 @@
     <Compile Include="Mvvm\Views\MovieDetailPage.xaml.cs">
       <DependentUpon>MovieDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Model\Network\MovieData.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\actor.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\director.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\rating.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\staff.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\stat.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieData\vod.cs" />
-    <Compile Include="Mvvm\Model\Network\MovieDetail\PerformerData.cs" />
     <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\MovieListPageViewModel.cs" />
+    <Compile Include="Mvvm\Model\Network\NowPlayingData.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Request\NowPlayingRequest.cs" />
+    <Compile Include="Mvvm\Services\Network\Service\Response\NowPlayingParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

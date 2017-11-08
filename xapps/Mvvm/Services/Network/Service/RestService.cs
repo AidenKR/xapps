@@ -13,8 +13,6 @@ namespace xapps
     public class RestService : INetworkManager
     {
         HttpClient client;
-        public MovieListData items = new MovieListData();
-
 
         public RestService()
         {
@@ -22,63 +20,55 @@ namespace xapps
             client.MaxResponseContentBufferSize = 256000;
         }
 
-//        public async Task<MovieListData> requestMovieList() {
-                 
+//        public async Task<List<MovieData>> requestMovieList() {
 //#if USE_PARSE_XML
-//            string url = MovieList.localeListRestUrl + MovieList.responseType_xml + MovieList.key + MovieList.targetDt;
+//            string url = MovieDataListRequest.localeListRestUrl + MovieDataListRequest.pageNo + MovieDataListRequest.numOfRows + MovieDataListRequest.ServiceKey + MovieDataListRequest.key
+//                                             + MovieDataListRequest.detail + MovieDataListRequest.createDts + MovieDataListRequest.createDte + MovieDataListRequest.startCount + MovieDataListRequest.listCount;
+
 //#else
-//            string url = MovieList.localeListRestUrl + MovieList.responseType_json + MovieList.key + MovieList.targetDt;
+//            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
 //#endif
 
 //            Debug.WriteLine(url);
 //            var uri = new Uri(string.Format(url, string.Empty));
-//            MovieListData items = new MovieListData();
+//            List<MovieData> item = new List<MovieData>();
 //            try
 //            {
 //                var response = await client.GetAsync(uri);
 //                if (response.IsSuccessStatusCode)
 //                {
-                    
 //                    var content = await response.Content.ReadAsStringAsync();
 
 //                    Debug.WriteLine("==========================================================");
 //                    Debug.WriteLine(content);
 //                    Debug.WriteLine("==========================================================");
-
 //#if USE_PARSE_XML
-//                    MovieListParser parser = new MovieListParser();
-//                    items = parser.parseXml(content);
+//                    MovieDataListParser parser = new MovieDataListParser();
+//                    item = parser.parseXml(content);
 //#else
-//                    JObject obj = JObject.Parse(content);
-
-//                    List<MovieListItem> model = obj["dailyBoxOfficeList"].ToObject<List<MovieListItem>>();
-
-//                    items = JsonConvert.DeserializeObject<boxOfficeResult>(content);
-//                    Debug.WriteLine("items = " + items);
+//                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
 //#endif
 //                }
 //            }
 //            catch (Exception ex)
 //            {
 //                Debug.WriteLine(@"ERROR {0}", ex.Message);
-//            }
+//}
 
-//            return items; 
+//            return item;
 //        }
 
-//        public async Task<MovieDetailData> requestMovieDetail(string movieCd)
-//        {
+//        public async Task<MovieData> requestMovieDetail(string movieSeq) {
 //#if USE_PARSE_XML
-//            string url = "";
-//            url = MovieDetail.localeListRestUrl + MovieDetail.responseType_xml + MovieDetail.key + MovieDetail.movieCd + movieCd;
+//            string url = MovieDataRequest.localeListRestUrl + MovieDataRequest.pageNo + MovieDataRequest.numOfRows + MovieDataRequest.ServiceKey + MovieDataRequest.key
+//                                         + MovieDataRequest.detail + MovieDataRequest.listCount + MovieDataRequest.movieSeq + movieSeq;
 //#else
-//            string url = "";
-//            url = MovieDetail.localeListRestUrl + MovieDetail.responseType_json + MovieDetail.key + MovieDetail.movieCd + movieCd;
+//            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
 //#endif
 
 //            Debug.WriteLine(url);
 //            var uri = new Uri(string.Format(url, string.Empty));
-//            MovieDetailData items = new MovieDetailData();
+//            MovieData item = new MovieData();
 //            try
 //            {
 //                var response = await client.GetAsync(uri);
@@ -90,8 +80,8 @@ namespace xapps
 //                    Debug.WriteLine(content);
 //                    Debug.WriteLine("==========================================================");
 //#if USE_PARSE_XML
-//                    MovieDetailParser parser = new MovieDetailParser();
-//                    items = parser.parseXml(content);
+//                    MovieDataParser parser = new MovieDataParser();
+//                    item = parser.parseXml(content);
 //#else
 //                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
 //#endif
@@ -102,74 +92,79 @@ namespace xapps
         //        Debug.WriteLine(@"ERROR {0}", ex.Message);
         //    }
 
-        //    return items; 
+        //    return item;
         //}
 
-        public async Task<List<MovieData>> requestMovieList() {
-#if USE_PARSE_XML
-            string url = MovieDataListRequest.localeListRestUrl + MovieDataListRequest.pageNo + MovieDataListRequest.numOfRows + MovieDataListRequest.ServiceKey + MovieDataListRequest.key
-                                             + MovieDataListRequest.detail + MovieDataListRequest.createDts + MovieDataListRequest.createDte + MovieDataListRequest.startCount + MovieDataListRequest.listCount;
-
-#else
-            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
-#endif
-
+        public async Task<NowPlayingData> requestNowPlayingData(string page)
+        {
+            string url = NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
             Debug.WriteLine(url);
+
             var uri = new Uri(string.Format(url, string.Empty));
-            List<MovieData> item = new List<MovieData>();
+            List<NowPlayingData> playing = new List<NowPlayingData>();
+            NowPlayingData playingData = new NowPlayingData();  
             try
             {
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    string content = await response.Content.ReadAsStringAsync();
 
                     Debug.WriteLine("==========================================================");
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
-#if USE_PARSE_XML
-                    MovieDataListParser parser = new MovieDataListParser();
-                    item = parser.parseXml(content);
-#else
-                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
-#endif
+
+
+                    if (content != "")  
+                    {  
+                        //Converting JSON Array Objects into generic list  
+                        playingData = JsonConvert.DeserializeObject<NowPlayingData>(content);  
+                    }
+
+                    Debug.WriteLine(playingData);
+                } else {
+                    
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
-}
+            }
 
-            return item;
+            return playingData;
         }
 
-        public async Task<MovieData> requestMovieDetail(string movieSeq) {
-#if USE_PARSE_XML
-            string url = MovieDataRequest.localeListRestUrl + MovieDataRequest.pageNo + MovieDataRequest.numOfRows + MovieDataRequest.ServiceKey + MovieDataRequest.key
-                                         + MovieDataRequest.detail + MovieDataRequest.listCount + MovieDataRequest.movieSeq + movieSeq;
-#else
-            string url = NewMovieList.localeListRestUrl + NewMovieList.responseType_json + NewMovieList.key;
-#endif
-
+        public async Task<NowPlayingData> requestUpCommingData(string page)
+        {
+            string url = NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
             Debug.WriteLine(url);
+
             var uri = new Uri(string.Format(url, string.Empty));
-            MovieData item = new MovieData();
+            List<NowPlayingData> playing = new List<NowPlayingData>();
+            NowPlayingData playingData = new NowPlayingData();
             try
             {
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    string content = await response.Content.ReadAsStringAsync();
 
                     Debug.WriteLine("==========================================================");
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
-#if USE_PARSE_XML
-                    MovieDataParser parser = new MovieDataParser();
-                    item = parser.parseXml(content);
-#else
-                    items = JsonConvert.DeserializeObject<MovieDetailItem>(content);
-#endif
+
+
+                    if (content != "")
+                    {
+                        //Converting JSON Array Objects into generic list  
+                        playingData = JsonConvert.DeserializeObject<NowPlayingData>(content);
+                    }
+
+                    Debug.WriteLine(playingData);
+                }
+                else
+                {
+
                 }
             }
             catch (Exception ex)
@@ -177,7 +172,7 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
-            return item;
+            return playingData;
         }
     }
 }

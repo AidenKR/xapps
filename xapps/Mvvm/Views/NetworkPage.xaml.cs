@@ -12,8 +12,10 @@ namespace xapps
         public NetworkPage()
         {
             InitializeComponent();
-            NetworkManager.Instance().requestMovieList();
-            NetworkManager.Instance().requestMovieDetail("05313");
+            //NetworkManager.Instance().requestMovieList();
+            //NetworkManager.Instance().requestMovieDetail("05313");
+
+            NetworkManager.Instance().requestNowPlayingData("1");
 
             //NetworkManager.requestMovieDetail("05313");   // // 독도 KOREA
 
