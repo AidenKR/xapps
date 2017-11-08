@@ -15,11 +15,11 @@ namespace xapps
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            //var item = args.SelectedItem as MovieData;
-            //if (item == null)
-            //    return;
+            var item = args.SelectedItem as results;
+            if (item == null)
+                return;
 
-            //await Navigation.PushAsync(new MovieDetailPage(item));
+            await Navigation.PushAsync(new DetailPage());
 
             // Manually deselect item
             listView.SelectedItem = null;
@@ -29,8 +29,8 @@ namespace xapps
         {
             base.OnAppearing();
 
-            //if (viewModel.Items.Count == 0)
-                //viewModel.LoadItemsCommand.Execute(null);
+            if (viewModel.Items.Count == 0)
+                viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

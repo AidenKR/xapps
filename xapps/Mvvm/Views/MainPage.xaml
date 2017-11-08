@@ -6,7 +6,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <local:MovieListPage />
+                <local:ListPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
