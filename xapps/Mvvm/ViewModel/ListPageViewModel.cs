@@ -9,8 +9,8 @@ namespace xapps
 {
     public class ListPageViewModel : BaseViewModel
     {
-        public static int TYPE_NOW_PLAYING = 100; // 현재 상영중
-        public static int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
+        public const int TYPE_NOW_PLAYING = 100; // 현재 상영중
+        public const int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
 
         public ObservableCollection<results> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
@@ -45,14 +45,14 @@ namespace xapps
                 List<results> list = null;
                 switch (requestType)
                 {
-                    case 100: // TYPE_NOW_PLAYING
+                    case TYPE_NOW_PLAYING:
                         {
                             var result = await NetworkManager.Instance().requestNowPlayingData("1");
                             list = result.results;
                             break;
                         }
 
-                    case 101: // TYPE_UPCOMING
+                    case TYPE_UPCOMING:
                         {
                             var result = await NetworkManager.Instance().requestUpCommingData("1");
                             list = result.results;
