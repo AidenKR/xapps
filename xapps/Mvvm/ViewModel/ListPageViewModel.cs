@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -8,17 +9,31 @@ namespace xapps
 {
     public class ListPageViewModel : BaseViewModel, INetworkManager
     {
+        public static int TYPE_NOW_PLAYING = 100; // 현재 상영중
+        public static int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
+
         public ObservableCollection<results> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command RefreshItemsCommand { get; set; }
+
+        // selected Category index
+        private int SelectedCategoryType = TYPE_NOW_PLAYING;
 
         public ListPageViewModel()
         {
             Title = "영화";
             Items = new ObservableCollection<results>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            LoadItemsCommand = new Command<int>(async (requestType) => await ExecuteLoadItemsCommand(requestType));
+            RefreshItemsCommand = new Command(async () => await ExecuteRefreshItemsCommand());
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteRefreshItemsCommand() {
+            Debug.WriteLine("ExecuteRefreshItemsCommand : " + SelectedCategoryType);
+            await ExecuteLoadItemsCommand(SelectedCategoryType);
+        }
+
+        async Task ExecuteLoadItemsCommand(int requestType)
         {
             if (IsBusy)
                 return;
@@ -27,9 +42,33 @@ namespace xapps
 
             try
             {
+                List<results> list = null;
+                switch (requestType)
+                {
+                    case 100: // TYPE_NOW_PLAYING
+                        {
+                            var result = await NetworkManager.Instance(this).requestNowPlayingData("1");
+                            list = result.results;
+                            break;
+                        }
+
+                    case 101: // TYPE_UPCOMING
+                        {
+                            var result = await NetworkManager.Instance(this).requestUpCommingData("1");
+                            list = result.results;
+                            break;
+                        }
+                }
+
+                if (list == null)
+                {
+                    return;
+                }
+
+                SelectedCategoryType = requestType;
+
                 Items.Clear();
-                var result = await NetworkManager.Instance(this).requestNowPlayingData("1");
-                foreach (var item in result.results)
+                foreach (var item in list)
                 {
                     item.poster_path = "https://image.tmdb.org/t/p/w500/" + item.poster_path;
                     Items.Add(item);
