@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage" Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="Olive" Orientation="Vertical" Spacing="0">
                 <!-- Movie Image -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieImagePanel" Padding="0,0,0,0" Orientation="Horizontal">
                     <!-- 포스터 이미지 -->
-                    <Image x:Name="mdpMovieImageIvPoster" BackgroundColor="Silver" WidthRequest="80" HeightRequest="120" Aspect="AspectFit" />
+                    <Image x:Name="mdpMovieImageIvPoster" Source="{Binding Items.poster_path}" BackgroundColor="Silver" WidthRequest="80" HeightRequest="120" Aspect="AspectFit" />
                     <!-- 미리보기 -->
                     <AbsoluteLayout BackgroundColor="Black" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
-                        <Image x:Name="mdpMovieImageIvBg" Aspect="AspectFit" />
-                        <Button x:Name="mdpMovieImageBtnPlay" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" />
+                        <Image x:Name="mdpMovieImageIvBg" Source="{Binding Items.backdrop_path}" Aspect="AspectFit" />
+                        <Button x:Name="mdpMovieImageBtnPlay" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" Clicked="onClickFullMoviePage" />
                     </AbsoluteLayout>
                 </StackLayout>
                 <!-- Share -->
@@ -36,9 +36,9 @@
                 </StackLayout>
                 <!-- Movie Info -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieInfoPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-                    <Label x:Name="mdpMovieInfoTvTitle" Text="영화 제목" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
+                    <Label x:Name="mdpMovieInfoTvTitle" Text="{Binding Items.original_title}" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
                     <Label x:Name="mdpMovieInfoTvDesc" Text="상영시간 장르" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
-                    <Label x:Name="mdpMovieInfoTvStory" Text="영화 줄거리" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" />
+                    <Label x:Name="mdpMovieInfoTvStory" Text="{Binding Items.overview}" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" />
                     <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" Text="더보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
                 </StackLayout>
                 <!-- Graph -->
@@ -60,7 +60,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout> -->
-                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace xapps
 {
     public partial class DetailPage : ContentPage
     {
-        //MovieData mData;
+        private DetailPageViewModel viewModel;
+        private string mRequestId;
+
         //public ObservableCollection<PerformerData> mlistData { get; set; }
 
-        public DetailPage(String movieId)
+        public DetailPage(String reqId)
         {
             InitializeComponent();
 
+            mRequestId = reqId;
+            printLog("reqServerData reqId : " + mRequestId);
+
+            BindingContext = viewModel = new DetailPageViewModel(mRequestId);
             initView();
-            initData();
         }
 
         private void initView()
@@ -22,8 +28,8 @@ namespace xapps
             mdpMovieImageIvBg.Source = null;
         }
 
-        private void initData()
-        {
+        //private void initData()
+        //{
             // set item
             //string urlPoster = mData.posters;
             //string urlBg = mData.posters;
@@ -50,6 +56,16 @@ namespace xapps
             //mdpMovieInfoTvStory.Text = txtMovieStory;
 
             //setPerformerListData();
+        //}
+
+        async void onClickFullMoviePage(object sender, System.EventArgs e)
+        {
+            var url = DependencyService.Get<IMovieUrl>();
+            if (url != null)
+            {
+                url.MovieUrl("http://sites.google.com/site/ubiaccessmobile/sample_video.mp4");
+            }
+            await Navigation.PushAsync(new PreviewPage());
         }
 
         void onClickMovieStoryMore(object sender, System.EventArgs e)
@@ -131,5 +147,28 @@ namespace xapps
         //        View = horizontalLayout;
         //    }
         //}
+
+        private void printLog(string msg)
+        {
+            Debug.WriteLine("################### " + msg);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            printLog("OnAppearing() viewModel.Items.id : " + viewModel.Items.id);
+            if (string.IsNullOrWhiteSpace(viewModel.Items.id))
+            {
+                viewModel.LoadItemsCommand.Execute(mRequestId);
+                //initData();
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
+
     }
 }
