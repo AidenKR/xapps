@@ -45,8 +45,17 @@ namespace xapps
             videoView.SetMediaController(mediaController);
             videoView.RequestFocus();
 
+            if(string.IsNullOrEmpty(MovieUrlData.previewUrl))
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.SetNeutralButton("OK", (send, args) => { activity.OnBackPressed(); });
+                builder.SetMessage("Url이 없습니다.");
+                builder.SetTitle("Alert");
+                builder.Show();
+                return;
+            }
             //uri for a free video
-            var uri = Android.Net.Uri.Parse("http://sites.google.com/site/ubiaccessmobile/sample_video.mp4");
+            var uri = Android.Net.Uri.Parse(MovieUrlData.previewUrl);
             //Set the videoView with our uri, this could also be a local video on device
             videoView.SetVideoURI(uri);
             Play(activity);

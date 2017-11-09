@@ -31,6 +31,11 @@ namespace xapps
 
         void MovieBtnClicked(object sender, System.EventArgs e)
         {
+            var url = DependencyService.Get<IMovieUrl>();
+            if (url != null)
+            {
+                url.MovieUrl("http://sites.google.com/site/ubiaccessmobile/sample_video.mp4");
+            }
             Navigation.PushAsync(new PreviewPage());
         }
     }

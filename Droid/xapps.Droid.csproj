@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Mvvm\Model\MovieUrlData.cs" />
     <Compile Include="Mvvm\Services\Helper\StatusBarHelper.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
