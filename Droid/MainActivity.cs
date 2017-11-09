@@ -28,6 +28,7 @@ namespace xapps.Droid
                 }
             } catch (Exception e) {
                 e.GetBaseException();
+                showPopup(e.Message);
             }
 
             var pixelWidth = (int)Resources.DisplayMetrics.WidthPixels;
@@ -69,6 +70,16 @@ namespace xapps.Droid
         private void ShowLog(string message)
         {
             System.Diagnostics.Debug.WriteLine("[TEST_LOG] " + message);
+        }
+
+        private void showPopup(string msg) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("알림");
+            alert.SetMessage(msg);
+            alert.SetPositiveButton("확인", (senderAlert, args) => {
+            });
+            Dialog dialog = alert.Create();
+            dialog.Show();
         }
     }
 }
