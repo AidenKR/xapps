@@ -8,14 +8,30 @@ namespace xapps
 {
     public class DetailPageViewModel : BaseViewModel, INetworkManager
     {
-        private string IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-        public DetailData Items { get; set; }
+        private static readonly string IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
+
         public Command LoadItemsCommand { get; set; }
+
+        DetailData item;
+        public DetailData DetailItem
+        {
+            set
+            {
+                if (item != value)
+                {
+                    item = value;
+                    OnPropertyChanged();
+                }
+            }
+            get
+            {
+                return item;
+            }
+        }
 
         public DetailPageViewModel(string requestId)
         {
             Title = "상세화면";
-            Items = new DetailData();
 
             if (string.IsNullOrWhiteSpace(requestId))
             {
@@ -24,6 +40,8 @@ namespace xapps
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadDetailItemsCommand(requestId));
         }
+
+
 
         async Task ExecuteLoadDetailItemsCommand(string reqId)
         {
@@ -34,27 +52,16 @@ namespace xapps
 
             try
             {
-                Items = await NetworkManager.Instance().requestDetailsData(reqId);
-                printLog(Items.ToString());
+                DetailData data = await NetworkManager.Instance().requestDetailsData(reqId);
+                printLog(data.ToString());
 
-                Items.poster_path = IMAGE_PATH + Items.poster_path;
-                Items.backdrop_path = IMAGE_PATH + Items.backdrop_path;
+                data.poster_path = IMAGE_PATH + data.poster_path;
+                data.backdrop_path = IMAGE_PATH + data.backdrop_path;
 
-                Items.runtime = Items.runtime + "분";
+                data.runtime = data.runtime + "분";
 
-                //string genre;
-                //if (null != Items.genres) {
-                //    foreach (genres in Items.genres) {
-                        
-                //    }
-                ////* " + Items.genre;
-                //}
-                //if (!string.IsNullOrWhiteSpace(Items.rating)) {
-                //    Items.runtime += " * " + Items.rating;
-                //}
 
-                OnPropertyChanged();
-
+                DetailItem = data;
             }
             catch (Exception ex)
             {

@@ -30,32 +30,32 @@ namespace xapps
 
         //private void initData()
         //{
-            // set item
-            //string urlPoster = mData.posters;
-            //string urlBg = mData.posters;
-            //string txtMovieTitle = mData.title;
-            //string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
-            //if (!string.IsNullOrWhiteSpace(mData.rating)) {
-            //    txtMovieDesc += " * " + mData.rating;
-            //}
-            //string txtMovieStory = mData.plot;
-            //string stateNowPlaying = getNowPlayState(mData.repRlsDate);
-            //string txtNowPlayingAdvanceRate = "25.5%";
-            //string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
+        // set item
+        //string urlPoster = mData.posters;
+        //string urlBg = mData.posters;
+        //string txtMovieTitle = mData.title;
+        //string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
+        //if (!string.IsNullOrWhiteSpace(mData.rating)) {
+        //    txtMovieDesc += " * " + mData.rating;
+        //}
+        //string txtMovieStory = mData.plot;
+        //string stateNowPlaying = getNowPlayState(mData.repRlsDate);
+        //string txtNowPlayingAdvanceRate = "25.5%";
+        //string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
 
-            //// set view
-            //setImage(mdpMovieImageIvPoster, urlPoster);
-            //setImage(mdpMovieImageIvBg, urlBg);
+        //// set view
+        //setImage(mdpMovieImageIvPoster, urlPoster);
+        //setImage(mdpMovieImageIvBg, urlBg);
 
-            //mdpNowPlayingTvState.Text = stateNowPlaying;
-            //mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
-            //mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
+        //mdpNowPlayingTvState.Text = stateNowPlaying;
+        //mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
+        //mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
 
-            //mdpMovieInfoTvTitle.Text = txtMovieTitle;
-            //mdpMovieInfoTvDesc.Text = txtMovieDesc;
-            //mdpMovieInfoTvStory.Text = txtMovieStory;
+        //mdpMovieInfoTvTitle.Text = txtMovieTitle;
+        //mdpMovieInfoTvDesc.Text = txtMovieDesc;
+        //mdpMovieInfoTvStory.Text = txtMovieStory;
 
-            //setPerformerListData();
+        //setPerformerListData();
         //}
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -77,9 +77,11 @@ namespace xapps
             mdpMovieInfoTvStory.LineBreakMode = LineBreakMode.WordWrap;
         }
 
-        private string getNowPlayState(string date) {
+        private string getNowPlayState(string date)
+        {
             // 2011-07-13
-            if (string.IsNullOrWhiteSpace(date)) {
+            if (string.IsNullOrWhiteSpace(date))
+            {
                 return "개봉 미정";
             }
 
@@ -88,7 +90,8 @@ namespace xapps
 
         private void setImage(Image img, string url)
         {
-            if (string.IsNullOrWhiteSpace(url)) {
+            if (string.IsNullOrWhiteSpace(url))
+            {
                 return;
             }
 
@@ -157,12 +160,8 @@ namespace xapps
         {
             base.OnAppearing();
 
-            printLog("OnAppearing() viewModel.Items.id : " + viewModel.Items.id);
-            if (string.IsNullOrWhiteSpace(viewModel.Items.id))
-            {
+            if (viewModel.DetailItem == null)
                 viewModel.LoadItemsCommand.Execute(mRequestId);
-                //initData();
-            }
         }
 
         protected override void OnDisappearing()
