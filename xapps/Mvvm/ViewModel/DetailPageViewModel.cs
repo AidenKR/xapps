@@ -92,8 +92,7 @@ namespace xapps
                     if (!String.IsNullOrEmpty(cast.profile_path))
                     {
                         cast.profile_path = IMAGE_PATH + cast.profile_path;
-                        //cast.name = "name - " + cast.name;
-                        //cast.character = "character - " + cast.character;
+                        cast.character = cast.character.Trim();
                         creditData.Add(cast);
 
                         if (creditData.Count >= 5)

@@ -50,15 +50,15 @@
 
                 <!-- List -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-                    <ListView x:Name="mdpListView" SeparatorColor="Gray" RowHeight="90" ItemsSource="{Binding creditData}" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="mdpListView" SeparatorColor="Gray" RowHeight="80" ItemsSource="{Binding creditData}" VerticalOptions="FillAndExpand">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Spacing="0" VerticalOptions="Center" Orientation="Horizontal">
-                                        <Image Source="{Binding profile_path}" BackgroundColor="White" WidthRequest="90" HeightRequest="90" Aspect="AspectFit" />
+                                        <Image Source="{Binding profile_path}" BackgroundColor="White" WidthRequest="70" HeightRequest="70" Aspect="AspectFit" />
                                         <StackLayout Spacing="0" VerticalOptions="Center" Orientation="Vertical">
                                             <Label Text="{Binding name}" LineBreakMode="TailTruncation" />
-                                            <Label Text="{Binding character}" TextColor="Gray" HorizontalOptions="End" />
+                                            <Label Text="{Binding character}" TextColor="Gray" />
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
