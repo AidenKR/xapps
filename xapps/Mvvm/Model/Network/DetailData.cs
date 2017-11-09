@@ -8,7 +8,7 @@ namespace xapps
     {
         public string adult { get; set; }
         public string backdrop_path { get; set; }
-        public string belongs_to_collection { get; set; }
+        public belongs_to_collection belongs_to_collection { get; set; }
         public string budget { get; set; }
 
         public List<genres> genres { get; set; }

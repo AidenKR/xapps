@@ -1,12 +1,14 @@
 ﻿using System;
 namespace xapps
 {
-    public static class NetworkConsts
+    public static class NetworkRequestConsts
     {
         public const int REQUEST_TYPE_NOW_PLAYING = 1;
         public const int REQUEST_TYPE_UP_COMMING = 2;
         public const int REQUEST_TYPE_DETAIL = 3;
     }
+
+    //public static 
 
     #region HttpStatusCode error enum code
     public static class NetworkErrors

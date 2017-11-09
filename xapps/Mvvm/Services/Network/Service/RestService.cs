@@ -1,6 +1,4 @@
-﻿#define USE_PARSE_XML
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
@@ -237,19 +235,19 @@ namespace xapps
             {
                 //Converting JSON Array Objects into generic list  
                 switch(type) {
-                    case NetworkConsts.REQUEST_TYPE_NOW_PLAYING:
+                    case NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING:
                         {
                             returnData = JsonConvert.DeserializeObject<NowPlayingData>(contents);
                         }
                         break;
 
-                    case NetworkConsts.REQUEST_TYPE_UP_COMMING:
+                    case NetworkRequestConsts.REQUEST_TYPE_UP_COMMING:
                         {
                             returnData = JsonConvert.DeserializeObject<UpCommingData>(contents);
                         }
                         break;
 
-                    case NetworkConsts.REQUEST_TYPE_DETAIL : {
+                    case NetworkRequestConsts.REQUEST_TYPE_DETAIL : {
                             returnData = JsonConvert.DeserializeObject<DetailData>(contents);
                         }
                         break;

@@ -130,6 +130,7 @@
     <Compile Include="Mvvm\Services\Network\NetworkConsts.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\ProtocolFactory.cs" />
     <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
+    <Compile Include="Mvvm\Model\Network\subData\belongs_to_collection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

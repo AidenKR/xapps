@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define USE_PARSE_XML
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,8 +33,8 @@ namespace xapps
         }
 
         public Task<NowPlayingData> requestNowPlayingData(string page) {
-            NowPlayingRequest data = (NowPlayingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_NOW_PLAYING);
-            data.requestType = NetworkConsts.REQUEST_TYPE_NOW_PLAYING;
+            NowPlayingRequest data = (NowPlayingRequest)ProtocolFactory.findReqeustObject(NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING);
+            data.requestType = NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING;
             data.makeRequestUrl(page);
 
             //if(iNetworkManager != null) {
@@ -48,15 +50,15 @@ namespace xapps
         }
 
         public Task<UpCommingData> requestUpCommingData(string page) {
-            UpCommingRequest data = (UpCommingRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_UP_COMMING);
-            data.requestType = NetworkConsts.REQUEST_TYPE_UP_COMMING;
+            UpCommingRequest data = (UpCommingRequest)ProtocolFactory.findReqeustObject(NetworkRequestConsts.REQUEST_TYPE_UP_COMMING);
+            data.requestType = NetworkRequestConsts.REQUEST_TYPE_UP_COMMING;
             data.makeRequestUrl(page);
             return iNetService.requestUpCommingData(data);
         }
 
         public Task<DetailData> requestDetailsData(string movieId) {
-            DetailsRequest data = (DetailsRequest)ProtocolFactory.findReqeustObject(NetworkConsts.REQUEST_TYPE_DETAIL);
-            data.requestType = NetworkConsts.REQUEST_TYPE_DETAIL;
+            DetailsRequest data = (DetailsRequest)ProtocolFactory.findReqeustObject(NetworkRequestConsts.REQUEST_TYPE_DETAIL);
+            data.requestType = NetworkRequestConsts.REQUEST_TYPE_DETAIL;
             data.makeRequestUrl(movieId);
             return iNetService.requestDetailsData(data);
         }

@@ -15,7 +15,7 @@ namespace xapps
 
             //NetworkManager.Instance().requestNowPlayingData("1");
             //NetworkManager.Instance().requestUpCommingData("1");
-            //NetworkManager.Instance().requestDetailsData("346364");
+            NetworkManager.Instance().requestDetailsData("284053");
 
             //Image image = ImageManager.getImageFromUrl("https://www.w3schools.com/howto/img_fjords.jpg");
             //if(image == null) {
