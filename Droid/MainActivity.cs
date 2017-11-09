@@ -20,10 +20,14 @@ namespace xapps.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
-            if (IsPlayServicesAvailable())
-            {
-                var refreshedToken = FirebaseInstanceId.Instance.Token;
-                ShowLog("refreshedToken : " + refreshedToken);
+            try {
+                if (IsPlayServicesAvailable())
+                {
+                    var refreshedToken = FirebaseInstanceId.Instance.Token;
+                    ShowLog("refreshedToken : " + refreshedToken);
+                }
+            } catch (Exception e) {
+                e.GetBaseException();
             }
 
             var pixelWidth = (int)Resources.DisplayMetrics.WidthPixels;

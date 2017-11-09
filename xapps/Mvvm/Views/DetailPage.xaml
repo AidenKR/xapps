@@ -39,7 +39,7 @@
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieInfoPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
                     <Label x:Name="mdpMovieInfoTvTitle" Text="{Binding DetailItem.original_title}" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
                     <Label x:Name="mdpMovieInfoTvDesc" Text="{Binding DetailItem.runtime}" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
-                    <Label x:Name="mdpMovieInfoTvStory" Text="{Binding DetailItem.overview}" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" />
+                    <Label x:Name="mdpMovieInfoTvStory" Text="{Binding DetailItem.overview}" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" Margin="20,20,0,0" />
                     <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" Text="더보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
                 </StackLayout>
                 <!-- Graph -->
@@ -88,9 +88,9 @@
                         <Label Text="대표이메일" TextColor="Black" FontSize="10" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                        <Label Text="서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)" TextColor="Black" FontSize="10" />
-                        <Label Text="대표이사:서정 | 사업자등록번호:104-81-45690" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
-                        <Label Text="개인정보보호책임자:정종민 | 통신판매업신고:2017-서울 용산-0662 | CJ CGV" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
+                        <Label Text="서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)" TextColor="Black" FontSize="10" HorizontalOptions="Center" />
+                        <Label Text="대표이사:서정 | 사업자등록번호:104-81-45690" TextColor="Black" FontSize="10" Margin="0,0,12,0" HorizontalOptions="Center"/>
+                        <Label Text="개인정보보호책임자:정종민 | 통신판매업신고:2017-서울 용산-0662 | CJ CGV" TextColor="Black" FontSize="10" Margin="0,0,12,0" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

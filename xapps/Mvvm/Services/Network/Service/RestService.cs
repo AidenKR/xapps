@@ -99,7 +99,7 @@ namespace xapps
             Debug.WriteLine(url);
 
             var uri = new Uri(string.Format(url, string.Empty));
-            NowPlayingData playingData = new NowPlayingData();;
+            NowPlayingData playingData = new NowPlayingData(); ;
             try
             {
                 var response = await client.GetAsync(uri);
@@ -130,8 +130,9 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
-            if(playingData == null) {
-                
+            if (playingData == null)
+            {
+
             }
 
             return playingData;
@@ -173,8 +174,9 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
-            if(upCommingData == null) {
-                
+            if (upCommingData == null)
+            {
+
             }
 
             return upCommingData;
@@ -202,12 +204,12 @@ namespace xapps
                     Debug.WriteLine(content);
                     Debug.WriteLine("==========================================================");
 
-                    
+
                     detailData = (DetailData)this.parseData(request.requestType, content);
                 }
                 else
                 {
-                    
+
                     Debug.WriteLine("==========================================================");
                     Debug.WriteLine("==================== response Fail =======================");
                     Debug.WriteLine("response.StatusCode = " + (int)response.StatusCode);
@@ -219,22 +221,71 @@ namespace xapps
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
-            if(detailData == null) {
-                
+            if (detailData == null)
+            {
+
             }
 
             return detailData;
         }
-
         #endregion
 
-        public BaseData parseData(int type, string contents) {
+        #region 상세데이터 요청 - return DetailData
+        public async Task<CreditsData> requestCreditsData(BaseRequestData request)
+        {
+            string url = request.baseUrl + request.requestUrl;
+            Debug.WriteLine(url);
+
+            var uri = new Uri(string.Format(url, string.Empty));
+            CreditsData creditsData = new CreditsData();
+            try
+            {
+                var response = await client.GetAsync(uri);
+                Debug.WriteLine(response.StatusCode);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine("================== response Success ======================");
+                    Debug.WriteLine(content);
+                    Debug.WriteLine("==========================================================");
+
+
+                    creditsData = (CreditsData)this.parseData(request.requestType, content);
+                }
+                else
+                {
+
+                    Debug.WriteLine("==========================================================");
+                    Debug.WriteLine("==================== response Fail =======================");
+                    Debug.WriteLine("response.StatusCode = " + (int)response.StatusCode);
+                    Debug.WriteLine("==========================================================");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
+            }
+
+            if (creditsData == null)
+            {
+
+            }
+
+            return creditsData;
+        }
+        #endregion
+
+        public BaseData parseData(int type, string contents)
+        {
             BaseData returnData = null;
 
             if (contents != "")
             {
                 //Converting JSON Array Objects into generic list  
-                switch(type) {
+                switch (type)
+                {
                     case NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING:
                         {
                             returnData = JsonConvert.DeserializeObject<NowPlayingData>(contents);
@@ -247,8 +298,15 @@ namespace xapps
                         }
                         break;
 
-                    case NetworkRequestConsts.REQUEST_TYPE_DETAIL : {
+                    case NetworkRequestConsts.REQUEST_TYPE_DETAIL:
+                        {
                             returnData = JsonConvert.DeserializeObject<DetailData>(contents);
+                        }
+                        break;
+
+                    case NetworkRequestConsts.REQUEST_TYPE_CREDITS:
+                        {
+                            returnData = JsonConvert.DeserializeObject<CreditsData>(contents);
                         }
                         break;
                 }

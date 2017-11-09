@@ -9,7 +9,7 @@ namespace xapps
             //data.requestType = type;
             switch (type)
             {
-                case NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING :
+                case NetworkRequestConsts.REQUEST_TYPE_NOW_PLAYING:
                     {
                         data = new NowPlayingRequest();
                         return data;
@@ -24,6 +24,12 @@ namespace xapps
                 case NetworkRequestConsts.REQUEST_TYPE_DETAIL:
                     {
                         data = new DetailsRequest();
+                        return data;
+                    }
+
+                case NetworkRequestConsts.REQUEST_TYPE_CREDITS:
+                    {
+                        data = new CreditsRequest();
                         return data;
                     }
             }
