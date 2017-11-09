@@ -10,6 +10,7 @@ namespace xapps
     {
         private static readonly string IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
         public Command LoadItemsCommand { get; set; }
+        public ObservableCollection<cast> creditData { get; set; }
         DetailData item;
 
         public DetailData DetailItem
@@ -37,6 +38,7 @@ namespace xapps
                 return;
             }
 
+            creditData = new ObservableCollection<cast>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadDetailItemsCommand(requestId));
         }
 
@@ -52,6 +54,7 @@ namespace xapps
             try
             {
                 DetailData data = await NetworkManager.Instance().requestDetailsData(reqId);
+                CreditsData creditsData = await NetworkManager.Instance().requestCreditsData(reqId);
 
                 // poster
                 data.poster_path = IMAGE_PATH + data.poster_path;
@@ -80,6 +83,28 @@ namespace xapps
                 data.homepage = getEtc(data);
 
                 DetailItem = data;
+
+
+                #region credits data
+                creditData.Clear();
+                foreach (var cast in creditsData.cast)
+                {
+                    if (!String.IsNullOrEmpty(cast.profile_path))
+                    {
+                        cast.profile_path = IMAGE_PATH + cast.profile_path;
+                        //cast.name = "name - " + cast.name;
+                        //cast.character = "character - " + cast.character;
+                        creditData.Add(cast);
+
+                        if (creditData.Count >= 5)
+                        {
+                            break;
+                        }
+                    }
+                }
+                #endregion
+
+
             }
             catch (Exception ex)
             {

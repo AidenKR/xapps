@@ -46,21 +46,28 @@
                 <StackLayout IsVisible="true" BackgroundColor="Fuchsia" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
                     <Label Text="Golden EGG 지수" TextColor="White" HorizontalOptions="Center" FontSize="11" />
                 </StackLayout>
-                <!-- List 
+
+
+                <!-- List -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-                    <ListView x:Name="mdpListView" SeparatorColor="Gray">
+                    <ListView x:Name="mdpListView" SeparatorColor="Gray" RowHeight="90" ItemsSource="{Binding creditData}" VerticalOptions="FillAndExpand">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Spacing="0" VerticalOptions="Center" Orientation="Horizontal">
-                                        <Label Text="{Binding name}" LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding role}" TextColor="Gray" HorizontalOptions="End" />
+                                        <Image Source="{Binding profile_path}" BackgroundColor="White" WidthRequest="90" HeightRequest="90" Aspect="AspectFit" />
+                                        <StackLayout Spacing="0" VerticalOptions="Center" Orientation="Vertical">
+                                            <Label Text="{Binding name}" LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding character}" TextColor="Gray" HorizontalOptions="End" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout> -->
+                </StackLayout>
+
+                
                 <!-- Banner -->
                 <StackLayout IsVisible="true" BackgroundColor="Purple" x:Name="mdpBannerPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
                     <Label Text="Banner Layout" TextColor="White" HorizontalOptions="Center" FontSize="11" />
