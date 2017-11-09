@@ -34,7 +34,7 @@ namespace xapps
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new DetailPage());
+            await Navigation.PushAsync(new DetailPage(item.id));
 
             // Manually deselect item
             listView.SelectedItem = null;

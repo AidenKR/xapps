@@ -8,7 +8,7 @@ namespace xapps
         //MovieData mData;
         //public ObservableCollection<PerformerData> mlistData { get; set; }
 
-        public DetailPage()
+        public DetailPage(String movieId)
         {
             InitializeComponent();
 
