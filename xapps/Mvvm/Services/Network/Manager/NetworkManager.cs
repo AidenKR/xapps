@@ -7,24 +7,25 @@ namespace xapps
 	public class NetworkManager
 	{
         private INetService iNetService;
-        private INetworkManager iNetworkManager;
+        //private INetworkManager iNetworkManager;
         private static readonly object _lockObj = new object();
         private static NetworkManager netManager = null;
-        private NetworkManager(INetService service, INetworkManager iNetMgr)
+        private NetworkManager(INetService service)
         {
             iNetService = service;
-            iNetworkManager = iNetMgr;
         }
 
-        static internal NetworkManager Instance(INetworkManager iNetMgr)
+        static internal NetworkManager Instance() //INetworkManager iNetMgr)
         {
             // can thread safety
             lock (_lockObj)
             {
                 if (netManager == null)
                 {
-                    netManager = new NetworkManager(new RestService(), iNetMgr);
+                    netManager = new NetworkManager(new RestService());
                 }
+
+                //netManager.iNetworkManager = iNetMgr;
                 return netManager;
             }
         }
@@ -35,9 +36,14 @@ namespace xapps
             data.makeRequestUrl(page);
 
             //if(iNetworkManager != null) {
-            //    var result = iNetService.requestNowPlayingData(data);
-            //    iNetworkManager
+            //    var result = await iNetService.requestNowPlayingData(data);
+            //    if(result.error_no >= 200 && result.error_no < 300) {
+            //        iNetworkManager.onSuccess(result);
+            //    } else {
+            //        iNetworkManager.onFail(result);
+            //    }
             //}
+
             return iNetService.requestNowPlayingData(data);
         }
 

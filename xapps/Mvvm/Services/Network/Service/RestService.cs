@@ -98,11 +98,10 @@ namespace xapps
         public async Task<NowPlayingData> requestNowPlayingData(BaseRequestData request)
         {
             string url = request.baseUrl + request.requestUrl;
-                //NowPlayingRequest.localeListRestUrl + NowPlayingRequest.api_key + NowPlayingRequest.language + NowPlayingRequest.page + page;
             Debug.WriteLine(url);
 
             var uri = new Uri(string.Format(url, string.Empty));
-            NowPlayingData playingData = null;
+            NowPlayingData playingData = new NowPlayingData();;
             try
             {
                 var response = await client.GetAsync(uri);
@@ -124,6 +123,9 @@ namespace xapps
                     Debug.WriteLine("==================== response Fail =======================");
                     Debug.WriteLine("==========================================================");
                 }
+
+                playingData.error_no = (int)response.StatusCode;    // HttpStatusCode
+                playingData.error_msg = response.RequestMessage.ToString();
             }
             catch (Exception ex)
             {
@@ -160,11 +162,6 @@ namespace xapps
                     Debug.WriteLine("==========================================================");
 
                     upCommingData = (UpCommingData)this.parseData(request.requestType, content);
-                    //if (content != "")
-                    //{
-                    //    //Converting JSON Array Objects into generic list  
-                    //    upCommingData = JsonConvert.DeserializeObject<UpCommingData>(content);
-                    //}
                 }
                 else
                 {
@@ -189,7 +186,6 @@ namespace xapps
         #region 상세데이터 요청 - return DetailData
         public async Task<DetailData> requestDetailsData(BaseRequestData request)
         {
-            //DetailsRequest request = new DetailsRequest();
             string url = request.baseUrl + request.requestUrl;
             Debug.WriteLine(url);
 
@@ -210,11 +206,6 @@ namespace xapps
 
                     
                     detailData = (DetailData)this.parseData(request.requestType, content);
-                    //if (content != "")
-                    //{
-                    //    //Converting JSON Array Objects into generic list  
-                    //    detailData = JsonConvert.DeserializeObject<DetailData>(content);
-                    //}
                 }
                 else
                 {
@@ -263,8 +254,6 @@ namespace xapps
                         }
                         break;
                 }
-
-
             }
 
             return returnData;

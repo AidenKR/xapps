@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public class ListPageViewModel : BaseViewModel, INetworkManager
+    public class ListPageViewModel : BaseViewModel
     {
         public static int TYPE_NOW_PLAYING = 100; // 현재 상영중
         public static int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
@@ -47,14 +47,14 @@ namespace xapps
                 {
                     case 100: // TYPE_NOW_PLAYING
                         {
-                            var result = await NetworkManager.Instance(this).requestNowPlayingData("1");
+                            var result = await NetworkManager.Instance().requestNowPlayingData("1");
                             list = result.results;
                             break;
                         }
 
                     case 101: // TYPE_UPCOMING
                         {
-                            var result = await NetworkManager.Instance(this).requestUpCommingData("1");
+                            var result = await NetworkManager.Instance().requestUpCommingData("1");
                             list = result.results;
                             break;
                         }
