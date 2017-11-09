@@ -9,10 +9,9 @@ namespace xapps
     public class DetailPageViewModel : BaseViewModel, INetworkManager
     {
         private static readonly string IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
-
         public Command LoadItemsCommand { get; set; }
-
         DetailData item;
+
         public DetailData DetailItem
         {
             set
@@ -53,13 +52,32 @@ namespace xapps
             try
             {
                 DetailData data = await NetworkManager.Instance().requestDetailsData(reqId);
-                printLog(data.ToString());
 
+                // poster
                 data.poster_path = IMAGE_PATH + data.poster_path;
+                // preview
                 data.backdrop_path = IMAGE_PATH + data.backdrop_path;
-
+                // runtime & genres
                 data.runtime = data.runtime + "분";
+                string genre = "";
+                if (null != data.genres)
+                {
+                    foreach (genres g in data.genres)
+                    {
+                        genre += !string.IsNullOrWhiteSpace(genre) ? "/" : "";
+                        genre += g.name;
+                    }
+                    if (!string.IsNullOrWhiteSpace(genre))
+                    {
+                        genre = " * " + genre;
+                    }
+                }
+                data.runtime += genre;
+                // 개봉일자
+                data.release_date = data.release_date + " 개봉";
 
+                // Etc
+                data.homepage = getEtc(data);
 
                 DetailItem = data;
             }
@@ -73,36 +91,6 @@ namespace xapps
             }
         }
 
-        private void initData()
-        {
-            // set item
-            //string urlPoster = mData.posters;
-            //string urlBg = mData.posters;
-            //string txtMovieTitle = mData.title;
-            //string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
-            //if (!string.IsNullOrWhiteSpace(mData.rating)) {
-            //    txtMovieDesc += " * " + mData.rating;
-            //}
-            //string txtMovieStory = mData.plot;
-            //string stateNowPlaying = getNowPlayState(mData.repRlsDate);
-            //string txtNowPlayingAdvanceRate = "25.5%";
-            //string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
-
-            //// set view
-            //setImage(mdpMovieImageIvPoster, urlPoster);
-            //setImage(mdpMovieImageIvBg, urlBg);
-
-            //mdpNowPlayingTvState.Text = stateNowPlaying;
-            //mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
-            //mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
-
-            //mdpMovieInfoTvTitle.Text = txtMovieTitle;
-            //mdpMovieInfoTvDesc.Text = txtMovieDesc;
-            //mdpMovieInfoTvStory.Text = txtMovieStory;
-
-            //setPerformerListData();
-        }
-
         public void onSuccess(BaseData data)
         {
             printLog("onSuccess()");
@@ -111,6 +99,77 @@ namespace xapps
         public void onFail(BaseData data)
         {
             printLog("onFail()");
+        }
+
+        private string getEtc(DetailData data)
+        {
+            string returnValue = "";
+            try
+            {
+                returnValue += "adult : " + data.adult + "\n";
+                returnValue += "backdrop_path : " + data.backdrop_path + "\n";
+                returnValue += "budget : " + data.budget + "\n";
+                returnValue += "homepage : " + data.homepage + "\n";
+                returnValue += "id : " + data.id + "\n";
+                returnValue += "imdb_id : " + data.imdb_id + "\n";
+                returnValue += "original_language : " + data.original_language + "\n";
+                returnValue += "original_title : " + data.original_title + "\n";
+                returnValue += "overview : " + data.overview + "\n";
+                returnValue += "popularity : " + data.popularity + "\n";
+                returnValue += "poster_path : " + data.poster_path + "\n";
+                returnValue += "release_date : " + data.release_date + "\n";
+                returnValue += "revenue : " + data.revenue + "\n";
+                returnValue += "runtime : " + data.runtime + "\n";
+                returnValue += "status : " + data.status + "\n";
+                returnValue += "tagline : " + data.tagline + "\n";
+                returnValue += "title : " + data.title + "\n";
+                returnValue += "video : " + data.video + "\n";
+                returnValue += "vote_average : " + data.vote_average + "\n";
+                returnValue += "vote_count : " + data.vote_count + "\n";
+
+
+                returnValue += "belongs_to_collection : (" +
+                data.belongs_to_collection.backdrop_path + "," +
+                    data.belongs_to_collection.id + "," +
+                    data.belongs_to_collection.name + "," +
+                    data.belongs_to_collection.poster_path
+                    + ")\n";
+
+                returnValue += "genres (";
+                foreach (genres g in data.genres)
+                {
+                    returnValue += g.name + ",";
+                }
+                returnValue += ")\n";
+
+                returnValue += "production_companies (";
+                foreach (production_companies p in data.production_companies)
+                {
+                    returnValue += p.name + ",";
+                }
+                returnValue += ")\n";
+
+                returnValue += "production_contries (";
+                foreach (production_contries pc in data.production_contries)
+                {
+                    returnValue += pc.name + ",";
+                }
+                returnValue += ")\n";
+
+                returnValue += "spoken_languages (";
+                foreach (spoken_languages s in data.spoken_languages)
+                {
+                    returnValue += s.name + ",";
+                }
+                returnValue += ")\n";
+            }
+            catch (Exception e)
+            {
+                printLog(e.Message);
+                returnValue = data.ToString();
+            }
+
+            return returnValue;
         }
 
         private void printLog(string msg)

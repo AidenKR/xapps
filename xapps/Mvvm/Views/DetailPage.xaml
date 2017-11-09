@@ -6,11 +6,11 @@
                 <!-- Movie Image -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieImagePanel" Padding="0,0,0,0" Orientation="Horizontal">
                     <!-- 포스터 이미지 -->
-                    <Image x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="Silver" WidthRequest="80" HeightRequest="120" Aspect="AspectFit" />
+                    <Image x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="Silver" WidthRequest="120" HeightRequest="150" Aspect="AspectFit" />
                     <!-- 미리보기 -->
                     <AbsoluteLayout BackgroundColor="Black" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
                         <Image x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" Aspect="AspectFit" />
-                        <Button x:Name="mdpMovieImageBtnPlay" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="30" HeightRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" Clicked="onClickFullMoviePage" />
+                        <Button x:Name="mdpMovieImageBtnPlay" BackgroundColor="Silver" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" Clicked="onClickFullMoviePage" />
                     </AbsoluteLayout>
                 </StackLayout>
                 <!-- Share -->
@@ -29,21 +29,22 @@
                 </Grid>
                 <!-- Now Playing -->
                 <StackLayout IsVisible="true" BackgroundColor="Gray" x:Name="mdpNowPlayingPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0" Orientation="Horizontal" HeightRequest="30">
-                    <Label x:Name="mdpNowPlayingTvState" XAlign="Center" YAlign="Center" WidthRequest="50" HeightRequest="12" BackgroundColor="Red" VerticalOptions="Center" FontSize="8" TextColor="White" Margin="10,0,0,0" />
-                    <Label Text="예매율 " TextColor="Black" VerticalOptions="Center" FontSize="10" />
-                    <Label x:Name="mdpNowPlayingTvAdvanceRate" Text="22.5%" TextColor="Red" VerticalOptions="Center" FontSize="10" />
-                    <Label x:Name="mdpNowPlayingTvReleaseDate" Text="2017.10.25 개봉" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0" />
+                    <Label IsVisible="false" x:Name="mdpNowPlayingTvState" XAlign="Center" YAlign="Center" WidthRequest="50" HeightRequest="12" BackgroundColor="Red" VerticalOptions="Center" FontSize="8" TextColor="White"
+                        Margin="10,0,0,0" />
+                    <Label IsVisible="false" Text="예매율 " TextColor="Black" VerticalOptions="Center" FontSize="10" />
+                    <Label IsVisible="false" x:Name="mdpNowPlayingTvAdvanceRate" Text="22.5%" TextColor="Red" VerticalOptions="Center" FontSize="10" />
+                    <Label x:Name="mdpNowPlayingTvReleaseDate" Text="{Binding DetailItem.release_date}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0" />
                 </StackLayout>
                 <!-- Movie Info -->
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieInfoPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
                     <Label x:Name="mdpMovieInfoTvTitle" Text="{Binding DetailItem.original_title}" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
-                    <Label x:Name="mdpMovieInfoTvDesc" Text="상영시간 장르" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
+                    <Label x:Name="mdpMovieInfoTvDesc" Text="{Binding DetailItem.runtime}" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
                     <Label x:Name="mdpMovieInfoTvStory" Text="{Binding DetailItem.overview}" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" />
                     <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" Text="더보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
                 </StackLayout>
                 <!-- Graph -->
-                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="400">
-                    <Label Text="Golden EGG 지수" TextColor="Black" HorizontalOptions="Center" FontSize="11" />
+                <StackLayout IsVisible="true" BackgroundColor="Fuchsia" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
+                    <Label Text="Golden EGG 지수" TextColor="White" HorizontalOptions="Center" FontSize="11" />
                 </StackLayout>
                 <!-- List 
                 <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
@@ -60,6 +61,38 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout> -->
+                <!-- Banner -->
+                <StackLayout IsVisible="true" BackgroundColor="Purple" x:Name="mdpBannerPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
+                    <Label Text="Banner Layout" TextColor="White" HorizontalOptions="Center" FontSize="11" />
+                </StackLayout>
+                <!-- ETC -->
+                <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpEtcPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0">
+                    <Label Text="{Binding DetailItem.homepage}" TextColor="Black" HorizontalOptions="Center" FontSize="11" />
+                </StackLayout>
+                <!-- Copyright -->
+                <StackLayout IsVisible="true" BackgroundColor="Gray" x:Name="mdpCopyrightPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="이용약관" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
+                        <Label Text=" | " TextColor="Black" FontSize="10" />
+                        <Label Text="개인정보 처리방침" TextColor="Red" FontSize="10" />
+                        <Label Text=" | " TextColor="Black" FontSize="10" />
+                        <Label Text="법적고지" TextColor="Black" FontSize="10" />
+                        <Label Text=" | " TextColor="Black" FontSize="10" />
+                        <Label Text="회사소개" TextColor="Black" FontSize="10" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="이메일무단수집거부" TextColor="Black" FontSize="10" />
+                        <Label Text=" | " TextColor="Black" FontSize="10" />
+                        <Label Text="고객센터:1544-1122" TextColor="Black" FontSize="10" />
+                        <Label Text=" | " TextColor="Black" FontSize="10" />
+                        <Label Text="대표이메일" TextColor="Black" FontSize="10" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <Label Text="서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)" TextColor="Black" FontSize="10" />
+                        <Label Text="대표이사:서정 | 사업자등록번호:104-81-45690" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
+                        <Label Text="개인정보보호책임자:정종민 | 통신판매업신고:2017-서울 용산-0662 | CJ CGV" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

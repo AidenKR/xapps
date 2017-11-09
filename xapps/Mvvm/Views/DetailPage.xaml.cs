@@ -24,39 +24,7 @@ namespace xapps
 
         private void initView()
         {
-            mdpMovieImageIvPoster.Source = null;
-            mdpMovieImageIvBg.Source = null;
         }
-
-        //private void initData()
-        //{
-        // set item
-        //string urlPoster = mData.posters;
-        //string urlBg = mData.posters;
-        //string txtMovieTitle = mData.title;
-        //string txtMovieDesc = mData.runtime + "분 * " + mData.genre;
-        //if (!string.IsNullOrWhiteSpace(mData.rating)) {
-        //    txtMovieDesc += " * " + mData.rating;
-        //}
-        //string txtMovieStory = mData.plot;
-        //string stateNowPlaying = getNowPlayState(mData.repRlsDate);
-        //string txtNowPlayingAdvanceRate = "25.5%";
-        //string txtNowPlayingReleaseDate = string.IsNullOrWhiteSpace(mData.repRlsDate) ? "개봉 미정" : mData.repRlsDate + " 개봉";
-
-        //// set view
-        //setImage(mdpMovieImageIvPoster, urlPoster);
-        //setImage(mdpMovieImageIvBg, urlBg);
-
-        //mdpNowPlayingTvState.Text = stateNowPlaying;
-        //mdpNowPlayingTvAdvanceRate.Text = txtNowPlayingAdvanceRate;
-        //mdpNowPlayingTvReleaseDate.Text = txtNowPlayingReleaseDate;
-
-        //mdpMovieInfoTvTitle.Text = txtMovieTitle;
-        //mdpMovieInfoTvDesc.Text = txtMovieDesc;
-        //mdpMovieInfoTvStory.Text = txtMovieStory;
-
-        //setPerformerListData();
-        //}
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
         {
@@ -75,27 +43,6 @@ namespace xapps
 
             mdpMovieInfoBtnMore.IsVisible = false;
             mdpMovieInfoTvStory.LineBreakMode = LineBreakMode.WordWrap;
-        }
-
-        private string getNowPlayState(string date)
-        {
-            // 2011-07-13
-            if (string.IsNullOrWhiteSpace(date))
-            {
-                return "개봉 미정";
-            }
-
-            return "현재상영중";
-        }
-
-        private void setImage(Image img, string url)
-        {
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                return;
-            }
-
-            img.Source = ImageManager.getImageFromUrl(url).Source;
         }
 
         //private void setPerformerListData()
