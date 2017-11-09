@@ -62,5 +62,12 @@ namespace xapps
             data.makeRequestUrl(movieId);
             return iNetService.requestDetailsData(data);
         }
+
+        public Task<CreditsData> requestCreditsData(string movieId) {
+            CreditsRequest data = (CreditsRequest)ProtocolFactory.findReqeustObject(NetworkRequestConsts.REQUEST_TYPE_CREDITS);
+            data.requestType = NetworkRequestConsts.REQUEST_TYPE_CREDITS;
+            data.makeRequestUrl(movieId);
+            return iNetService.requestCreditsData(data);
+        }
 	}
 }

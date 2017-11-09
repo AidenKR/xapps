@@ -11,5 +11,6 @@ namespace xapps
 
         Task<DetailData> requestDetailsData(BaseRequestData request);
 
+        Task<CreditsData> requestCreditsData(BaseRequestData request);
     }
 }
