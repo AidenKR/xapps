@@ -6,6 +6,7 @@
             <Button Text="Database Test" BorderWidth="1" Clicked="DBTestBtnClicked" />
             <Button Text="즐겨찾기화면 Test" BorderWidth="1" Clicked="FavoriteBtnClicked" />
             <Button Text="Movie Play Test" BorderWidth="1" Clicked="MovieBtnClicked" />
+            <Button Text="Music Background Service Test" BorderWidth="1" Clicked="MusicBtnClicked" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

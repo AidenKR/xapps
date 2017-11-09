@@ -66,7 +66,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mvvm\Model\Network\subData\belongs_to_collection.cs" />
     <Compile Include="Mvvm\Model\View\IMovieUrl.cs" />
+    <Compile Include="Mvvm\NativeInterface\IBackgroundService.cs" />
+    <Compile Include="Mvvm\ViewModel\DetailPageViewModel.cs" />
+    <Compile Include="Mvvm\Views\MusicServicePage.xaml.cs">
+      <DependentUpon>MusicServicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Mvvm\Views\PreviewPage.xaml.cs">
       <DependentUpon>PreviewPage.xaml</DependentUpon>
     </Compile>
@@ -130,8 +136,6 @@
     <Compile Include="Mvvm\Services\Network\NetworkConsts.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\ProtocolFactory.cs" />
     <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\belongs_to_collection.cs" />
-    <Compile Include="Mvvm\ViewModel\DetailPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -168,7 +172,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Mvvm\Views\MusicServicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>

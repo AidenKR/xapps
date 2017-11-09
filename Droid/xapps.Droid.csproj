@@ -153,6 +153,8 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Mvvm\Model\MovieUrlData.cs" />
+    <Compile Include="Mvvm\Services\BackgroundService\MusicBackgroundService.cs" />
+    <Compile Include="Mvvm\Services\BackgroundService\MusicServiceControl.cs" />
     <Compile Include="Mvvm\Services\Helper\StatusBarHelper.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -186,7 +188,9 @@
     <AndroidResource Include="Resources\drawable\hamburger.png" />
     <AndroidResource Include="Resources\drawable\MasterLogo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\test.mp3" />
+  </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
