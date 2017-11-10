@@ -17,6 +17,19 @@ namespace xapps
         public PreviewPage()
         {
             InitializeComponent();
+
+            videoPlayer = new ContentView
+            {
+                WidthRequest = App.ScreenWidth / 2,
+                HeightRequest = App.ScreenHeight / 2,
+            };
+
+            Content = new StackLayout
+            {
+                Children = {
+                    videoPlayer
+                }
+            };
         }
 
         protected override void LayoutChildren(double x, double y, double width, double height)
