@@ -151,6 +151,17 @@ namespace xapps
                 activity.OnBackPressed();
             };
 
+            videoView.Error += delegate
+            {
+                dialog.Dismiss();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.SetNeutralButton("OK", (send, args) => { activity.OnBackPressed(); });
+                builder.SetMessage("동영상 재생에 실패 했습니다.");
+                builder.SetTitle("Alert");
+                builder.Show();
+            };
+
         }
 
     }
