@@ -17,7 +17,7 @@ namespace xapps
 
         private VideoView videoView;
         private global::Android.Views.View view;
-        private Android.Widget.Button playButton;
+        //private Android.Widget.Button playButton;
         private MediaController mediaController;
 
         private int width, height;
@@ -35,10 +35,9 @@ namespace xapps
             var viewHolder = activity.LayoutInflater.Inflate(Droid.Resource.Layout.MoviePreview, this, false);
             view = viewHolder;
             AddView(view);
-
             //Get and set Views
             videoView = FindViewById<VideoView>(Droid.Resource.Id.previewMovie);
-            playButton = FindViewById<Android.Widget.Button>(Droid.Resource.Id.startBtn);
+            //playButton = FindViewById<Android.Widget.Button>(Droid.Resource.Id.startBtn);
 
             mediaController = new Android.Widget.MediaController(activity);
             mediaController.SetAnchorView(videoView);
@@ -83,10 +82,10 @@ namespace xapps
             {
                 //Portrait Orientation, just layout everything nomally
                 view.Layout(0, 0, width, height);
-                videoView.Layout(0, 0, width, height - 150);
+                videoView.Layout(0, 0, width, height - 800);
                 //Still need to do this to ensure when you rotate from Landscape back to Portrait, the values are reset
-                videoView.Holder.SetFixedSize(width, height - 150);
-                playButton.Layout(0, height - 150, width, height);
+                videoView.Holder.SetFixedSize(width, height - 800);
+                //playButton.Layout(0, height - 150, width, height);
             }
         }
 
@@ -108,7 +107,8 @@ namespace xapps
                 //StatusBarHelper.AppActionBar.Show ();
             }
         }
-
+// Landscape 고정인 경우 사용
+/*
         protected override void OnWindowVisibilityChanged(ViewStates visibility)
         {
             base.OnWindowVisibilityChanged(visibility);
@@ -129,7 +129,7 @@ namespace xapps
                 activity.RequestedOrientation = ScreenOrientation.Landscape;
             }
         }
-
+*/
         private void Play(Activity activity)
         {
             ProgressDialog dialog = new ProgressDialog(activity);
