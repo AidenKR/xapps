@@ -35,6 +35,11 @@ namespace xapps
                 Title = "Move To TestPage",
                 TargetType = typeof(TestingPage)
             });
+            masterPageItems.Add(new MasterPageItem
+            {
+                Title = "Move To Background Music",
+                TargetType = typeof(MusicServicePage)
+            });
 
             listView.ItemsSource = masterPageItems;
         }

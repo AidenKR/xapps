@@ -38,10 +38,5 @@ namespace xapps
             }
             Navigation.PushAsync(new PreviewPage());
         }
-
-        void MusicBtnClicked(object sender, System.EventArgs e)
-        {
-            Navigation.PushAsync(new MusicServicePage());
-        }
     }
 }
