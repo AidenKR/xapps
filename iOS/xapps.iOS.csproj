@@ -145,6 +145,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%403x.png">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Resources\Assets.xcassets\LaunchImages.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
