@@ -139,6 +139,7 @@
     <Compile Include="Mvvm\Model\Network\subData\cast.cs" />
     <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\CreditsRequest.cs" />
+    <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

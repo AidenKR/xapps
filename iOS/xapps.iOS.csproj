@@ -165,6 +165,7 @@
     <Compile Include="Mvvm\Services\Database\DBFilePath.cs" />
     <Compile Include="Mvvm\Services\Helper\DeviceHelper.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
+    <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\hamburger.png" />
@@ -176,6 +177,9 @@
     <BundleResource Include="Resources\Icon-Small-40%403x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <BundleResource Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mvvm\Services\Toast\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" />
