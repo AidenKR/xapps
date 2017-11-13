@@ -5,10 +5,11 @@ using Android.Content.PM;
 using Android.OS;
 using Firebase.Iid;
 using Android.Gms.Common;
+using xapps.Droid;
 
-namespace xapps.Droid
+namespace xapps
 {
-    [Activity(Label = "xapps.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "xapps.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -40,6 +41,15 @@ namespace xapps.Droid
 
             //Set our status bar helper DecorView. This enables us to hide the notification bar for fullscreen
             StatusBarHelper.DecorView = this.Window.DecorView;
+        }
+
+        public override void OnAttachedToWindow()
+        {
+            base.OnAttachedToWindow();
+            //Set our status bar helper AppActionBar. This enables us to hide the ActionBar for fullscreen
+            //Always hide the actionbar/toolbar if you are hiding the notification bar
+            if (ActionBar != null)
+                StatusBarHelper.AppActionBar = ActionBar;
         }
 
         /**
