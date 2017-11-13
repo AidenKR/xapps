@@ -38,5 +38,17 @@ namespace xapps
             }
             Navigation.PushAsync(new PreviewPage());
         }
+
+        void ToastBtnClicked(object sender, System.EventArgs e)
+        {
+            string ToastMsg = "Test!!!"; // Toast메시지
+            bool longTime = false; // Toast 띄우는시간
+
+            var toast = DependencyService.Get<IToastAlert>();
+            if (null != toast)
+            {
+                toast.showToast(ToastMsg, longTime);
+            }
+        }
     }
 }
