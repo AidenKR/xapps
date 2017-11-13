@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="Network Test" x:Class="xapps.NetworkPage">
-    <Label Text="Network Test Page" VerticalOptions="Center" HorizontalOptions="Center" />
+    <StackLayout Orientation="Vertical" IsVisible="true" BackgroundColor="White">
+        <Label Text="Network Test Page" VerticalOptions="Center" HorizontalOptions="Center" />
+
+        <StackLayout x:Name = "mainStack" WidthRequest="200" Orientation="Vertical" HeightRequest="40" IsVisible="true" BackgroundColor="White">
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

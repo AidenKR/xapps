@@ -140,6 +140,10 @@
     <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\CreditsRequest.cs" />
     <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
+    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabBarCell.cs" />
+    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabData.cs" />
+    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabInterface.cs" />
+    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
