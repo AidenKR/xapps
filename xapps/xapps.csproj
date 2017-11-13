@@ -140,10 +140,10 @@
     <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
     <Compile Include="Mvvm\Services\Network\Service\Request\CreditsRequest.cs" />
     <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
-    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabBarCell.cs" />
-    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabData.cs" />
-    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabInterface.cs" />
-    <Compile Include="Mvvm\Views\CustomTabBar\CustomTabView.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabBarCell.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabData.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabInterface.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -185,6 +185,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mvvm\Views\CustomView\" />
+    <Folder Include="Mvvm\Views\CustomView\CustomTabBar\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
