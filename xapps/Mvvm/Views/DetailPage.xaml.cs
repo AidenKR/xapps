@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
+using xapps.Mvvm.Views.CustomTabBar;
 
 namespace xapps
 {
-    public partial class DetailPage : ContentPage
+    public partial class DetailPage : ContentPage , CustomTabInterface
     {
         private DetailPageViewModel viewModel;
         private string mRequestId;
@@ -17,6 +19,37 @@ namespace xapps
             printLog("reqServerData reqId : " + mRequestId);
 
             BindingContext = viewModel = new DetailPageViewModel(mRequestId);
+            initView();
+        }
+
+        private void initView() {
+
+            // TAB
+            List<CustomTabData> tabs = new List<CustomTabData>();
+            CustomTabData tab = new CustomTabData();
+            tab.tabText = "평점";
+            tab.isUseImage = false;
+            tab.selColor = "#F7D358";
+            tab.norColor = "#F5ECCE";
+            tab.tag = "1";
+            tabs.Add(tab);
+            CustomTabData tab2 = new CustomTabData();
+            tab2.tabText = "포토/트레일러";
+            tab2.isUseImage = false;
+            tab2.selColor = "#F7D358";
+            tab2.norColor = "#F5ECCE";
+            tab2.tag = "2";
+            tabs.Add(tab2);
+            CustomTabData tab3 = new CustomTabData();
+            tab3.tabText = "감독/배우";
+            tab3.isUseImage = false;
+            tab3.selColor = "#F7D358";
+            tab3.norColor = "#F5ECCE";
+            tab3.tag = "3";
+            tabs.Add(tab3);
+            CustomTabView tabView = new CustomTabView(this, mdpTab.Width);
+            tabView.makeTabLayout(tabs);
+            mdpTab.Children.Add(tabView);
         }
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -56,5 +89,9 @@ namespace xapps
             base.OnDisappearing();
         }
 
+        public void onClickTabButton(object index)
+        {
+            // Event
+        }
     }
 }

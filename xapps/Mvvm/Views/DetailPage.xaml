@@ -48,6 +48,8 @@
                     <StackLayout IsVisible="true" BackgroundColor="Silver" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
                         <Label Text="Golden EGG 지수" TextColor="White" HorizontalOptions="Center" FontSize="11" />
                     </StackLayout>
+                    <StackLayout IsVisible="true" BackgroundColor="White"  x:Name="mdpTab" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
+                    </StackLayout>
                     <!-- List -->
                     <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
                         <ListView x:Name="mdpListView" SeparatorColor="Gray" RowHeight="80" ItemsSource="{Binding creditData}" VerticalOptions="FillAndExpand">
