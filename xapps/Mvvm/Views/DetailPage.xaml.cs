@@ -23,33 +23,35 @@ namespace xapps
         }
 
         private void initView() {
-
             // TAB
-            List<CustomTabData> tabs = new List<CustomTabData>();
-            CustomTabData tab = new CustomTabData();
-            tab.tabText = "평점";
-            tab.isUseImage = false;
-            tab.selColor = "#F7D358";
-            tab.norColor = "#F5ECCE";
-            tab.tag = "1";
-            tabs.Add(tab);
-            CustomTabData tab2 = new CustomTabData();
-            tab2.tabText = "포토/트레일러";
-            tab2.isUseImage = false;
-            tab2.selColor = "#F7D358";
-            tab2.norColor = "#F5ECCE";
-            tab2.tag = "2";
-            tabs.Add(tab2);
-            CustomTabData tab3 = new CustomTabData();
-            tab3.tabText = "감독/배우";
-            tab3.isUseImage = false;
-            tab3.selColor = "#F7D358";
-            tab3.norColor = "#F5ECCE";
-            tab3.tag = "3";
-            tabs.Add(tab3);
-            CustomTabView tabView = new CustomTabView(this, mdpTab.Width);
-            tabView.makeTabLayout(tabs);
-            mdpTab.Children.Add(tabView);
+            string[] tabs = {"평점", "포토/트레일러" , "감독/배우"};
+            setTabBar(mdpTab, tabs);
+        }
+
+        private void setTabBar(StackLayout layout, string[] tabs) {
+            const string SelColor = "#F7D358";
+            const string NorColor = "#F5ECCE";
+            const bool IsUseImage = false;
+
+            List<CustomTabData> arrTabs = new List<CustomTabData>();
+            CustomTabData tab;
+            int nCnt = 0;
+
+            foreach (string item in tabs) {
+                nCnt++;
+                tab = new CustomTabData();
+                tab.tabText = item;
+                tab.isUseImage = IsUseImage;
+                tab.selColor = SelColor;
+                tab.norColor = NorColor;
+                tab.tag = nCnt.ToString();
+
+                arrTabs.Add(tab); // Add
+            }
+
+            CustomTabView tabView = new CustomTabView(this, layout.Width);
+            tabView.makeTabLayout(arrTabs);
+            layout.Children.Add(tabView);
         }
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -92,6 +94,7 @@ namespace xapps
         public void onClickTabButton(object index)
         {
             // Event
+            printLog("onClickTabButton() index : " + index);
         }
     }
 }
