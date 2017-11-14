@@ -60,20 +60,20 @@ namespace xapps
                 case 0:
                 case 1:
                     {
-                        NetworkManager.Instance().requestNowPlayingData("1");
+                        NetworkManager.ReqNowPlaying("1");
                     }
                     break;
 
                 case 2:
                 case 3:
                     {
-                        NetworkManager.Instance().requestUpCommingData("1");
+                        NetworkManager.ReqUpComming("1");
                     }
                     break;
 
                 case 4:
                     {
-                        NetworkManager.Instance().requestDetailsData("284053");
+                        NetworkManager.ReqDetail("284053");
                     }
                     break;
 

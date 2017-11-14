@@ -49,14 +49,14 @@ namespace xapps
                 {
                     case TYPE_NOW_PLAYING:
                         {
-                            var result = await NetworkManager.Instance().requestNowPlayingData("1");
+                            var result = await NetworkManager.ReqNowPlaying("1");
                             list = result.results;
                             break;
                         }
 
                     case TYPE_UPCOMING:
                         {
-                            var result = await NetworkManager.Instance().requestUpCommingData("1");
+                            var result = await NetworkManager.ReqUpComming("1");
                             list = result.results;
                             break;
                         }
@@ -103,14 +103,14 @@ namespace xapps
                 {
                 case TYPE_NOW_PLAYING:
                 {
-                var result = await NetworkManager.Instance().requestNowPlayingData(pageNumber.ToString());
+                var result = await NetworkManager.ReqNowPlaying(pageNumber.ToString());
                 list = result.results;
                             break;
                         }
 
                     case TYPE_UPCOMING:
                         {
-                            var result = await NetworkManager.Instance().requestUpCommingData(pageNumber.ToString());
+                            var result = await NetworkManager.ReqUpComming(pageNumber.ToString());
                             list = result.results;
                             break;
                         }

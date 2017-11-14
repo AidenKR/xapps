@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public class DetailData : BaseData
+    public class DetailData
     {
         public string adult { get; set; }
         public string backdrop_path { get; set; }

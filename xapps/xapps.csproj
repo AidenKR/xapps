@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -81,11 +81,6 @@
     <Compile Include="Mvvm\Services\Database\DatabaseConsts.cs" />
     <Compile Include="Mvvm\Services\Database\Interface\IDBFilePath.cs" />
     <Compile Include="Mvvm\Services\Database\MovieFavoritesDB.cs" />
-    <Compile Include="Mvvm\Services\Network\Interface\INetService.cs" />
-    <Compile Include="Mvvm\Services\Network\Manager\NetworkManager.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\DefaultParser.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\MovieDetailParser.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\RestService.cs" />
     <Compile Include="Mvvm\Views\ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>
     </Compile>
@@ -99,8 +94,6 @@
       <DependentUpon>WebviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\Model\View\MasterPageItem.cs" />
-    <Compile Include="Mvvm\Services\Network\Manager\ImageManager.cs" />
-    <Compile Include="Mvvm\Services\Network\Interface\IImageManager.cs" />
     <Compile Include="Mvvm\Views\FavoritePage.xaml.cs">
       <DependentUpon>FavoritePage.xaml</DependentUpon>
     </Compile>
@@ -110,18 +103,14 @@
     <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\ListPageViewModel.cs" />
     <Compile Include="Mvvm\Model\Network\NowPlayingData.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\NowPlayingRequest.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Response\NowPlayingParser.cs" />
     <Compile Include="Mvvm\Model\Network\UpCommingData.cs" />
     <Compile Include="Mvvm\Model\Network\subData\dates.cs" />
     <Compile Include="Mvvm\Model\Network\subData\results.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\UpCommingRequest.cs" />
     <Compile Include="Mvvm\Model\Network\DetailData.cs" />
     <Compile Include="Mvvm\Model\Network\subData\genres.cs" />
     <Compile Include="Mvvm\Model\Network\subData\production_companies.cs" />
     <Compile Include="Mvvm\Model\Network\subData\production_contries.cs" />
     <Compile Include="Mvvm\Model\Network\subData\spoken_languages.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\DetailsRequest.cs" />
     <Compile Include="Mvvm\Views\TestPage\DatabasePage.xaml.cs">
       <DependentUpon>DatabasePage.xaml</DependentUpon>
     </Compile>
@@ -131,19 +120,22 @@
     <Compile Include="Mvvm\Views\TestPage\TestingPage.xaml.cs">
       <DependentUpon>TestingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Services\Network\Service\Request\BaseRequestData.cs" />
-    <Compile Include="Mvvm\Model\Network\BaseData.cs" />
-    <Compile Include="Mvvm\Services\Network\NetworkConsts.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\ProtocolFactory.cs" />
-    <Compile Include="Mvvm\Services\Network\Interface\INetworkManager.cs" />
     <Compile Include="Mvvm\Model\Network\subData\cast.cs" />
     <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
-    <Compile Include="Mvvm\Services\Network\Service\Request\CreditsRequest.cs" />
     <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabBarCell.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabData.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabInterface.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabView.cs" />
+    <Compile Include="Mvvm\Manager\ImageManager.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieCredits.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieDetail.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieNowPlaying.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieUpcoming.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\BaseApi.cs" />
+    <Compile Include="Mvvm\Manager\Network\Connector.cs" />
+    <Compile Include="Mvvm\Manager\Network\ResponseData.cs" />
+    <Compile Include="Mvvm\Manager\Network\NetworkManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -189,6 +181,9 @@
   <ItemGroup>
     <Folder Include="Mvvm\Views\CustomView\" />
     <Folder Include="Mvvm\Views\CustomView\CustomTabBar\" />
+    <Folder Include="Mvvm\Manager\" />
+    <Folder Include="Mvvm\Manager\Network\" />
+    <Folder Include="Mvvm\Manager\Network\Api\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

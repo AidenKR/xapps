@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public class DetailPageViewModel : BaseViewModel, INetworkManager
+    public class DetailPageViewModel : BaseViewModel
     {
         private static readonly string IMAGE_PATH = "https://image.tmdb.org/t/p/w500";
         public Command LoadItemsCommand { get; set; }
@@ -53,8 +53,8 @@ namespace xapps
 
             try
             {
-                DetailData data = await NetworkManager.Instance().requestDetailsData(reqId);
-                CreditsData creditsData = await NetworkManager.Instance().requestCreditsData(reqId);
+                DetailData data = await NetworkManager.ReqDetail(reqId);
+                CreditsData creditsData = await NetworkManager.requestCreditsData(reqId);
 
                 // poster
                 data.poster_path = IMAGE_PATH + data.poster_path;
@@ -113,16 +113,6 @@ namespace xapps
             {
                 IsBusy = false;
             }
-        }
-
-        public void onSuccess(BaseData data)
-        {
-            printLog("onSuccess()");
-        }
-
-        public void onFail(BaseData data)
-        {
-            printLog("onFail()");
         }
 
         private string getEtc(DetailData data)

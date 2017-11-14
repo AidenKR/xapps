@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public class NowPlayingData : BaseData
+    public class NowPlayingData
     {
         public List<results> results { get; set; }
         public string page { get; set; }
