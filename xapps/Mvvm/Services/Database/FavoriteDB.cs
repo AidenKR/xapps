@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using SQLite;
-using xapps.Mvvm.Model.Database.FavoriteItem;
 using System.IO;
 
-namespace xapps.Mvvm.Services.Database.FavoriteDB
+namespace xapps
 {
     public class FavoriteDB
     {

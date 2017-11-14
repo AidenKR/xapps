@@ -20,8 +20,8 @@
                         
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                                
-                                <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Start" />
+
+                                <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Start" WidthRequest="80" HeightRequest="80" />
                                 <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
                                     <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
                                     <Label Text="{Binding original_title}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />

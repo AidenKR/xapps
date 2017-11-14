@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace xapps.Mvvm.NativeInterface
+namespace xapps
 {
     public interface ISQLiteService
     {

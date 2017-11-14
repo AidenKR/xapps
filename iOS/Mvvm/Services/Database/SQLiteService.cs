@@ -3,10 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using SQLite;
 using Xamarin.Forms;
-using xapps.Mvvm.NativeInterface;
 
-[assembly: Dependency(typeof(xapps.iOS.Mvvm.Services.Database.SQLiteService))]
-namespace xapps.iOS.Mvvm.Services.Database
+[assembly: Dependency(typeof(xapps.iOS.SQLiteService))]
+namespace xapps.iOS
 {
     public class SQLiteService : ISQLiteService
     {

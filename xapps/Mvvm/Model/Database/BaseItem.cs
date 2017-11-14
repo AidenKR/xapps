@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace xapps.Mvvm.Model.Database
+namespace xapps
 {
     public class BaseItem
     {

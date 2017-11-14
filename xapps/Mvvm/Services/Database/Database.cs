@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SQLite;
 using Xamarin.Forms;
-using xapps.Mvvm.Model.Database;
-using xapps.Mvvm.Model.Database.FavoriteItem;
-using xapps.Mvvm.NativeInterface;
 
-namespace xapps.Mvvm.Services.Database
+namespace xapps
 {
     public class Database
     {

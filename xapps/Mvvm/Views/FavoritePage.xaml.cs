@@ -6,9 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using SQLite;
 using Xamarin.Forms;
-using xapps.Mvvm.Model.Database.FavoriteItem;
-using xapps.Mvvm.Services.Database;
-using xapps.Mvvm.Services.Database.FavoriteDB;
 
 namespace xapps
 {

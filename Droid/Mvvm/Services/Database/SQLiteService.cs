@@ -3,8 +3,8 @@ using System.IO;
 using SQLite;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(xapps.Droid.Mvvm.Services.Database.SQLiteService))]
-namespace xapps.Droid.Mvvm.Services.Database {
+[assembly: Dependency(typeof(xapps.Droid.SQLiteService))]
+namespace xapps.Droid {
   public class SQLiteService : ISQLiteService {
     string GetPath(string databaseName) {
       if (string.IsNullOrWhiteSpace(databaseName)) {
