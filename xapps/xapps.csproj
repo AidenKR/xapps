@@ -136,6 +136,11 @@
     <Compile Include="Mvvm\Manager\Network\Connector.cs" />
     <Compile Include="Mvvm\Manager\Network\ResponseData.cs" />
     <Compile Include="Mvvm\Manager\Network\NetworkManager.cs" />
+    <Compile Include="Mvvm\Model\Database\BaseItem.cs" />
+    <Compile Include="Mvvm\Model\Database\FavoriteItem.cs" />
+    <Compile Include="Mvvm\Services\Database\FavoriteDB.cs" />
+    <Compile Include="Mvvm\Services\Database\Database.cs" />
+    <Compile Include="Mvvm\NativeInterface\ISQLiteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

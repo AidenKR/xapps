@@ -165,6 +165,7 @@
     <Compile Include="Mvvm\Services\Push\MyFirebaseMessagingService.cs" />
     <Compile Include="Mvvm\Services\Notification\NotificationUtil.cs" />
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
+    <Compile Include="Mvvm\Services\Database\SQLiteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

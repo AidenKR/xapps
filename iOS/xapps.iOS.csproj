@@ -166,6 +166,7 @@
     <Compile Include="Mvvm\Services\Helper\DeviceHelper.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
+    <Compile Include="Mvvm\Services\Database\SQLiteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\hamburger.png" />

@@ -4,53 +4,56 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using SQLite;
 using Xamarin.Forms;
+using xapps.Mvvm.Model.Database.FavoriteItem;
+using xapps.Mvvm.Services.Database;
+using xapps.Mvvm.Services.Database.FavoriteDB;
 
 namespace xapps
 {
     public partial class FavoritePage : ContentPage
     {
-        //MovieFavoritesDB favoriteDb;
-        public ObservableCollection<FavoriteViewModel> favorite { get; set; }
+        readonly Database database;
+        public const string MOVIE_URL_PREFIX = "https://image.tmdb.org/t/p/w500/";
+
+        //FavoriteDB favoriteDB;
+        public ObservableCollection<FavoriteItem> favorite { get; set; }
 
         public FavoritePage()
         {
             InitializeComponent();
 
-            //favoriteDb = new MovieFavoritesDB(DependencyService.Get<IDBFilePath>().GetLocalFilePath(DatabaseConsts.DataBaseFileFullName));
-
-            favorite = new ObservableCollection<FavoriteViewModel>();
-            favorite.Add(new FavoriteViewModel { Name = "Tomato", Type = "Fruit",  url = "http://i.imgur.com/2PBLK.jpg"});
-            favorite.Add(new FavoriteViewModel { Name = "Romaine Lettuce", Type = "Vegetable",  url = "http://cfile26.uf.tistory.com/image/2463694C53D0A5D80629B3" });
-            favorite.Add(new FavoriteViewModel { Name = "Zucchini", Type = "Vegetable",  url = "http://cfs10.blog.daum.net/original/10/blog/2007/12/01/20/58/47514c5e8e6a8&filename=34851.jpg" });
-
-            favorite.Add(new FavoriteViewModel { Name = "Tomato", Type = "Fruit",  url = "http://i.imgur.com/2PBLK.jpg" });
-            favorite.Add(new FavoriteViewModel { Name = "Romaine Lettuce", Type = "Vegetable",  url = "http://cfile26.uf.tistory.com/image/2463694C53D0A5D80629B3" });
-            favorite.Add(new FavoriteViewModel { Name = "Zucchini", Type = "Vegetable",  url = "http://cfs10.blog.daum.net/original/10/blog/2007/12/01/20/58/47514c5e8e6a8&filename=34851.jpg" });
-
-            favorite.Add(new FavoriteViewModel { Name = "Tomato", Type = "Fruit",  url = "http://i.imgur.com/2PBLK.jpg" });
-            favorite.Add(new FavoriteViewModel { Name = "Romaine Lettuce", Type = "Vegetable",  url = "http://cfile26.uf.tistory.com/image/2463694C53D0A5D80629B3" });
-            favorite.Add(new FavoriteViewModel { Name = "Zucchini", Type = "Vegetable",  url = "http://cfs10.blog.daum.net/original/10/blog/2007/12/01/20/58/47514c5e8e6a8&filename=34851.jpg" });
-
-            favorite.Add(new FavoriteViewModel { Name = "Tomato", Type = "Fruit",  url = "http://i.imgur.com/2PBLK.jpg" });
-            favorite.Add(new FavoriteViewModel { Name = "Romaine Lettuce", Type = "Vegetable",  url = "http://cfile26.uf.tistory.com/image/2463694C53D0A5D80629B3" });
-            favorite.Add(new FavoriteViewModel { Name = "Zucchini", Type = "Vegetable",  url = "http://cfs10.blog.daum.net/original/10/blog/2007/12/01/20/58/47514c5e8e6a8&filename=34851.jpg" });
-
-            favorite.Add(new FavoriteViewModel { Name = "Tomato", Type = "Fruit",  url = "http://i.imgur.com/2PBLK.jpg" });
-            favorite.Add(new FavoriteViewModel { Name = "Romaine Lettuce", Type = "Vegetable",  url = "http://cfile26.uf.tistory.com/image/2463694C53D0A5D80629B3" });
-            favorite.Add(new FavoriteViewModel { Name = "Zucchini", Type = "Vegetable",  url = "http://cfs10.blog.daum.net/original/10/blog/2007/12/01/20/58/47514c5e8e6a8&filename=34851.jpg" });
-
-            favoriteListView.ItemsSource = favorite;
-
             //favoriteListView.ItemAppearing += (sender, e) =>
             //{
             //    Debug.WriteLine("ItemAppearing....");
             //};
+
+            database = new Database("FavoriteListDB");
+            database.CreateTable<FavoriteItem>();
+
+            initData();
+        }
+
+        public void initData() {
+            List<FavoriteItem> dbItems = database.getAllDBItem();
+            favorite = new ObservableCollection<FavoriteItem>(dbItems);
+            favoriteListView.ItemsSource = favorite;
+			Debug.WriteLine("favorite list count = " + favorite.Count);
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             Debug.WriteLine("clicked delete button");
+   //         FavoriteItem data = dbList[index];
+   //         IEnumerator<FavoriteItem> enumdata = database.getFilteredMovieId(data.movieId).GetEnumerator();
+   //         if (enumdata.MoveNext() == false) {
+   //             database.SaveItem(data);
+   //             Debug.WriteLine("adding data[ " + index + " ] : title = " + data.title);
+   //         } else {
+   //             Debug.WriteLine("has item");
+   //         }
+			//index += 1;
         }
 
         // show list item
@@ -58,12 +61,10 @@ namespace xapps
         {
             Debug.WriteLine("appearing item");
         }
-    }
 
-    public class FavoriteViewModel
-    {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string url { get; set; }
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            Debug.WriteLine("clicked item");
+        }
     }
 }
