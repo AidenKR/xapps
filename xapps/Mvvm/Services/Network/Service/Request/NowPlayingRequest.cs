@@ -7,10 +7,10 @@ namespace xapps
         public string localeListRestUrl = "https://api.themoviedb.org/3/movie/now_playing";
         public string page = "&page=";
 
-        public void makeRequestUrl(string page)
+        public void makeRequestUrl(string nPage)
         {
             baseUrl = this.localeListRestUrl;
-            requestUrl = api_key + language + page + page;
+            requestUrl = api_key + language + page + nPage;
             //return baseUrl + requestUrl;
         }
     }
