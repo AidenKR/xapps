@@ -2,9 +2,8 @@
 using Android.Content;
 using Android.Util;
 using Firebase.Messaging;
-using xapps.Droid;
 
-namespace xapps
+namespace xapps.Droid
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]

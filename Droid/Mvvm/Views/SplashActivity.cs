@@ -9,10 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using xapps.Droid;
 using System.Threading.Tasks;
 
-namespace xapps
+namespace xapps.Droid
 {
     [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     class SplashActivity : Activity

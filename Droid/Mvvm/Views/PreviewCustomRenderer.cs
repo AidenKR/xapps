@@ -7,9 +7,10 @@ using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using xapps;
+using xapps.Droid;
 
 [assembly: ExportRenderer(typeof(xapps.PreviewPage), typeof(PreviewCustomRenderer))]
-namespace xapps
+namespace xapps.Droid
 {
     class PreviewCustomRenderer : PageRenderer
     {

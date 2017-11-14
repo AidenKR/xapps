@@ -1,8 +1,7 @@
 ﻿using Android.App;
-using xapps.Droid;
 using Android.Content;
 
-namespace xapps
+namespace xapps.Droid
 {
     public class NotificationUtil
     {

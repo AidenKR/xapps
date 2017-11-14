@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace xapps
+namespace xapps.Droid
 {
     //Create static values for the ActionBar and DecorView
     //These will be utilized to hide the notification bar and ActionBar for fullscreen

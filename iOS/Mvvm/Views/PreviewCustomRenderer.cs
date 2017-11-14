@@ -10,9 +10,10 @@ using AVFoundation;
 using CoreGraphics;
 using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
+using xapps.iOS;
 
 [assembly: ExportRenderer(typeof(ContentView), typeof(PreviewCustomRenderer))]
-namespace xapps
+namespace xapps.iOS
 {
     class PreviewCustomRenderer : ViewRenderer
     {

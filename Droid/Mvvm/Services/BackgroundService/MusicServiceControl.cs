@@ -11,9 +11,10 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 using xapps;
+using xapps.Droid;
 
 [assembly: Dependency(typeof(MusicServiceControl))]
-namespace xapps
+namespace xapps.Droid
 {
     class MusicServiceControl : IBackgroundService
     {

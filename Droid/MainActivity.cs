@@ -5,9 +5,8 @@ using Android.Content.PM;
 using Android.OS;
 using Firebase.Iid;
 using Android.Gms.Common;
-using xapps.Droid;
 
-namespace xapps
+namespace xapps.Droid
 {
     [Activity(Label = "xapps.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

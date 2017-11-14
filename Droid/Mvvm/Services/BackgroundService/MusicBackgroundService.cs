@@ -12,7 +12,7 @@ using Android.Widget;
 using Android.Media;
 using Android;
 
-namespace xapps
+namespace xapps.Droid
 {
     [Service]
     class MusicBackgroundService : Service

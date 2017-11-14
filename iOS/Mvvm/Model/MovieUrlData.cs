@@ -7,9 +7,10 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using xapps;
+using xapps.iOS;
 
 [assembly: Dependency(typeof(MovieUrlData))]
-namespace xapps
+namespace xapps.iOS
 {
     class MovieUrlData : IMovieUrl
     {
