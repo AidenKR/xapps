@@ -15,6 +15,7 @@ namespace xapps
         public ObservableCollection<results> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command RefreshItemsCommand { get; set; }
+        public Command MoreItemsCommand { get; set; }
 
         // selected Category index
         private int SelectedCategoryType = TYPE_NOW_PLAYING;
@@ -26,6 +27,7 @@ namespace xapps
 
             LoadItemsCommand = new Command<int>(async (requestType) => await ExecuteLoadItemsCommand(requestType));
             RefreshItemsCommand = new Command(async () => await ExecuteRefreshItemsCommand());
+            MoreItemsCommand = new Command<int[]>(async (reqValues) => await ExecuteMoreItemsCommand(reqValues));
         }
 
         async Task ExecuteRefreshItemsCommand() {
@@ -68,6 +70,60 @@ namespace xapps
                 SelectedCategoryType = requestType;
 
                 Items.Clear();
+                foreach (var item in list)
+                {
+                    item.poster_path = "https://image.tmdb.org/t/p/w500/" + item.poster_path;
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task ExecuteMoreItemsCommand(int[] reqValues)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                int requestType = reqValues[0];
+                int pageNumber = reqValues[1];
+
+                List<results> list = null;
+                switch (requestType)
+                {
+                case TYPE_NOW_PLAYING:
+                {
+                var result = await NetworkManager.Instance().requestNowPlayingData(pageNumber.ToString());
+                list = result.results;
+                            break;
+                        }
+
+                    case TYPE_UPCOMING:
+                        {
+                            var result = await NetworkManager.Instance().requestUpCommingData(pageNumber.ToString());
+                            list = result.results;
+                            break;
+                        }
+                }
+
+                if (list == null)
+                {
+                    return;
+                }
+
+                SelectedCategoryType = requestType;
+
+                //Items.Clear();
                 foreach (var item in list)
                 {
                     item.poster_path = "https://image.tmdb.org/t/p/w500/" + item.poster_path;

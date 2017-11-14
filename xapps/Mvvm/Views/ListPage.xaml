@@ -5,7 +5,7 @@
             <Button Grid.Column="0" x:Name="NowPlayingBtn" Text="현재 상영작" BackgroundColor="Transparent" Clicked="CategoryBtnClicked" />
             <Button Grid.Column="1" x:Name="UpcomingBtn" Text="개봉 예정작" BackgroundColor="Transparent" Clicked="CategoryBtnClicked" />
         </Grid>
-        <ListView x:Name="listView" SeparatorColor="Gray" RowHeight="100" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" RefreshCommand="{Binding RefreshItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
+        <ListView x:Name="listView" SeparatorColor="Gray" RowHeight="100" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" RefreshCommand="{Binding RefreshItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected" ItemAppearing="OnItemAppearing" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

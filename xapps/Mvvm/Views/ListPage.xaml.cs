@@ -5,6 +5,9 @@ namespace xapps
     public partial class ListPage : ContentPage
     {
         ListPageViewModel viewModel;
+        private int nSelectedButtonType = ListPageViewModel.TYPE_NOW_PLAYING;
+        private int nPageNumber = 0;
+        private bool dataLoading;
 
         public ListPage()
         {
@@ -18,9 +21,12 @@ namespace xapps
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
+            {
                 SelectedCategory(NowPlayingBtn);
-        }
+            }
 
+            nPageNumber++;
+        }
 
         #region EventHandler
         void CategoryBtnClicked(object sender, System.EventArgs e)
@@ -39,6 +45,17 @@ namespace xapps
             // Manually deselect item
             listView.SelectedItem = null;
         }
+
+        void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            var item = e.Item as results;
+            int index = viewModel.Items.IndexOf(item);
+            if (viewModel.Items.Count - 1 <= index)
+            {
+                // NextDataReqeust
+                NextDataReqeust();
+            }
+        }
         #endregion
 
         private void SelectedCategory(Button btn)
@@ -46,9 +63,11 @@ namespace xapps
             ChangeTextColor(btn);
 
             int requestType = ListPageViewModel.TYPE_NOW_PLAYING;
-            if (btn != NowPlayingBtn) {
+            if (btn != NowPlayingBtn)
+            {
                 requestType = ListPageViewModel.TYPE_UPCOMING;
             }
+            nSelectedButtonType = requestType;
 
             viewModel.LoadItemsCommand.Execute(requestType);
         }
@@ -61,6 +80,22 @@ namespace xapps
 
             selectedBtn.TextColor = Color.FromHex("FF0000");
 
+        }
+
+        void NextDataReqeust()
+        {
+            if (dataLoading)
+            {
+                return;
+            }
+
+            dataLoading = true;
+            nPageNumber++;
+            int[] reqValues = { nSelectedButtonType, nPageNumber };
+
+            viewModel.MoreItemsCommand.Execute(reqValues);
+
+            dataLoading = false;
         }
     }
 }
