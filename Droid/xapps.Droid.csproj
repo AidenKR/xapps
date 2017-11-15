@@ -160,7 +160,6 @@
     <Compile Include="Mvvm\Views\SplashActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mvvm\Services\Database\DBFilePath.cs" />
     <Compile Include="Mvvm\Services\Push\MyFirebaseIIDService.cs" />
     <Compile Include="Mvvm\Services\Push\MyFirebaseMessagingService.cs" />
     <Compile Include="Mvvm\Services\Notification\NotificationUtil.cs" />

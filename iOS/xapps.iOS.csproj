@@ -162,7 +162,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Mvvm\Model\MovieUrlData.cs" />
-    <Compile Include="Mvvm\Services\Database\DBFilePath.cs" />
     <Compile Include="Mvvm\Services\Helper\DeviceHelper.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />

@@ -11,7 +11,6 @@ namespace xapps
 {
     public partial class FavoritePage : ContentPage
     {
-        readonly Database database;
         public const string MOVIE_URL_PREFIX = "https://image.tmdb.org/t/p/w500/";
 
         //FavoriteDB favoriteDB;
@@ -26,14 +25,11 @@ namespace xapps
             //    Debug.WriteLine("ItemAppearing....");
             //};
 
-            database = new Database("FavoriteListDB");
-            database.CreateTable<FavoriteItem>();
-
             initData();
         }
 
         public void initData() {
-            List<FavoriteItem> dbItems = database.getAllDBItem();
+            List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
             favorite = new ObservableCollection<FavoriteItem>(dbItems);
             favoriteListView.ItemsSource = favorite;
 			Debug.WriteLine("favorite list count = " + favorite.Count);
