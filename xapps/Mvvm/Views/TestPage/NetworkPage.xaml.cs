@@ -8,8 +8,6 @@ namespace xapps
 {
     public partial class NetworkPage : ContentPage, CustomTabInterface//, INetworkManager
     {
-        public static NetworkManager netManager;
-
         public NetworkPage()
         {
             InitializeComponent();
@@ -52,28 +50,63 @@ namespace xapps
             mainStack.Children.Add(tabView);
         }
 
-        public void onClickTabButton(object tag) {
+        async public void onClickTabButton(object tag) {
             Debug.WriteLine("tag = " + tag);
 
             switch (tag)
             {
                 case 0:
+                    {
+                        NetworkCallbackDelegate netDelegate = new NetworkCallbackDelegate((ResponseData data) =>
+                        {
+                            string result = data.ToString();
+                            Debug.WriteLine("Network NowPlaying Delegate Callback Result : " + result);
+                        });
+                        Debug.WriteLine("Network NowPlaying Delegate Start...");
+                        NetworkManager.NowPlayingToCallback("1", netDelegate);
+                        Debug.WriteLine("Network NowPlaying Delegate End...");
+                    }
+                    break;
                 case 1:
                     {
-                        NetworkManager.ReqNowPlaying("1");
+                        Debug.WriteLine("Network NowPlaying Start...");
+                        var task = await NetworkManager.NowPlaying("1");
+                        Debug.WriteLine("Network NowPlaying End...");
                     }
                     break;
 
                 case 2:
+                    {
+                        NetworkCallbackDelegate netDelegate = new NetworkCallbackDelegate((ResponseData data) =>
+                        {
+                            string result = data.ToString();
+                            Debug.WriteLine("Network NowPlaying Delegate Callback Result : " + result);
+                        });
+                        Debug.WriteLine("Network NowPlaying Delegate Start...");
+                        NetworkManager.NowPlayingToCallback("1", netDelegate);
+                        Debug.WriteLine("Network NowPlaying Delegate End...");
+
+                        NetworkCallbackDelegate netDelegate1 = new NetworkCallbackDelegate((ResponseData data) =>
+                        {
+                            string result = data.ToString();
+                            Debug.WriteLine("Network Upcomming Delegate Callback Result : " + result);
+                        });
+                        Debug.WriteLine("Network Upcomming Delegate Start...");
+                        NetworkManager.UpcomingToCallback("1", netDelegate1);
+                        Debug.WriteLine("Network Upcomming Delegate End...");
+                    }
+                    break;
                 case 3:
                     {
-                        NetworkManager.ReqUpComming("1");
+                        Debug.WriteLine("Network Upcoming Start...");
+                        await NetworkManager.Upcoming("1");
+                        Debug.WriteLine("Network Upcoming Start...");
                     }
                     break;
 
                 case 4:
                     {
-                        NetworkManager.ReqDetail("284053");
+                        await NetworkManager.Detail("284053");
                     }
                     break;
 

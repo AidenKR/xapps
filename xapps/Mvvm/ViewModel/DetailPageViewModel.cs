@@ -53,8 +53,8 @@ namespace xapps
 
             try
             {
-                DetailData data = await NetworkManager.ReqDetail(reqId);
-                CreditsData creditsData = await NetworkManager.requestCreditsData(reqId);
+                DetailData data = await NetworkManager.Detail(reqId);
+                CreditsData creditsData = await NetworkManager.Credits(reqId);
 
                 // poster
                 data.poster_path = IMAGE_PATH + data.poster_path;

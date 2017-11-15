@@ -21,11 +21,20 @@ namespace xapps
             // Task가 끝나길 기다렸다가 끝나면 결과치를 responseData에 할당
             ResponseData responseData = await requestData;
 
-            Debug.WriteLine("## RESPONSE DATA CODE     : " + responseData.ResponseCode);
-            Debug.WriteLine("## RESPONSE DATA MESSAGE  : " + responseData.ResponseMsg);
-            Debug.WriteLine("## RESPONSE DATA BODY     : " + responseData.BodyData);
+            // Data Parsing Failed.
+            if (responseData.BodyData == null)
+            {
+                return default(T);
+            }
 
             return (T)responseData.BodyData;
+        }
+
+        public void GetAsyncToCallback<T>(NetworkCallbackDelegate callback)
+        {
+            string url = MakeRequestUrl();
+
+            Connector.Instance.GetAsyncToCallback<T>(new Uri(url), callback);
         }
 
         protected abstract string MakeRequestUrl();

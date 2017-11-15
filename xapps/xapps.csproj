@@ -103,7 +103,7 @@
     <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\ListPageViewModel.cs" />
     <Compile Include="Mvvm\Model\Network\NowPlayingData.cs" />
-    <Compile Include="Mvvm\Model\Network\UpCommingData.cs" />
+    <Compile Include="Mvvm\Model\Network\UpcomingData.cs" />
     <Compile Include="Mvvm\Model\Network\subData\dates.cs" />
     <Compile Include="Mvvm\Model\Network\subData\results.cs" />
     <Compile Include="Mvvm\Model\Network\DetailData.cs" />
@@ -141,6 +141,7 @@
     <Compile Include="Mvvm\Services\Database\FavoriteDB.cs" />
     <Compile Include="Mvvm\Services\Database\Database.cs" />
     <Compile Include="Mvvm\NativeInterface\ISQLiteService.cs" />
+    <Compile Include="Mvvm\Manager\DelegateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

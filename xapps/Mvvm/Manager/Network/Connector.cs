@@ -6,17 +6,18 @@ using Newtonsoft.Json;
 
 namespace xapps
 {
+    // 병렬처리가 필요한 경우 Connector를 매번 생성해야 한다.
     public class Connector
     {
-        private static HttpClient client;
+        static HttpClient client;
 
-        private Connector()
+        Connector()
         {
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
         }
 
-        private static Connector instance;
+        static Connector instance;
         public static Connector Instance
         {
             get
@@ -51,7 +52,7 @@ namespace xapps
             }
             else
             {
-                // TODO Error Code 정의 후 처리 필.
+                // TODO Error Code 정의 후 처리 필요.
                 responseData.ResponseCode = -1;
                 responseData.ResponseMsg = result.RequestMessage.ToString();
 
@@ -60,7 +61,21 @@ namespace xapps
                 Debug.WriteLine("==========================================================");
             }
 
+            Debug.WriteLine("## RESPONSE DATA CODE     : " + responseData.ResponseCode);
+            Debug.WriteLine("## RESPONSE DATA MESSAGE  : " + responseData.ResponseMsg);
+            Debug.WriteLine("## RESPONSE DATA BODY     : " + responseData.BodyData);
+
             return responseData;
+        }
+
+        public void GetAsyncToCallback<T>(Uri uri, NetworkCallbackDelegate iCallback)
+        {
+            Task.Run(async() =>
+            {
+                ResponseData responseData = await GetAsync<T>(uri);
+
+                iCallback(responseData);
+            });
         }
     }
 }
