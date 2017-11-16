@@ -16,11 +16,11 @@ namespace xapps
         public CustomTabView()
         {
             Orientation = StackOrientation.Horizontal;
-            VerticalOptions = LayoutOptions.StartAndExpand;
-            HorizontalOptions = LayoutOptions.StartAndExpand;
+            VerticalOptions = LayoutOptions.Start;
+            HorizontalOptions = LayoutOptions.Start;
         }
 
-        public void makeTabLayout(List<CustomTabData> textList)
+        public void makeTabLayout(List<CustomTabData> textList, int selIndex = 0)
         {
             if (textList == null || textList.Count <= 0)
             {
@@ -39,7 +39,7 @@ namespace xapps
             foreach (CustomTabData data in textList)
             {
                 CustomTabBarCell cell = new CustomTabBarCell(data.tabText, index);
-                if (index == 0)
+                if (index == selIndex)
                 {
                     if (data.isUseImage)
                     {
@@ -47,7 +47,7 @@ namespace xapps
                     }
                     else
                     {
-                        cell.BackgroundColor = Color.FromHex(data.selColor);
+                        cell.BackgroundColor = data.selColor;
                     }
 
                     selectedIndex = cell.index;
@@ -60,7 +60,7 @@ namespace xapps
                     }
                     else
                     {
-                        cell.BackgroundColor = Color.FromHex(data.norColor);
+                        cell.BackgroundColor = data.norColor;
                     }
 
                 }
@@ -97,7 +97,7 @@ namespace xapps
                         }
                         else
                         {
-                            btn.BackgroundColor = Color.FromHex(indexItem.norColor);
+                            btn.BackgroundColor = indexItem.norColor;
                         }
 
                     }
@@ -109,7 +109,7 @@ namespace xapps
                     }
                     else
                     {
-                        cell.BackgroundColor = Color.FromHex(tabData[cell.index].selColor);
+                        cell.BackgroundColor = tabData[cell.index].selColor;
                     }
                 };
                 Children.Add(cell);

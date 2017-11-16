@@ -1,19 +1,62 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class ListPage : ContentPage
+    public partial class ListPage : ContentPage, CustomTabInterface
     {
-        ListPageViewModel viewModel;
-        private int nSelectedButtonType = ListPageViewModel.TYPE_NOW_PLAYING;
-        private int nPageNumber = 0;
-        private bool dataLoading;
+        class Tab
+        {
+            public string Title { get; set; }
+            public int Type { get; set; }
+        }
 
-        public ListPage()
+        List<Tab> TypeList = new List<Tab>(){
+            new Tab{ Title = "현재 상영작", Type = ListPageViewModel.TYPE_NOW_PLAYING },
+            new Tab{ Title = "개봉 예정작", Type = ListPageViewModel.TYPE_UPCOMING }
+        };
+
+        ListPageViewModel viewModel;
+
+        int selectIndex = 0;
+        int pageNumber = 0;
+        bool dataLoading;
+
+        public ListPage(int type = ListPageViewModel.TYPE_NOW_PLAYING)
         {
             InitializeComponent();
 
+            selectIndex = TypeList.FindIndex( (obj) => obj.Type == type );
+            Debug.WriteLine("Select Type : " + selectIndex);
+
             BindingContext = viewModel = new ListPageViewModel();
+
+            InitView();
+        }
+
+        void InitView()
+        {
+            setTabBar();
+        }
+
+        void setTabBar()
+        {
+            List<CustomTabData> arrTabs = new List<CustomTabData>();
+
+            foreach (Tab item in TypeList)
+            {
+                CustomTabData tab = new CustomTabData
+                {
+                    tabText = item.Title
+                };
+
+                arrTabs.Add(tab); // Add
+            }
+
+            TabButton.makeTabLayout(arrTabs, selectIndex);
+            TabButton.Listener = this;
         }
 
         protected override void OnAppearing()
@@ -22,18 +65,13 @@ namespace xapps
 
             if (viewModel.Items.Count == 0)
             {
-                SelectedCategory(NowPlayingBtn);
+                SelectedCategory(selectIndex);
             }
 
-            nPageNumber++;
+            pageNumber++;
         }
 
         #region EventHandler
-        void CategoryBtnClicked(object sender, System.EventArgs e)
-        {
-            SelectedCategory(sender as Button);
-        }
-
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as results;
@@ -56,30 +94,18 @@ namespace xapps
                 NextDataReqeust();
             }
         }
+
+        public void onClickTabButton(object index)
+        {
+            SelectedCategory(Convert.ToInt32(index));
+        }
         #endregion
 
-        private void SelectedCategory(Button btn)
+        private void SelectedCategory(int index)
         {
-            ChangeTextColor(btn);
+            selectIndex = index;
 
-            int requestType = ListPageViewModel.TYPE_NOW_PLAYING;
-            if (btn != NowPlayingBtn)
-            {
-                requestType = ListPageViewModel.TYPE_UPCOMING;
-            }
-            nSelectedButtonType = requestType;
-
-            viewModel.LoadItemsCommand.Execute(requestType);
-        }
-
-        // Selected Button Text Color
-        private void ChangeTextColor(Button selectedBtn)
-        {
-            NowPlayingBtn.TextColor = Color.FromHex("000000");
-            UpcomingBtn.TextColor = Color.FromHex("000000");
-
-            selectedBtn.TextColor = Color.FromHex("FF0000");
-
+            viewModel.LoadItemsCommand.Execute(TypeList[index].Type);
         }
 
         void NextDataReqeust()
@@ -90,8 +116,8 @@ namespace xapps
             }
 
             dataLoading = true;
-            nPageNumber++;
-            int[] reqValues = { nSelectedButtonType, nPageNumber };
+            pageNumber++;
+            int[] reqValues = { TypeList[selectIndex].Type, pageNumber };
 
             viewModel.MoreItemsCommand.Execute(reqValues);
 

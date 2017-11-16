@@ -9,7 +9,7 @@ namespace xapps
 
         public CustomTabBarCell(string text, int idx)
         {
-            BackgroundColor = Color.FromHex("#E6E6E6");
+            BackgroundColor = Color.FromRgba(0,0,0,0);
             index = idx;
             Text = text;
             TextColor = Color.Black;

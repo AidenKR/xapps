@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
@@ -28,8 +28,8 @@ namespace xapps
                 CustomTabData tab = new CustomTabData();
                 tab.tabText = "one" + i;
                 tab.isUseImage = false;
-                tab.selColor = "#F7D358";
-                tab.norColor = "#F5ECCE";
+                tab.selColor = Color.FromHex("#F7D358");
+                tab.norColor = Color.FromHex("#F5ECCE");
                 tab.tag = i;
                 tabs.Add(tab);
             }
@@ -37,15 +37,15 @@ namespace xapps
             CustomTabData add = new CustomTabData();
             add.tabText = "one6";
             add.isUseImage = false;
-            add.selColor = "#000000";
-            add.norColor = "#ffffff";
+            add.selColor = Color.FromHex("#000000");
+            add.norColor = Color.FromHex("#ffffff");
             add.tag = "i'm select";
             tabs.Add(add);
 
             CustomTabView tabView = new CustomTabView();
-            tabView.Listener = this;
 
             tabView.makeTabLayout(tabs);
+            tabView.Listener = this;
 
             mainStack.Children.Add(tabView);
         }

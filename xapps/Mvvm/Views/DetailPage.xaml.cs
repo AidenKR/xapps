@@ -41,8 +41,8 @@ namespace xapps
                 tab = new CustomTabData();
                 tab.tabText = item;
                 tab.isUseImage = IsUseImage;
-                tab.selColor = SelColor;
-                tab.norColor = NorColor;
+                tab.selColor = Color.FromHex(SelColor);
+                tab.norColor = Color.FromHex(NorColor);
                 tab.tag = nCnt.ToString();
 
                 arrTabs.Add(tab); // Add

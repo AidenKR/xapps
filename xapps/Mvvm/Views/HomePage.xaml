@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" xmlns:control="clr-namespace:xapps;assembly=xapps" Padding=" 0,10,0,0">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start">
+            <control:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace xapps
 {
     public class CustomTabData
@@ -13,8 +15,8 @@ namespace xapps
         #endregion
 
         #region isUseImage == false
-        public string selColor { get; set; }    // if isUseImage is false, used
-        public string norColor { get; set; }    // if isUseImage is false, used
+        public Color selColor { get; set; } = Color.FromRgba(247, 211, 88, 255);   // if isUseImage is false, used
+        public Color norColor { get; set; } = Color.FromRgba(0, 0, 0, 0);   // if isUseImage is false, used
         #endregion
 
         public object tag { get; set; }        // tag functional ( if is nil return to default index, return to tag )
