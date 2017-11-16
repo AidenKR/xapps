@@ -11,7 +11,7 @@ namespace xapps
 
         public int count;
         private List<CustomTabData> tabData;
-        private object selectedItem;
+        private int selectedIndex;
 
         public CustomTabView()
         {
@@ -50,7 +50,7 @@ namespace xapps
                         cell.BackgroundColor = Color.FromHex(data.selColor);
                     }
 
-                    selectedItem = tabData[cell.index].tag;
+                    selectedIndex = cell.index;
                 }
                 else
                 {
@@ -68,17 +68,16 @@ namespace xapps
                 cell.WidthRequest = this.WidthRequest / count;
                 cell.Clicked += delegate
                 {
-
                     if (!tabData[cell.index].isDuplicateClick)
                     {
-                        if (tabData[cell.index].tag == selectedItem)
+                        if (cell.index == selectedIndex)
                         {
                             Debug.WriteLine("same item clicked. just do pass");
                             return;
                         }
                     }
 
-                    selectedItem = tabData[cell.index].tag;
+                    selectedIndex = cell.index;
 
                     if (tabData[cell.index].tag == null)
                     {
