@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define USE_TEST_DATA
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -28,7 +30,24 @@ namespace xapps
             initData();
         }
 
-        public void initData() {
+        public void initData()
+        {
+
+#if USE_TEST_DATA
+            DatabaseManager.Instance.GetTable<FavoriteItem>().CreateTable();
+            for (int i = 0; i < 20; i++)
+            {
+                var item = new FavoriteItem
+                {
+                    movieId = "id" + i,
+                    favoriteYN = true,
+                    original_title = "original_title " + i,
+                    title = "title" + i
+                };
+                var result = DatabaseManager.Instance.GetTable<FavoriteItem>().SaveItem(item);
+                Debug.WriteLine("save item index {0}: result = {1}", i, result);
+            }
+#endif
             List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
             if (dbItems != null && dbItems.Count > 0)
             {

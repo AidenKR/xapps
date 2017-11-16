@@ -42,7 +42,8 @@ namespace xapps
             add.tag = "i'm select";
             tabs.Add(add);
 
-            CustomTabView tabView = new CustomTabView(this, 375);
+            CustomTabView tabView = new CustomTabView();
+            tabView.Listener = this;
 
             tabView.makeTabLayout(tabs);
 
