@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
-using xapps.Mvvm.Views.CustomTabBar;
 
 namespace xapps
 {

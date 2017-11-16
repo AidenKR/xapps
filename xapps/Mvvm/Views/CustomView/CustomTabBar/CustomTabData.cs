@@ -1,5 +1,5 @@
 ﻿using System;
-namespace xapps.Mvvm.Views.CustomTabBar
+namespace xapps
 {
     public class CustomTabData
     {
