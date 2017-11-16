@@ -14,7 +14,6 @@ namespace xapps
             Text = text;
             TextColor = Color.Black;
             FontSize = 14.0;
-            WidthRequest = this.Width;
 
             HorizontalOptions = LayoutOptions.FillAndExpand;
             VerticalOptions = LayoutOptions.Center;

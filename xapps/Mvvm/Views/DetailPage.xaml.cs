@@ -48,7 +48,8 @@ namespace xapps
                 arrTabs.Add(tab); // Add
             }
 
-            CustomTabView tabView = new CustomTabView(this, layout.Width);
+            CustomTabView tabView = new CustomTabView();
+            tabView.Listener = this;
             tabView.makeTabLayout(arrTabs);
             layout.Children.Add(tabView);
         }
