@@ -19,6 +19,7 @@ namespace xapps.Droid
     class MovieUrlData : IMovieUrl
     {
         public static string previewUrl { get; set; }
+
         public void MovieUrl(string url)
         {
             previewUrl = url;

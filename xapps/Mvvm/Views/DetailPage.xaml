@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage" xmlns:local="clr-namespace:xapps;assembly=xapps" Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
             <AbsoluteLayout>
                 <StackLayout BackgroundColor="Olive" Orientation="Vertical" Spacing="0">
                     <!-- Movie Image -->
+                    <!--
                     <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieImagePanel" Padding="0,0,0,0" Orientation="Horizontal">
-                        <!-- 포스터 이미지 -->
                         <Image x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="White" WidthRequest="120" HeightRequest="150" Aspect="AspectFit" />
-                        <!-- 미리보기 -->
                         <AbsoluteLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
                             <Image x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
                             <Image Source="play.png" WidthRequest="50" HeightRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" />
                             <Button x:Name="mdpMovieImageBtnPlay" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" Clicked="onClickFullMoviePage" />
                         </AbsoluteLayout>
                     </StackLayout>
+                    -->
+                    <Grid Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" 
+                               x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="White" Aspect="AspectFit" />
+                        
+                        <Image Grid.Row="0" Grid.Column="1"
+                               x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" BackgroundColor="White" Aspect="AspectFit" 
+                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width }"
+                               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
+                        <!--
+                        <Image Grid.Row="0" Grid.Column="1" 
+                                   VerticalOptions="Center" HorizontalOptions="Center" Source="play.png" WidthRequest="50" HeightRequest="50" />
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpMovieImageBtnPlay" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" Clicked="onClickFullMoviePage" />
+                        <local:DetailPreview Grid.Row="0" Grid.Column="1" IsVisible="False" x:Name="MoviePreviewRenderer"/>
+                        -->
+                        <local:DetailPreview Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" x:Name="MoviePreviewRenderer"/>
+                    </Grid>
+
                     <!-- Share -->
                     <Grid Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
                         <Grid.RowDefinitions>

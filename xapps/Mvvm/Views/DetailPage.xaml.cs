@@ -10,7 +10,7 @@ namespace xapps
         private DetailPageViewModel viewModel;
         private string mRequestId;
 
-        public DetailPage(String reqId)
+        public DetailPage(string reqId)
         {
             InitializeComponent();
 
@@ -61,7 +61,8 @@ namespace xapps
             {
                 url.MovieUrl("http://sites.google.com/site/ubiaccessmobile/sample_video.mp4");
             }
-            await Navigation.PushAsync(new PreviewPage());
+            //await Navigation.PushAsync(new PreviewPage());
+            MoviePreviewRenderer.IsVisible = true;
         }
 
         void onClickMovieStoryMore(object sender, System.EventArgs e)

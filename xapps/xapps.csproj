@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -74,6 +74,7 @@
     <Compile Include="Mvvm\Model\View\IMovieUrl.cs" />
     <Compile Include="Mvvm\NativeInterface\IBackgroundService.cs" />
     <Compile Include="Mvvm\ViewModel\DetailPageViewModel.cs" />
+    <Compile Include="Mvvm\Views\CustomRenderer\DetailPreview.cs" />
     <Compile Include="Mvvm\Views\MusicServicePage.xaml.cs">
       <DependentUpon>MusicServicePage.xaml</DependentUpon>
     </Compile>
@@ -188,14 +189,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mvvm\Views\CustomView\" />
-    <Folder Include="Mvvm\Views\CustomView\CustomTabBar\" />
-    <Folder Include="Mvvm\Manager\" />
-    <Folder Include="Mvvm\Manager\Network\" />
-    <Folder Include="Mvvm\Manager\Network\Api\" />
-    <Folder Include="Mvvm\Manager\Database\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>

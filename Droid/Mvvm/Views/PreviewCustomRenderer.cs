@@ -14,7 +14,7 @@ namespace xapps.Droid
 {
     class PreviewCustomRenderer : PageRenderer
     {
-        private ScreenOrientation _previousOrientation = ScreenOrientation.Unspecified;
+        //private ScreenOrientation _previousOrientation = ScreenOrientation.Unspecified;
 
         private VideoView videoView;
         private global::Android.Views.View view;

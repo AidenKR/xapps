@@ -156,6 +156,8 @@
     <Compile Include="Mvvm\Services\BackgroundService\MusicBackgroundService.cs" />
     <Compile Include="Mvvm\Services\BackgroundService\MusicServiceControl.cs" />
     <Compile Include="Mvvm\Services\Helper\StatusBarHelper.cs" />
+    <Compile Include="Mvvm\Views\DetailPreviewCustomRenderer.cs" />
+    <Compile Include="Mvvm\Views\FullScreenActivity.cs" />
     <Compile Include="Mvvm\Views\PreviewCustomRenderer.cs" />
     <Compile Include="Mvvm\Views\SplashActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -184,6 +186,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\co_btn_check_normal.png" />
     <AndroidResource Include="Resources\drawable\co_btn_check_unsel.png" />
+    <AndroidResource Include="Resources\layout\DetailPreview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

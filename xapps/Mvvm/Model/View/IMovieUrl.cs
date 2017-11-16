@@ -8,6 +8,6 @@ namespace xapps
 {
     public interface IMovieUrl
     {
-        void MovieUrl(String url);
+        void MovieUrl(string url);
     }
 }
