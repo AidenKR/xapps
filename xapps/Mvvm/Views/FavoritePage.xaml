@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.FavoritePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.FavoritePage" Title="Favorite Page">
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
@@ -11,17 +11,18 @@
 	<ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                <Label Text = "Favorite Page" FontSize="24" HorizontalOptions="CenterAndExpand"  XAlign="Center"/>
+                
+                <Button x:Name="editBtn" Clicked="Handle_Clicked" Text="edit" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
             </StackLayout>
             
-            <ListView  x:Name="favoriteListView" RowHeight="100" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing" ItemSelected="Handle_ItemSelected">
+            <ListView  x:Name="favoriteListView" RowHeight="100" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing" ItemSelected="Handle_ItemSelected" IsVisible="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-
-                                <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Start" WidthRequest="80" HeightRequest="80" />
+                                <Button x:Name="CheckBtn" HorizontalOptions="Center" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="false" Image="co_btn_check_normal" />
+                                <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Center" WidthRequest="90" HeightRequest="90" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
                                     <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
                                     <Label Text="{Binding original_title}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
@@ -37,6 +38,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout x:Name="emptyView" Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White" IsVisible="false">
+                <Label Text = "regist favorite item" FontSize="24" HorizontalOptions="CenterAndExpand"  XAlign="Center"/>
+            </StackLayout>
             
         </StackLayout>
 	</ContentPage.Content>

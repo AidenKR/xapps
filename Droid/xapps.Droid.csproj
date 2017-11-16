@@ -182,6 +182,8 @@
     <AndroidResource Include="Resources\layout\Splash.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\co_btn_check_normal.png" />
+    <AndroidResource Include="Resources\drawable\co_btn_check_unsel.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

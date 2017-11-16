@@ -30,14 +30,24 @@ namespace xapps
 
         public void initData() {
             List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
-            favorite = new ObservableCollection<FavoriteItem>(dbItems);
-            favoriteListView.ItemsSource = favorite;
-			Debug.WriteLine("favorite list count = " + favorite.Count);
+            if (dbItems != null && dbItems.Count > 0)
+            {
+                emptyView.IsVisible = false;
+                favoriteListView.IsVisible = true;
+                editBtn.IsVisible = true;
+                favorite = new ObservableCollection<FavoriteItem>(dbItems);
+                favoriteListView.ItemsSource = favorite;
+                Debug.WriteLine("favorite list count = " + favorite.Count);
+            } else {
+                emptyView.IsVisible = true;
+                favoriteListView.IsVisible = false;
+                editBtn.IsVisible = false;
+            }
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
-            Debug.WriteLine("clicked delete button");
+            Debug.WriteLine("clicked edit button");
    //         FavoriteItem data = dbList[index];
    //         IEnumerator<FavoriteItem> enumdata = database.getFilteredMovieId(data.movieId).GetEnumerator();
    //         if (enumdata.MoveNext() == false) {
