@@ -103,6 +103,12 @@ namespace xapps
 
         private void SelectedCategory(int index)
         {
+            if (selectIndex != index) {
+                // category 가 변경되었을경우에는 pageNumber를 초기화해준다.
+                pageNumber = 1;
+                viewModel.Items.Clear();
+            }
+
             selectIndex = index;
 
             viewModel.LoadItemsCommand.Execute(TypeList[index].Type);
