@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Firebase.Iid;
 using Android.Gms.Common;
+using CarouselView.FormsPlugin.Android;
 
 namespace xapps.Droid
 {
@@ -40,6 +41,8 @@ namespace xapps.Droid
 
             //Set our status bar helper DecorView. This enables us to hide the notification bar for fullscreen
             StatusBarHelper.DecorView = this.Window.DecorView;
+
+            CarouselViewRenderer.Init();
         }
 
         public override void OnAttachedToWindow()

@@ -73,7 +73,7 @@ namespace xapps
                         if (cell.index == selectedIndex)
                         {
                             Debug.WriteLine("same item clicked. just do pass");
-                            return;
+                            //return;
                         }
                     }
 

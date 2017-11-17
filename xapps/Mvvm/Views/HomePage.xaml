@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" xmlns:control="clr-namespace:xapps;assembly=xapps" Padding=" 0,10,0,0">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" 
+    xmlns:local="clr-namespace:xapps" 
+    xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    Padding=" 0,10,0,0" Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start">
-            <control:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+        <StackLayout VerticalOptions="Fill" >
+            <!-- TabView -->
+            <local:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+
+            <!-- Carousel example -->
+            <controls:CarouselViewControl x:Name="ViewPager" HeightRequest="200" ShowArrows="true" Orientation="Horizontal" ShowIndicators="true" InterPageSpacing="10" Position="{Binding Position}" ItemsSource="{Binding Zoos}" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                <controls:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" />
+                            <StackLayout Grid.Row="0" BackgroundColor="#80000000" Padding="12">
+                                <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </controls:CarouselViewControl.ItemTemplate>
+            </controls:CarouselViewControl>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

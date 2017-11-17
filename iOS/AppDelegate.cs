@@ -10,6 +10,7 @@ using Firebase.CloudMessaging;
 using Firebase.InstanceID;
 
 using UserNotifications;
+using CarouselView.FormsPlugin.iOS;
 
 namespace xapps.iOS
 {
@@ -66,6 +67,8 @@ namespace xapps.iOS
 
                 connectFCM();
             });
+
+            CarouselViewRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

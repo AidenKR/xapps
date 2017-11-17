@@ -7,9 +7,13 @@ namespace xapps
 {
     public partial class HomePage : ContentPage, CustomTabInterface
     {
+        HomePageViewModel viewModel;
+
         public HomePage()
         {
             InitializeComponent();
+
+            BindingContext = viewModel = new HomePageViewModel();
 
             initView();
         }
