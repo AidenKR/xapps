@@ -21,8 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-pU-DI5" image="Icon-60.png">
-                                <rect key="frame" x="130" y="210" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="205">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-pU-DI5">
+                                <rect key="frame" x="270" y="270" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="9yF-ev-rS0"/>
                                     <constraint firstAttribute="width" constant="60" id="W5H-lG-fiL"/>
@@ -31,6 +34,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.52941176470588236" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="205" secondAttribute="trailing" id="Gbh-lJ-fg8"/>
+                            <constraint firstItem="205" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JGx-Ky-Dpb"/>
+                            <constraint firstItem="205" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YhA-iQ-qS3"/>
+                            <constraint firstItem="205" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ZHe-2y-MeV"/>
+                            <constraint firstItem="205" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="pVa-ul-7AS"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="205" secondAttribute="bottom" id="v6v-rA-PUd"/>
                             <constraint firstItem="BhG-pU-DI5" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yK7-XI-95f"/>
                             <constraint firstItem="BhG-pU-DI5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yRV-Ra-Dan"/>
                         </constraints>
@@ -41,11 +50,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.6627"/>
         </scene>
     </scenes>
-    <color key="tintColor" white="0.33333333333333298" alpha="1" colorSpace="calibratedWhite"/>
     <resources>
+        <image name="launch_image.png" width="351" height="360"/>
+        <image name="movie_box.png" width="256" height="256"/>
         <image name="hamburger.png" width="14" height="15"/>
         <image name="MasterLogo.png" width="284" height="177"/>
         <image name="star.png" width="230" height="219"/>
@@ -56,7 +66,5 @@
         <image name="co_btn_check_normal.png" width="18" height="18"/>
         <image name="co_btn_check_unsel.png" width="18" height="18"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
+    <color key="tintColor" white="0.33333333333333298" alpha="1" colorSpace="calibratedWhite"/>
 </document>
