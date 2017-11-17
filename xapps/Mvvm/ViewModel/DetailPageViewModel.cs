@@ -29,9 +29,36 @@ namespace xapps
             }
         }
 
+        public class Events
+        {
+            public string ImageUrl { get; set; }
+            public string Name { get; set; }
+        }
+
+        public ObservableCollection<Events> mEvents { get; set; }
+
+        int position;
+        public int Position
+        {
+            set
+            {
+                if (position != value)
+                {
+                    position = value;
+                    OnPropertyChanged();
+                }
+            }
+            get
+            {
+                return position;
+            }
+        }
+
         public DetailPageViewModel(string requestId)
         {
             Title = "상세화면";
+
+            setingEventData();
 
             if (string.IsNullOrWhiteSpace(requestId))
             {
@@ -41,8 +68,6 @@ namespace xapps
             creditData = new ObservableCollection<cast>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadDetailItemsCommand(requestId));
         }
-
-
 
         async Task ExecuteLoadDetailItemsCommand(string reqId)
         {
@@ -189,6 +214,29 @@ namespace xapps
         private void printLog(string msg)
         {
             Debug.WriteLine("##### " + msg);
+        }
+
+        private void setingEventData()
+        {
+
+            mEvents = new ObservableCollection<Events>
+            {
+                new Events
+                {
+                    ImageUrl = "http://img.cgv.co.kr/WebApp/contents/eventV4/5861/600x400_banner.jpg",
+                    Name = "[저스티스리그] 예매 이벤트"
+                },
+                new Events
+                {
+                    ImageUrl =    "http://img.cgv.co.kr/WebApp/contents/eventV4/5746/deal_1.jpg",
+                    Name = "[무비핫딜] 맘크러쉬 감정 액션"
+                },
+                new Events
+                {
+                    ImageUrl = "http://img.cgv.co.kr/WebApp/contents/eventV4/5879/list_m.jpg",
+                    Name = "[청소년브랜드페스티발] 7개 브랜드 혜택 즐기세요!"
+                }
+            };
         }
     }
 }

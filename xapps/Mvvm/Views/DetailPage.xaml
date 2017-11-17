@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage" xmlns:local="clr-namespace:xapps;assembly=xapps" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.DetailPage" xmlns:local="clr-namespace:xapps;assembly=xapps" xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions" Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
             <AbsoluteLayout>
                 <StackLayout BackgroundColor="Olive" Orientation="Vertical" Spacing="0">
+                    
                     <!-- Movie Image -->
-                    <!--
-                    <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieImagePanel" Padding="0,0,0,0" Orientation="Horizontal">
-                        <Image x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="White" WidthRequest="120" HeightRequest="150" Aspect="AspectFit" />
-                        <AbsoluteLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
-                            <Image x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
-                            <Image Source="play.png" WidthRequest="50" HeightRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" />
-                            <Button x:Name="mdpMovieImageBtnPlay" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" Clicked="onClickFullMoviePage" />
-                        </AbsoluteLayout>
-                    </StackLayout>
-                    -->
-                    <Grid Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                    <Grid Padding="1,1,1,1" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Black">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="150" />
                         </Grid.RowDefinitions>
@@ -23,22 +14,11 @@
                             <ColumnDefinition Width="120" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.Column="0" 
-                               x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="White" Aspect="AspectFit" />
-                        
-                        <Image Grid.Row="0" Grid.Column="1"
-                               x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" BackgroundColor="White" Aspect="AspectFit" 
-                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width }"
-                               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
-                        <!--
-                        <Image Grid.Row="0" Grid.Column="1" 
-                                   VerticalOptions="Center" HorizontalOptions="Center" Source="play.png" WidthRequest="50" HeightRequest="50" />
-                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpMovieImageBtnPlay" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="50" HeightRequest="50" Clicked="onClickFullMoviePage" />
-                        <local:DetailPreview Grid.Row="0" Grid.Column="1" IsVisible="False" x:Name="MoviePreviewRenderer"/>
-                        -->
-                        <local:DetailPreview Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" x:Name="MoviePreviewRenderer"/>
+                        <Image Grid.Row="0" Grid.Column="0" x:Name="mdpMovieImageIvPoster" Source="{Binding DetailItem.poster_path}" BackgroundColor="Black" Aspect="AspectFit" Margin="1,1,1,1" />
+                        <Image Grid.Row="0" Grid.Column="1" x:Name="mdpMovieImageIvBg" Source="{Binding DetailItem.backdrop_path}" BackgroundColor="Black" Aspect="AspectFit" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width }" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" Margin="1,1,1,1" />
+                        <local:DetailPreview Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" x:Name="MoviePreviewRenderer" />
                     </Grid>
-
+                    
                     <!-- Share -->
                     <Grid Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
                         <Grid.RowDefinitions>
@@ -49,31 +29,34 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Row="0" Grid.Column="0" x:Name="mdpShareBtnWishList" BackgroundColor="White" Text="위시리스트" TextColor="Maroon" FontSize="10" />
-                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpShareBtnShare" BackgroundColor="White" Text="같이볼래?" TextColor="Maroon" FontSize="10" />
-                        <Button Grid.Row="0" Grid.Column="2" x:Name="mdpShareBtnNowTicketing" BackgroundColor="White" Text="지금예매" TextColor="Maroon" FontSize="10" />
+                        <Button Grid.Row="0" Grid.Column="0" x:Name="mdpShareBtnWishList" BackgroundColor="White" Image="img_wishlist" TextColor="Maroon" FontSize="12" />
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpShareBtnShare" BackgroundColor="White" Image="img_share" TextColor="Maroon" FontSize="12" />
+                        <Button Grid.Row="0" Grid.Column="2" x:Name="mdpShareBtnNowTicketing" BackgroundColor="White" Image="img_nowticketing" TextColor="Red" FontSize="12" />
                     </Grid>
+                    
                     <!-- Now Playing -->
-                    <StackLayout IsVisible="true" BackgroundColor="Gray" x:Name="mdpNowPlayingPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0" Orientation="Horizontal" HeightRequest="30">
+                    <StackLayout IsVisible="true" BackgroundColor="#dad6cc" x:Name="mdpNowPlayingPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0" Orientation="Horizontal" HeightRequest="30">
                         <Label IsVisible="false" x:Name="mdpNowPlayingTvState" XAlign="Center" YAlign="Center" WidthRequest="50" HeightRequest="12" BackgroundColor="Red" VerticalOptions="Center" FontSize="8" TextColor="White"
                             Margin="10,0,0,0" />
                         <Label IsVisible="false" Text="예매율 " TextColor="Black" VerticalOptions="Center" FontSize="10" />
                         <Label IsVisible="false" x:Name="mdpNowPlayingTvAdvanceRate" Text="22.5%" TextColor="Red" VerticalOptions="Center" FontSize="10" />
                         <Label x:Name="mdpNowPlayingTvReleaseDate" Text="{Binding DetailItem.release_date}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0" />
                     </StackLayout>
+                    
                     <!-- Movie Info -->
                     <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpMovieInfoPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
                         <Label x:Name="mdpMovieInfoTvTitle" Text="{Binding DetailItem.original_title}" TextColor="Black" HorizontalOptions="Center" FontSize="12" />
                         <Label x:Name="mdpMovieInfoTvDesc" Text="{Binding DetailItem.runtime}" TextColor="Gray" HorizontalOptions="Center" FontSize="9" />
                         <Label x:Name="mdpMovieInfoTvStory" Text="{Binding DetailItem.overview}" TextColor="Black" HorizontalOptions="Center" FontSize="10" LineBreakMode="TailTruncation" Margin="20,20,0,0" />
-                        <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" Text="더보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
+                        <Button IsVisible="true" x:Name="mdpMovieInfoBtnMore" BackgroundColor="White" Text="더보기 ▼" TextColor="#857363" FontSize="10" HorizontalOptions="Fill" Clicked="onClickMovieStoryMore" />
                     </StackLayout>
-                    <!-- Graph -->
-                    <StackLayout IsVisible="true" BackgroundColor="Silver" x:Name="mdpGraphPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
-                        <Label Text="Golden EGG 지수" TextColor="White" HorizontalOptions="Center" FontSize="11" />
-                    </StackLayout>
-                    <StackLayout IsVisible="true" BackgroundColor="White"  x:Name="mdpTab" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
-                    </StackLayout>
+                    
+                    <!-- Line -->
+                    <Image BackgroundColor="#dad6cc" HeightRequest="12" />
+                    
+                    <!-- TabView -->
+                    <local:CustomTabView x:Name="mdpTab" BackgroundColor="White" VerticalOptions="StartAndExpand" Padding="0,0,0,0" />
+
                     <!-- List -->
                     <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpListPanel" VerticalOptions="StartAndExpand" Padding="0,0,0,0">
                         <ListView x:Name="mdpListView" SeparatorColor="Gray" RowHeight="80" ItemsSource="{Binding creditData}" VerticalOptions="FillAndExpand">
@@ -91,19 +74,37 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <!--<Button IsVisible="true" x:Name="mdpListBtnMore" BackgroundColor="White" Text="모두보기" TextColor="Black" FontSize="10" HorizontalOptions="Fill" Clicked="onClickListMore" />-->
                     </StackLayout>
+                    
+                    <!-- Line -->
+                    <Image BackgroundColor="#dad6cc" HeightRequest="12" />
+                    
                     <!-- Banner -->
-                    <StackLayout IsVisible="true" BackgroundColor="Silver" x:Name="mdpBannerPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
-                        <Label Text="Banner Layout" TextColor="White" HorizontalOptions="Center" FontSize="11" />
+                    <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpBannerPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="220">
+                        <controls:CarouselViewControl x:Name="ViewPager" HeightRequest="200" ShowArrows="true" Orientation="Horizontal" ShowIndicators="true" InterPageSpacing="10" Position="{Binding Position}" ItemsSource="{Binding mEvents}" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                            <controls:CarouselViewControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" />
+                                        <StackLayout Grid.Row="0" BackgroundColor="#80323232" Padding="12">
+                                            <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </controls:CarouselViewControl.ItemTemplate>
+                        </controls:CarouselViewControl>
                     </StackLayout>
-                    <!-- ETC -->
-                    <StackLayout IsVisible="true" BackgroundColor="White" x:Name="mdpEtcPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0">
-                        <Label Text="{Binding DetailItem.homepage}" TextColor="Black" HorizontalOptions="Center" FontSize="11" />
-                    </StackLayout>
+                    
                     <!-- Copyright -->
-                    <StackLayout IsVisible="true" BackgroundColor="Gray" x:Name="mdpCopyrightPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
+                    <StackLayout IsVisible="true" BackgroundColor="#dad6cc" x:Name="mdpCopyrightPanel" VerticalOptions="EndAndExpand" Padding="0,0,0,0" HeightRequest="150">
+                        <StackLayout HeightRequest="15" />
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                            <Label Text="이용약관" TextColor="Black" FontSize="10" Margin="0,0,12,0" />
+                            <Label Text="이용약관" TextColor="Black" FontSize="10" />
                             <Label Text=" | " TextColor="Black" FontSize="10" />
                             <Label Text="개인정보 처리방침" TextColor="Red" FontSize="10" />
                             <Label Text=" | " TextColor="Black" FontSize="10" />
@@ -125,6 +126,7 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
+                
                 <!-- Loding -->
                 <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Color="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.1,0.1" />
             </AbsoluteLayout>

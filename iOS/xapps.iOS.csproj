@@ -29,6 +29,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <MtouchSdkVersion>11.0</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -187,6 +188,9 @@
     <BundleResource Include="Resources\co_btn_check_normal%402x.png" />
     <BundleResource Include="Resources\co_btn_check_unsel%402x.png" />
     <BundleResource Include="Resources\theater.png" />
+    <BundleResource Include="Resources\img_nowticketing.png" />
+    <BundleResource Include="Resources\img_share.png" />
+    <BundleResource Include="Resources\img_wishlist.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mvvm\Services\Toast\" />

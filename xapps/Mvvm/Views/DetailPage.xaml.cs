@@ -27,31 +27,24 @@ namespace xapps
             setTabBar(mdpTab, tabs);
         }
 
-        private void setTabBar(StackLayout layout, string[] tabs) {
+        private void setTabBar(CustomTabView layout, string[] tabs) {
             const string SelColor = "#F7D358";
             const string NorColor = "#F5ECCE";
-            const bool IsUseImage = false;
 
             List<CustomTabData> arrTabs = new List<CustomTabData>();
-            CustomTabData tab;
-            int nCnt = 0;
 
-            foreach (string item in tabs) {
-                nCnt++;
-                tab = new CustomTabData();
+            foreach (string item in tabs)
+            {
+                CustomTabData tab = new CustomTabData();
                 tab.tabText = item;
-                tab.isUseImage = IsUseImage;
                 tab.selColor = Color.FromHex(SelColor);
                 tab.norColor = Color.FromHex(NorColor);
-                tab.tag = nCnt.ToString();
 
                 arrTabs.Add(tab); // Add
             }
 
-            CustomTabView tabView = new CustomTabView();
-            tabView.Listener = this;
-            tabView.makeTabLayout(arrTabs);
-            layout.Children.Add(tabView);
+            mdpTab.makeTabLayout(arrTabs);
+            mdpTab.Listener = this;
         }
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -73,6 +66,11 @@ namespace xapps
             mdpMovieInfoBtnMore.IsVisible = false;
             mdpMovieInfoTvStory.LineBreakMode = LineBreakMode.WordWrap;
         }
+
+        //void onClickListMore(object sender, System.EventArgs e)
+        //{
+        //    Button btn = (Button)sender;
+        //}
 
         private void printLog(string msg)
         {

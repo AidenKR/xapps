@@ -196,6 +196,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\theater.png" />
+    <AndroidResource Include="Resources\drawable\img_nowticketing.png" />
+    <AndroidResource Include="Resources\drawable\img_share.png" />
+    <AndroidResource Include="Resources\drawable\img_wishlist.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
