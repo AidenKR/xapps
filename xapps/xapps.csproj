@@ -124,8 +124,8 @@
     <Compile Include="Mvvm\Model\Network\subData\cast.cs" />
     <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
     <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
-    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabBarCell.cs" />
-    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabData.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabCell.cs" />
+    <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabCellLayoutData.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabInterface.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabView.cs" />
     <Compile Include="Mvvm\Manager\ImageManager.cs" />

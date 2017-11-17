@@ -43,19 +43,14 @@ namespace xapps
 
         void setTabBar()
         {
-            List<CustomTabData> arrTabs = new List<CustomTabData>();
+            List<string> arrTabs = new List<string>();
 
             foreach (Tab item in TypeList)
             {
-                CustomTabData tab = new CustomTabData
-                {
-                    tabText = item.Title
-                };
-
-                arrTabs.Add(tab); // Add
+                arrTabs.Add(item.Title);
             }
 
-            TabButton.makeTabLayout(arrTabs, selectIndex);
+            TabButton.makeTabLayout(arrTabs, null, selectIndex);
             TabButton.Listener = this;
         }
 

@@ -9,9 +9,9 @@ namespace xapps
     {
         public CustomTabInterface Listener { get; set; } // Tab Changed Event Listener
 
-        public int count;
-        private List<CustomTabData> tabData;
-        private int selectedIndex;
+        List<string> TabTextList;
+        CustomTabCellLayoutData TabCellLayoutData;
+        int selectedIndex;
 
         public CustomTabView()
         {
@@ -20,12 +20,14 @@ namespace xapps
             HorizontalOptions = LayoutOptions.Start;
         }
 
-        public void makeTabLayout(List<CustomTabData> textList, int selIndex = 0)
+        public void makeTabLayout(List<string> textList, CustomTabCellLayoutData layout = null, int selIndex = 0)
         {
             if (textList == null || textList.Count <= 0)
             {
                 return;
             }
+
+            TabCellLayoutData = layout;
 
             Debug.WriteLine("WidthRequest : " + WidthRequest);
             if (WidthRequest <= 0)
@@ -33,89 +35,72 @@ namespace xapps
                 HorizontalOptions = LayoutOptions.FillAndExpand;
             }
 
-            tabData = textList;
-            count = textList.Count;
+            TabTextList = textList;
             int index = 0;
-            foreach (CustomTabData data in textList)
+
+            if (TabCellLayoutData == null)
             {
-                CustomTabBarCell cell = new CustomTabBarCell(data.tabText, index);
+                TabCellLayoutData = new CustomTabCellLayoutData();
+            }
+
+            foreach (string tabText in textList)
+            {
+                CustomTabCell cell = new CustomTabCell(tabText, index);
+                ChangeCellSelected(cell, index == selIndex);
+
                 if (index == selIndex)
                 {
-                    if (data.isUseImage)
-                    {
-                        cell.Image = data.selImageName;
-                    }
-                    else
-                    {
-                        cell.BackgroundColor = data.selColor;
-                    }
-
-                    selectedIndex = cell.index;
+                    selectedIndex = index;
                 }
-                else
-                {
-                    if (data.isUseImage)
-                    {
-                        cell.Image = data.norImageName;
-                    }
-                    else
-                    {
-                        cell.BackgroundColor = data.norColor;
-                    }
 
-                }
-                Debug.WriteLine("add textview text = " + data.tabText + "item width = " + this.WidthRequest / count);
-                cell.WidthRequest = this.WidthRequest / count;
+                cell.WidthRequest = this.WidthRequest / textList.Count;
+                Debug.WriteLine("add textview text = " + tabText + "item width = " + cell.WidthRequest);
+
                 cell.Clicked += delegate
                 {
-                    if (!tabData[cell.index].isDuplicateClick)
-                    {
-                        if (cell.index == selectedIndex)
-                        {
-                            Debug.WriteLine("same item clicked. just do pass");
-                            return;
-                        }
-                    }
-
-                    selectedIndex = cell.index;
-
-                    if (tabData[cell.index].tag == null)
-                    {
-                        Listener?.onClickTabButton(cell.index);
-                    }
-                    else
-                    {
-                        Listener?.onClickTabButton(tabData[cell.index].tag);
-                    }
-
-                    foreach (CustomTabBarCell btn in Children)
-                    {
-                        CustomTabData indexItem = (CustomTabData)tabData[btn.index];
-                        if (indexItem.isUseImage)
-                        {
-                            btn.Image = indexItem.norImageName;
-                        }
-                        else
-                        {
-                            btn.BackgroundColor = indexItem.norColor;
-                        }
-
-                    }
-
-                    CustomTabData item = tabData[cell.index];
-                    if (item.isUseImage)
-                    {
-                        cell.Image = item.norImageName;
-                    }
-                    else
-                    {
-                        cell.BackgroundColor = tabData[cell.index].selColor;
-                    }
+                    ClickedCell(cell);
                 };
+
                 Children.Add(cell);
                 index += 1;
             }
 
+        }
+
+        void ClickedCell(CustomTabCell clickCell)
+        {
+            if (clickCell.index == selectedIndex)
+            {
+                Debug.WriteLine("same item clicked. just do pass");
+                return;
+            }
+
+            int preSelectIndex = selectedIndex;
+            selectedIndex = clickCell.index;
+
+            CustomTabCell preCell = Children[preSelectIndex] as CustomTabCell;
+            ChangeCellSelected(preCell, false);
+            ChangeCellSelected(clickCell, true);
+
+            // SEND LISTENER
+            Listener?.onClickTabButton(clickCell.index);
+        }
+
+        void ChangeCellSelected(CustomTabCell cell, Boolean isSelected)
+        {
+            if (TabCellLayoutData.isUseImage)
+            {
+                cell.Image = isSelected ? TabCellLayoutData.selImageName : TabCellLayoutData.norImageName;
+            }
+            else
+            {
+                cell.BackgroundColor = isSelected ? TabCellLayoutData.selColor : TabCellLayoutData.norColor;
+            }
+
+            if (TabCellLayoutData.isBoldText)
+            {
+                cell.FontAttributes = isSelected ? FontAttributes.Bold : FontAttributes.None;
+            }
         }
     }
 }

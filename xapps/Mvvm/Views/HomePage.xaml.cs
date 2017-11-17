@@ -26,24 +26,13 @@ namespace xapps
 
         void setTabBar()
         {
-            string[] tabs = { "현재 상영작", "개봉 예정작" };
-
-            const string SelColor = "#F7D358";
-            const string NorColor = "#F5ECCE";
-
-            List<CustomTabData> arrTabs = new List<CustomTabData>();
-
-            foreach (string item in tabs)
+            List<string> tabs = new List<string> { "현재 상영작", "개봉 예정작" };
+            CustomTabCellLayoutData layoutData = new CustomTabCellLayoutData()
             {
-                CustomTabData tab = new CustomTabData();
-                tab.tabText = item;
-                tab.selColor = Color.FromHex(SelColor);
-                tab.norColor = Color.FromHex(NorColor);
+                isBoldText = true
+            };
 
-                arrTabs.Add(tab); // Add
-            }
-
-            mdpTab.makeTabLayout(arrTabs);
+            mdpTab.makeTabLayout(tabs, layoutData);
             mdpTab.Listener = this;
         }
 
@@ -52,7 +41,8 @@ namespace xapps
             Debug.WriteLine("Tab Selected Index : " + index);
 
             int type = ListPageViewModel.TYPE_NOW_PLAYING;
-            if (Convert.ToInt32(index) != 0) {
+            if (Convert.ToInt32(index) != 0)
+            {
                 type = ListPageViewModel.TYPE_UPCOMING;
             }
             Navigation.PushAsync(new ListPage(type));

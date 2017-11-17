@@ -11,46 +11,29 @@ namespace xapps
         {
             InitializeComponent();
 
-            //NetworkManager.Instance().requestNowPlayingData("1");
-            //NetworkManager.Instance().requestUpCommingData("1");
-            //NetworkManager.Instance().requestDetailsData("284053");
+            List<string> tabs = new List<string>();
 
-            //Image image = ImageManager.getImageFromUrl("https://www.w3schools.com/howto/img_fjords.jpg");
-            //if(image == null) {
-            //    Debug.WriteLine("image object is null T.T");
-            //} else {
-            //    Debug.WriteLine("success download image to url");
-            //}
-
-            List<CustomTabData> tabs = new List<CustomTabData>();
-
-            for (int i = 0; i < 5; i++) {
-                CustomTabData tab = new CustomTabData();
-                tab.tabText = "one" + i;
-                tab.isUseImage = false;
-                tab.selColor = Color.FromHex("#F7D358");
-                tab.norColor = Color.FromHex("#F5ECCE");
-                tab.tag = i;
-                tabs.Add(tab);
+            for (int i = 0; i < 5; i++)
+            {
+                tabs.Add("one" + i);
             }
 
-            CustomTabData add = new CustomTabData();
-            add.tabText = "one6";
-            add.isUseImage = false;
-            add.selColor = Color.FromHex("#000000");
-            add.norColor = Color.FromHex("#ffffff");
-            add.tag = "i'm select";
-            tabs.Add(add);
+            CustomTabCellLayoutData layoutData = new CustomTabCellLayoutData
+            {
+                selColor = Color.FromHex("#F7D358"),
+                norColor = Color.FromHex("#F5ECCE"),
+            };
 
             CustomTabView tabView = new CustomTabView();
 
-            tabView.makeTabLayout(tabs);
+            tabView.makeTabLayout(tabs, layoutData);
             tabView.Listener = this;
 
             mainStack.Children.Add(tabView);
         }
 
-        async public void onClickTabButton(object tag) {
+        async public void onClickTabButton(object tag)
+        {
             Debug.WriteLine("tag = " + tag);
 
             switch (tag)
@@ -110,11 +93,15 @@ namespace xapps
                     }
                     break;
 
-                default: {
+                default:
+                    {
                         Image image = ImageManager.getImageFromUrl("https://www.w3schools.com/howto/img_fjords.jpg");
-                        if(image == null) {
+                        if (image == null)
+                        {
                             Debug.WriteLine("image object is null T.T");
-                        } else {
+                        }
+                        else
+                        {
                             Debug.WriteLine("success download image to url");
                         }
                         break;

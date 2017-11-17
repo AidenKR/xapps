@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class DetailPage : ContentPage , CustomTabInterface
+    public partial class DetailPage : ContentPage, CustomTabInterface
     {
         private DetailPageViewModel viewModel;
         private string mRequestId;
@@ -21,30 +21,22 @@ namespace xapps
             initView();
         }
 
-        private void initView() {
+        private void initView()
+        {
             // TAB
-            string[] tabs = {"평점", "포토/트레일러" , "감독/배우"};
-            setTabBar(mdpTab, tabs);
+            setTabBar(mdpTab);
         }
 
-        private void setTabBar(CustomTabView layout, string[] tabs) {
-            const string SelColor = "#F7D358";
-            const string NorColor = "#F5ECCE";
-
-            List<CustomTabData> arrTabs = new List<CustomTabData>();
-
-            foreach (string item in tabs)
+        private void setTabBar(StackLayout layout)
+        {
+            List<string> arrTabs = new List<string> { "평점", "포토/트레일러", "감독/배우" };
+            CustomTabCellLayoutData tabLayout = new CustomTabCellLayoutData
             {
-                CustomTabData tab = new CustomTabData();
-                tab.tabText = item;
-                tab.selColor = Color.FromHex(SelColor);
-                tab.norColor = Color.FromHex(NorColor);
+                selColor = Color.FromHex("#F7D358"),
+                norColor = Color.FromHex("#F5ECCE")
+            };
 
-                arrTabs.Add(tab); // Add
-            }
-
-            mdpTab.makeTabLayout(arrTabs);
-            mdpTab.Listener = this;
+            mdpTab.makeTabLayout(arrTabs, tabLayout);
         }
 
         async void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -66,11 +58,6 @@ namespace xapps
             mdpMovieInfoBtnMore.IsVisible = false;
             mdpMovieInfoTvStory.LineBreakMode = LineBreakMode.WordWrap;
         }
-
-        //void onClickListMore(object sender, System.EventArgs e)
-        //{
-        //    Button btn = (Button)sender;
-        //}
 
         private void printLog(string msg)
         {
