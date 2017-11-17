@@ -3,17 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:minWidth="25px"
+    android:minHeight="25px">
     <ImageView
-        android:src="@drawable/splashLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/imageView1" />
-    <TextView
-        android:text="Splash Activity"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:src="@drawable/theater"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:id="@+id/imageView1"
+        android:scaleType="fitXY" />
 </LinearLayout>

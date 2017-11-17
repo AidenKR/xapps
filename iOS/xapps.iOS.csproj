@@ -186,7 +186,6 @@
     <BundleResource Include="Resources\play.png" />
     <BundleResource Include="Resources\co_btn_check_normal%402x.png" />
     <BundleResource Include="Resources\co_btn_check_unsel%402x.png" />
-    <BundleResource Include="Resources\launch_image.png" />
     <BundleResource Include="Resources\theater.png" />
   </ItemGroup>
   <ItemGroup>
