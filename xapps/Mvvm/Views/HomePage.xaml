@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" 
-    xmlns:local="clr-namespace:xapps" 
-    xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
-    Padding=" 0,10,0,0" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" xmlns:local="clr-namespace:xapps" Title="{Binding Title}" BackgroundColor="#DAD6CB">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Fill" >
-            <!-- TabView -->
-            <local:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+        <ScrollView>
+        <StackLayout Padding="10">
+            <!-- List Area -->
+            <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
+                <!-- TabView -->
+                <local:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+                <!-- Horizontal ListView -->
+                <AbsoluteLayout x:Name="HListViewLayout" BackgroundColor="Lime" IsClippedToBounds="true" HeightRequest="265" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="HListView" Rotation="270" BackgroundColor="Blue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding Items}" RowHeight="160" SeparatorVisibility="None" ItemSelected="HListItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Rotation="90" WidthRequest="150" HorizontalOptions="End" Margin="0,0,0,10">
+                                        <StackLayout BackgroundColor="#DAD6CB" Padding="1" Spacing="0" HorizontalOptions="FillAndExpand">
+                                            <Image Source="{Binding poster_path}" HeightRequest="200" Aspect="Fill" />
+                                            <StackLayout Padding="10" BackgroundColor="White" HeightRequest="50" Spacing="0">
+                                                <Label Text="{Binding title}" FontSize="15" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding original_title}" FontSize="10" FontAttributes="Bold" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" FontSize="10" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </AbsoluteLayout>
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="ViewAllClick" />
+            </StackLayout>
 
-            <!-- Carousel example -->
-            <controls:CarouselViewControl x:Name="ViewPager" HeightRequest="200" ShowArrows="true" Orientation="Horizontal" ShowIndicators="true" InterPageSpacing="10" Position="{Binding Position}" ItemsSource="{Binding Zoos}" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
-                <controls:CarouselViewControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" />
-                            <StackLayout Grid.Row="0" BackgroundColor="#80000000" Padding="12">
-                                <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </controls:CarouselViewControl.ItemTemplate>
-            </controls:CarouselViewControl>
+            <!-- Ebook Area -->
+            <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
+                <StackLayout HeightRequest="150" />
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" />
+            </StackLayout>
+
+            <!-- Event Area -->
+            <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
+                <StackLayout HeightRequest="200" />
+            </StackLayout>
         </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

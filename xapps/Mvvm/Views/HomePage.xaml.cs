@@ -36,6 +36,27 @@ namespace xapps
             mdpTab.Listener = this;
         }
 
+        bool hasAppearedOnce = false;
+        protected override void OnAppearing()
+        {
+            Debug.WriteLine(">> OnAppearing()");
+
+            base.OnAppearing();
+
+            if (!hasAppearedOnce)
+            {
+                hasAppearedOnce = true;
+
+                HListView.HeightRequest = HListViewLayout.Width;
+
+                Debug.WriteLine("HListView.Width : " + HListView.Width);
+            }
+
+            if (viewModel.Items == null || viewModel.Items.Count == 0) {
+                viewModel.LoadItemsCommand.Execute(HomePageViewModel.TYPE_NOW_PLAYING);
+            }
+        }
+
         public void onClickTabButton(object index)
         {
             Debug.WriteLine("Tab Selected Index : " + index);
@@ -45,7 +66,24 @@ namespace xapps
             {
                 type = ListPageViewModel.TYPE_UPCOMING;
             }
-            Navigation.PushAsync(new ListPage(type));
+            viewModel.LoadItemsCommand.Execute(type);
+        }
+
+        async void HListItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as results;
+            if (item == null)
+                return;
+
+            await Navigation.PushAsync(new DetailPage(item.id));
+
+            // Manually deselect item
+            HListView.SelectedItem = null;
+        }
+
+        async void ViewAllClick(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new ListPage(viewModel.SelectedCategoryType));
         }
     }
 }

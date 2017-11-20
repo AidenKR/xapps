@@ -1,57 +1,81 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace xapps
 {
     public class HomePageViewModel : BaseViewModel
     {
-        public class Zoo
-        {
-            public string ImageUrl { get; set; }
-            public string Name { get; set; }
-        }
+        public const int TYPE_NOW_PLAYING = 100; // 현재 상영중
+        public const int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
 
-        public ObservableCollection<Zoo> Zoos { get; set; }
+        public ObservableCollection<results> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
 
-        int position;
-        public int Position
-        {
-            set
-            {
-                if (position != value)
-                {
-                    position = value;
-                    OnPropertyChanged();
-                }
-            }
-            get
-            {
-                return position;
-            }
-        }
+        // selected Category index
+        public int SelectedCategoryType = TYPE_NOW_PLAYING;
 
         public HomePageViewModel()
         {
-            Title = "Xapps";
+            Title = "XAPPS";
+            Items = new ObservableCollection<results>();
 
-            Zoos = new ObservableCollection<Zoo>
+            LoadItemsCommand = new Command<int>(async (requestType) => await ExecuteLoadItemsCommand(requestType));
+        }
+
+        async Task ExecuteLoadItemsCommand(int requestType)
+        {
+            Debug.WriteLine("ExecuteLoadItemsCommand() IsBusy = {0}, requestType = {1}", IsBusy, requestType);
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
             {
-                new Zoo
+                List<results> list = null;
+                switch (requestType)
                 {
-                    ImageUrl = "http://content.screencast.com/users/JamesMontemagno/folders/Jing/media/23c1dd13-333a-459e-9e23-c3784e7cb434/2016-06-02_1049.png",
-                    Name = "Woodland Park Zoo"
-                },
-                new Zoo
-                {
-                    ImageUrl =    "http://content.screencast.com/users/JamesMontemagno/folders/Jing/media/6b60d27e-c1ec-4fe6-bebe-7386d545bb62/2016-06-02_1051.png",
-                    Name = "Cleveland Zoo"
-                },
-                new Zoo
-                {
-                    ImageUrl = "http://content.screencast.com/users/JamesMontemagno/folders/Jing/media/e8179889-8189-4acb-bac5-812611199a03/2016-06-02_1053.png",
-                    Name = "Phoenix Zoo"
+                    case TYPE_NOW_PLAYING:
+                        {
+                            var result = await NetworkManager.NowPlaying("1");
+                            list = result.results;
+                            break;
+                        }
+
+                    case TYPE_UPCOMING:
+                        {
+                            var result = await NetworkManager.Upcoming("1");
+                            list = result.results;
+                            break;
+                        }
                 }
-            };
+
+                if (list == null)
+                {
+                    return;
+                }
+
+                SelectedCategoryType = requestType;
+
+                Items.Clear();
+                foreach (var item in list)
+                {
+                    item.poster_path = "https://image.tmdb.org/t/p/w500/" + item.poster_path;
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }
