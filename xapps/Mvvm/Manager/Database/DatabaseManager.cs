@@ -16,6 +16,13 @@ namespace xapps
         DatabaseManager(string databaseName)
         {
             database = new Database(databaseName);
+
+            CreateTable();
+        }
+
+        private void CreateTable()
+        {
+            database.GetTable<FavoriteItem>();
         }
 
         static DatabaseManager instance;
@@ -41,5 +48,21 @@ namespace xapps
         {
             return database.GetTable<T>();
         }
+
+        /// <summary>
+        /// Gets the favorite item by movie identifier.
+        /// </summary>
+        /// <returns>The favorite item by movie identifier.</returns>
+        /// <param name="movieId">Movie identifier.</param>
+        public FavoriteItem GetFavoriteItemByMovieID(string movieId) {
+            string query = "SELECT * FROM FavoriteItem WHERE movieId = '" + movieId + "'";
+            List<FavoriteItem> items = database.GetTable<FavoriteItem>().Query(query, new object[] {"*"});
+            if (null == items || 0 >= items.Count) {
+                return null;
+            }
+
+            return items[0];
+        }
+
     }
 }
