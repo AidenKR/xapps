@@ -199,6 +199,9 @@
     <AndroidResource Include="Resources\drawable\img_nowticketing.png" />
     <AndroidResource Include="Resources\drawable\img_share.png" />
     <AndroidResource Include="Resources\drawable\img_wishlist.png" />
+    <AndroidResource Include="Resources\layout\FullScreenPreview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

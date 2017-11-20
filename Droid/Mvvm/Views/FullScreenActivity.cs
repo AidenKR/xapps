@@ -10,11 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Graphics;
 
 namespace xapps.Droid
 {
-    [Activity(Theme = "@style/MyTheme.Splash", ScreenOrientation = ScreenOrientation.Landscape)]
-    class FullScreenActivity : Activity
+    [Activity(Theme = "@android:style/Theme.NoTitleBar.Fullscreen", ScreenOrientation = ScreenOrientation.Landscape)]
+    public class FullScreenActivity : Activity
     {
         MediaController mediaController;
         VideoView videoView;
@@ -23,22 +24,37 @@ namespace xapps.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.MoviePreview);
-            VideoView v = FindViewById<VideoView>(Resource.Id.previewMovie);
+            int duration = Intent.GetIntExtra("DURATION", 0);
+            SetContentView(Resource.Layout.FullScreenPreview);
+            videoView = FindViewById<VideoView>(Resource.Id.fullScreenPreview);
 
             mediaController = new Android.Widget.MediaController(this);
             mediaController.SetAnchorView(videoView);
             videoView.SetMediaController(mediaController);
             videoView.RequestFocus();
+            //videoView.SetBackgroundColor(Color.Transparent);
+
 
             var uri = Android.Net.Uri.Parse(MovieUrlData.previewUrl);
             //Set the videoView with our uri, this could also be a local video on device
             videoView.SetVideoURI(uri);
 
-            RunOnUiThread(() => {
-                videoView.Visibility = ViewStates.Visible;
-                videoView.Start();
-            });
+            // Progress 다이얼 로그
+            ProgressDialog dialog = new ProgressDialog(this);
+            dialog.SetMessage("Loading, Please Wait...");
+            dialog.SetCancelable(true);
+            dialog.Show();
+
+            videoView.Prepared += delegate
+            {
+                RunOnUiThread(() =>
+                {
+                    dialog.Dismiss();
+                    mediaController.Show();
+                    videoView.SeekTo(duration);
+                    videoView.Start();
+                });
+            };
 
             videoView.Completion += delegate
             {
@@ -47,8 +63,10 @@ namespace xapps.Droid
 
             videoView.Error += delegate
             {
+                dialog.Dismiss();
                 this.OnBackPressed();
             };
         }
+
     }
 }

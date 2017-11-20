@@ -25,6 +25,7 @@ namespace xapps.Droid
         MediaController mediaController;
 
         Android.Widget.Button playButton;
+        Activity activity;
 
         protected override void OnElementChanged(ElementChangedEventArgs<DetailPreview> e)
         {
@@ -32,7 +33,7 @@ namespace xapps.Droid
             Log.Debug("TEST", "DetailPreviewCustomRenderer");
 
 
-            var activity = Context as Activity;
+            activity = Context as Activity;
             var viewHolder = activity.LayoutInflater.Inflate(Resource.Layout.DetailPreview, this, false);
             view = viewHolder;
             AddView(view);
@@ -42,14 +43,10 @@ namespace xapps.Droid
             playButton = FindViewById<Android.Widget.Button>(Resource.Id.detailPlayBtn);
             //poster = FindViewById<ImageView>(Resource.Id.detailPosterIV);
 
-            mediaController = new Android.Widget.MediaController(activity);
+            mediaController = new Android.Widget.MediaController(activity, false);
             mediaController.SetAnchorView(videoView);
             videoView.SetMediaController(mediaController);
             videoView.RequestFocus();
-
-            var uri = Android.Net.Uri.Parse(MovieUrlData.previewUrl);
-            //Set the videoView with our uri, this could also be a local video on device
-            videoView.SetVideoURI(uri);
 
             playButton.Click += PlayVideo;
             videoView.Visibility = ViewStates.Gone;
@@ -66,11 +63,6 @@ namespace xapps.Droid
                 videoView.Visibility = ViewStates.Gone;
             };
 
-            mediaController.Click += delegate
-            {
-                activity.StartActivity(new Intent(activity.ApplicationContext, typeof(FullScreenActivity)));
-            };
-
             mediaController.SetPrevNextListeners(this, this);
         }
 
@@ -79,6 +71,10 @@ namespace xapps.Droid
             var activity = Context as Activity;
             activity.RunOnUiThread(() => {
                 videoView.Visibility = ViewStates.Visible;
+                var uri = Android.Net.Uri.Parse(MovieUrlData.previewUrl);
+                //Set the videoView with our uri, this could also be a local video on device
+                videoView.SetVideoURI(uri);
+                mediaController.Show();
                 videoView.Start();
             });
             playButton.Visibility = ViewStates.Gone;
@@ -104,7 +100,15 @@ namespace xapps.Droid
 
         public void OnClick(Android.Views.View v)
         {
-            Log.Debug("TEST", "Click");
+            // Full Screen 화면의 Activity를 호출한다.
+            int duration = videoView.Duration;
+            Intent intent = new Intent(activity.ApplicationContext, typeof(FullScreenActivity));
+            intent.PutExtra("DURATION", duration);
+            activity.StartActivity(intent);
+
+            // 상세화면의 버튼 상태를 초기화 한다.
+            videoView.Visibility = ViewStates.Gone;
+            playButton.Visibility = ViewStates.Visible;
         }
 
         /*

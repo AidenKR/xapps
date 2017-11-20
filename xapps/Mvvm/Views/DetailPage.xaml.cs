@@ -39,7 +39,7 @@ namespace xapps
             mdpTab.makeTabLayout(arrTabs, tabLayout);
         }
 
-        async void onClickFullMoviePage(object sender, System.EventArgs e)
+        void onClickFullMoviePage(object sender, System.EventArgs e)
         {
             var url = DependencyService.Get<IMovieUrl>();
             if (url != null)
