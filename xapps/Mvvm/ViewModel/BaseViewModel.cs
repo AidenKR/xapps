@@ -23,6 +23,13 @@ namespace xapps
             set { SetProperty(ref title, value); }
         }
 
+        bool isLodingComplete = false;
+        public bool IsLodingComplete
+        {
+            get { return isLodingComplete; }
+            set { SetProperty(ref isLodingComplete, value); }
+        }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
