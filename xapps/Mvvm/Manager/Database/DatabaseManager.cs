@@ -22,7 +22,7 @@ namespace xapps
 
         private void CreateTable()
         {
-            database.GetTable<FavoriteItem>();
+            database.GetTable<FavoriteItem>().CreateTable();
         }
 
         static DatabaseManager instance;

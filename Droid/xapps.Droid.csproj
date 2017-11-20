@@ -202,6 +202,7 @@
     <AndroidResource Include="Resources\layout\FullScreenPreview.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\img_wishlist_p.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

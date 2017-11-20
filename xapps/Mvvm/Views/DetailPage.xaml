@@ -29,9 +29,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Row="0" Grid.Column="0" x:Name="mdpShareBtnWishList" BackgroundColor="White" Image="img_wishlist" TextColor="Maroon" FontSize="12" />
-                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpShareBtnShare" BackgroundColor="White" Image="img_share" TextColor="Maroon" FontSize="12" />
-                        <Button Grid.Row="0" Grid.Column="2" x:Name="mdpShareBtnNowTicketing" BackgroundColor="White" Image="img_nowticketing" TextColor="Red" FontSize="12" />
+                        <Button Grid.Row="0" Grid.Column="0" x:Name="mdpShareBtnWishList" BackgroundColor="White" Image="img_wishlist" TextColor="Maroon" FontSize="12" Clicked="onClickButton" />
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="mdpShareBtnShare" BackgroundColor="White" Image="img_share" TextColor="Maroon" FontSize="12" Clicked="onClickButton" />
+                        <Button Grid.Row="0" Grid.Column="2" x:Name="mdpShareBtnNowTicketing" BackgroundColor="White" Image="img_nowticketing" TextColor="Red" FontSize="12" Clicked="onClickButton" />
                     </Grid>
                     
                     <!-- Now Playing -->

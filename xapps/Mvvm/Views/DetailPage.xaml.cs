@@ -9,6 +9,7 @@ namespace xapps
     {
         private DetailPageViewModel viewModel;
         private string mRequestId;
+        FavoriteItem item;
 
         public DetailPage(string reqId)
         {
@@ -25,6 +26,9 @@ namespace xapps
         {
             // TAB
             setTabBar(mdpTab);
+
+            // favorite item
+            setWishListButton();
         }
 
         private void setTabBar(StackLayout layout)
@@ -81,6 +85,101 @@ namespace xapps
         {
             // Event
             printLog("onClickTabButton() index : " + index);
+        }
+
+        void onClickButton(object sender, System.EventArgs e)
+        {
+            var button = sender as Button;
+
+            if (mdpShareBtnWishList.Equals(button))
+            {
+                // 위시리스트
+                checkWishList();
+            }
+            else if (mdpShareBtnShare.Equals(button))
+            {
+                // 같이볼래
+                showToastPopup("같이볼래");
+            }
+            else if (mdpShareBtnNowTicketing.Equals(button))
+            {
+                // 지금예매
+                showToastPopup("지금예매");
+            }
+        }
+
+        private bool checkWishList()
+        {
+            bool returnValue = false;
+
+            // db 에서 해당 key값의 아이탬을 가져온다.
+            item = DatabaseManager.Instance.GetFavoriteItemByMovieID(mRequestId);
+
+            // 해당 key값이 위시리스트에 존재하는가?
+            if (null == item)
+            {
+                // 위시리스트 에 미등록됨
+                // 추가
+                addFavorite();
+            }
+            else
+            {
+                // 위시리스트 에 등록되어 있다. 
+                // 제거
+                delFavorite(item.ID);
+            }
+
+            return returnValue;
+        }
+
+        private void addFavorite()
+        {
+            FavoriteItem addItem = new FavoriteItem();
+            addItem.movieId = viewModel.DetailItem.id;
+            addItem.favoriteYN = true;
+            addItem.title = viewModel.DetailItem.title;
+            addItem.original_title = viewModel.DetailItem.original_title;
+            addItem.poster_path = viewModel.DetailItem.poster_path;
+            addItem.vote_average = viewModel.DetailItem.vote_average;
+            addItem.release_date = viewModel.DetailItem.release_date;
+            DatabaseManager.Instance.GetTable<FavoriteItem>().SaveItem(addItem);
+
+            // ui
+            mdpShareBtnWishList.Image.File = "img_wishlist_p.png";
+            showToastPopup("즐겨찾기 목록에 '" + viewModel.DetailItem.title + "' 항목을 추가 했습니다.");
+        }
+        private void delFavorite(long key)
+        {
+            int deleteKey = int.Parse(key.ToString());
+            DatabaseManager.Instance.GetTable<FavoriteItem>().DeleteItem(deleteKey);
+
+            // ui
+            mdpShareBtnWishList.Image.File = "img_wishlist.png";
+            showToastPopup("즐겨찾기 목록에서 '" + viewModel.DetailItem.title + "' 항목을 제거 했습니다.");
+        }
+        private void setWishListButton()
+        {
+            item = DatabaseManager.Instance.GetFavoriteItemByMovieID(mRequestId);
+            if (null == item)
+            {
+                mdpShareBtnWishList.Image.File = "img_wishlist.png";
+            }
+            else
+            {
+                mdpShareBtnWishList.Image.File = "img_wishlist_p.png";
+            }
+        }
+
+        /**
+         * 토스트 팝업.
+         */
+        void showToastPopup(string msg)
+        {
+            var toast = DependencyService.Get<IToastAlert>();
+            if (null != toast)
+            {
+                toast.showToast(msg, false);
+            }
         }
     }
 }
