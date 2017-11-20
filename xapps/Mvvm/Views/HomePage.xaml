@@ -6,7 +6,7 @@
             <!-- List Area -->
             <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
                 <!-- TabView -->
-                <local:CustomTabView x:Name="mdpTab" HeightRequest="30" WidthRequest="200" />
+                <local:CustomTabView x:Name="mdpTab" WidthRequest="200" />
                 <!-- Horizontal ListView -->
                 <AbsoluteLayout x:Name="HListViewLayout" IsClippedToBounds="true" HeightRequest="265" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <ListView x:Name="HListView" Rotation="270" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding Items}" RowHeight="160" SeparatorVisibility="None" ItemSelected="HListItemSelected">
