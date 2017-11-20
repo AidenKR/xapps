@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using SQLite;
@@ -25,9 +26,9 @@ namespace xapps
                 {
                     result = connection.CreateTable<T>(createFlag);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
@@ -42,41 +43,66 @@ namespace xapps
                 {
                     result = connection.DropTable<T>();
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
         }
 
-        public long SaveItem(T item)
+        public int InsertItem(T item)
         {
             lock (TableLock)
             {
-                long result = -1;
+                int result = -1;
                 try
                 {
-                    long id = item.ID;
-                    if (id != 0)
-                    {
-                        connection.Update(item);
-                        result = id;
-                    }
-                    else
-                    {
-                        result = connection.Insert(item);
-                    }
+                    result = connection.Insert(item);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
         }
 
-        public void SaveAllItem(List<T> list)
+        public int InsertOrUpdate(T item)
+        {
+            lock (TableLock)
+            {
+                int result = -1;
+                try
+                {
+                    result = connection.InsertOrReplace(item);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+                return result;
+            }
+        }
+
+        public int InsertAllITem(List<T> list)
+        {
+            lock (TableLock)
+            {
+                int result = -1;
+                try
+                {
+                    result = connection.InsertAll(list);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+                return result;
+            }
+        }
+
+        public void InsertOrUpdateAll(List<T> list)
         {
             lock (TableLock)
             {
@@ -84,20 +110,12 @@ namespace xapps
                 {
                     foreach (var item in list)
                     {
-                        var id = item.ID;
-                        if (id != 0)
-                        {
-                            connection.Update(item);
-                        }
-                        else
-                        {
-                            connection.Insert(item);
-                        }
+                        connection.InsertOrReplace(item);
                     }
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
             }
         }
@@ -111,9 +129,9 @@ namespace xapps
                 {
                     result = connection.Execute(query, args);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
@@ -128,26 +146,26 @@ namespace xapps
                 {
                     result = connection.Query<T>(query, args);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
         }
 
-        public T GetItem(long id)
+        public T GetItem(Object pk)
         {
             lock (TableLock)
             {
                 T result = null;
                 try
                 {
-                    result = connection.Get<T>(id);
+                    result = connection.Get<T>(pk);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
@@ -162,26 +180,26 @@ namespace xapps
                 {
                     result = (from i in connection.Table<T>() select i).ToList();
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
         }
 
-        public int DeleteItem(int id)
+        public int DeleteItem(Object pk)
         {
             lock (TableLock)
             {
                 int result = -1;
                 try
                 {
-                    result = connection.Delete<T>(id);
+                    result = connection.Delete<T>(pk);
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }
@@ -196,9 +214,9 @@ namespace xapps
                 {
                     result = connection.DeleteAll<T>();
                 }
-                catch (SQLiteException SQLe)
+                catch (Exception e)
                 {
-                    Debug.WriteLine(SQLe.Message);
+                    Debug.WriteLine(e.Message);
                 }
                 return result;
             }

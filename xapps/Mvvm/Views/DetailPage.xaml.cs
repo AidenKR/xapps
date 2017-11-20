@@ -113,7 +113,7 @@ namespace xapps
             bool returnValue = false;
 
             // db 에서 해당 key값의 아이탬을 가져온다.
-            item = DatabaseManager.Instance.GetFavoriteItemByMovieID(mRequestId);
+            item = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItem(mRequestId);
 
             // 해당 key값이 위시리스트에 존재하는가?
             if (null == item)
@@ -126,7 +126,7 @@ namespace xapps
             {
                 // 위시리스트 에 등록되어 있다. 
                 // 제거
-                delFavorite(item.ID);
+                delFavorite(item.movieId);
             }
 
             return returnValue;
@@ -142,16 +142,15 @@ namespace xapps
             addItem.poster_path = viewModel.DetailItem.poster_path;
             addItem.vote_average = viewModel.DetailItem.vote_average;
             addItem.release_date = viewModel.DetailItem.release_date;
-            DatabaseManager.Instance.GetTable<FavoriteItem>().SaveItem(addItem);
+            DatabaseManager.Instance.GetTable<FavoriteItem>().InsertItem(addItem);
 
             // ui
             mdpShareBtnWishList.Image.File = "img_wishlist_p.png";
             showToastPopup("즐겨찾기 목록에 '" + viewModel.DetailItem.title + "' 항목을 추가 했습니다.");
         }
-        private void delFavorite(long key)
+        private void delFavorite(string key)
         {
-            int deleteKey = int.Parse(key.ToString());
-            DatabaseManager.Instance.GetTable<FavoriteItem>().DeleteItem(deleteKey);
+            DatabaseManager.Instance.GetTable<FavoriteItem>().DeleteItem(key);
 
             // ui
             mdpShareBtnWishList.Image.File = "img_wishlist.png";
@@ -159,7 +158,7 @@ namespace xapps
         }
         private void setWishListButton()
         {
-            item = DatabaseManager.Instance.GetFavoriteItemByMovieID(mRequestId);
+            item = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItem(mRequestId);
             if (null == item)
             {
                 mdpShareBtnWishList.Image.File = "img_wishlist.png";

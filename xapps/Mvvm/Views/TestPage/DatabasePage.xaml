@@ -4,7 +4,12 @@
         <StackLayout VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
             <Button Text="Create Table" BorderWidth="1" Clicked="OnCreateClicked" />
             <Button Text="Drop Table" BorderWidth="1" Clicked="OnDropClicked" />
+            
             <Button Text="Insert Data" BorderWidth="1" Clicked="OnInsertClicked" />
+            <Button Text="Select Data" BorderWidth="1" Clicked="OnSelectClicked" />
+            <Button Text="Delete Data" BorderWidth="1" Clicked="OnDeleteClicked" />
+            
+            <Button Text="Insert All Data" BorderWidth="1" Clicked="OnInsertAllClicked" />
             <Button Text="Select All Data" BorderWidth="1" Clicked="OnSelectAllClicked" />
             <Button Text="Delete All Data" BorderWidth="1" Clicked="OnDeleteAllClicked" />
         </StackLayout>

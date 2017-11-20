@@ -26,6 +26,31 @@ namespace xapps
 
         void OnInsertClicked(object sender, System.EventArgs e)
         {
+            var item = new FavoriteItem
+            {
+                movieId = "id0",
+                favoriteYN = true,
+                original_title = "original_title 0",
+                title = "title 0"
+            };
+            var result = DatabaseManager.Instance.GetTable<FavoriteItem>().InsertItem(item);
+            Debug.WriteLine("Favorite save item result = {0}", result);
+        }
+
+        void OnSelectClicked(object sender, System.EventArgs e)
+        {
+            FavoriteItem item = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItem("id0");
+            Debug.WriteLine("Favorite item: " + item);
+        }
+
+        void OnDeleteClicked(object sender, System.EventArgs e)
+        {
+            int result = DatabaseManager.Instance.GetTable<FavoriteItem>().DeleteItem("id0");
+            Debug.WriteLine("Favorite Delete result: " + result);
+        }
+
+        void OnInsertAllClicked(object sender, System.EventArgs e)
+        {
             List<FavoriteItem> list = new List<FavoriteItem>();
             for (int i = 0; i < 20; i++)
             {
@@ -36,9 +61,11 @@ namespace xapps
                     original_title = "original_title " + i,
                     title = "title" + i
                 };
-                var result = DatabaseManager.Instance.GetTable<FavoriteItem>().SaveItem(item);
-                Debug.WriteLine("save item index {0}: result = {1}", i,result);
+                list.Add(item);
             }
+
+            int result = DatabaseManager.Instance.GetTable<FavoriteItem>().InsertAllITem(list);
+            Debug.WriteLine("Favorite Insert All result: " + result);
         }
 
         void OnSelectAllClicked(object sender, System.EventArgs e)
@@ -48,7 +75,6 @@ namespace xapps
 
             foreach (FavoriteItem item in list)
                 Debug.WriteLine("Favorite : " + item);
-
         }
 
         void OnDeleteAllClicked(object sender, System.EventArgs e)

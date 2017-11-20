@@ -44,7 +44,7 @@ namespace xapps
                     original_title = "original_title " + i,
                     title = "title" + i
                 };
-                var result = DatabaseManager.Instance.GetTable<FavoriteItem>().SaveItem(item);
+                var result = DatabaseManager.Instance.GetTable<FavoriteItem>().InsertItem(item);
                 Debug.WriteLine("save item index {0}: result = {1}", i, result);
             }
 #endif

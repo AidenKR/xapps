@@ -5,6 +5,7 @@ namespace xapps
 {
     public class FavoriteItem : BaseItem
     {
+        [PrimaryKey]
         public string movieId { get; set; }
         public bool favoriteYN { get; set; }
         public string title { get; set; }
@@ -14,7 +15,7 @@ namespace xapps
         public string release_date { get; set; }
         public override string ToString()
         {
-            return $"{ID}, {movieId}, {favoriteYN}, {title}, {original_title}, {poster_path}, {vote_average}, {release_date}";
+            return $"{movieId}, {favoriteYN}, {title}, {original_title}, {poster_path}, {vote_average}, {release_date}";
         }
     }
 }
