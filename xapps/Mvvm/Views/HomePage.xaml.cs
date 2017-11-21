@@ -47,9 +47,10 @@ namespace xapps
             {
                 hasAppearedOnce = true;
 
-                HListView.HeightRequest = HListViewLayout.Width;
+                HListView.HeightRequest = App.ScreenWidth;
 
-                Debug.WriteLine("HListView.Width : " + HListView.Width);
+                Debug.WriteLine("HListViewLayout.HeightRequest : " + HListViewLayout.Width);
+                Debug.WriteLine("HListView.HeightRequest : " + HListView.HeightRequest);
             }
 
             if (viewModel.Items == null || viewModel.Items.Count == 0) {
