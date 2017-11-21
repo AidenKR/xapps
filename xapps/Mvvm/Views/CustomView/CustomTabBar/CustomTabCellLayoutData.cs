@@ -17,5 +17,8 @@ namespace xapps
         public Color selColor { get; set; } = Color.FromRgba(0, 0, 0, 0);   // if isUseImage is false, used
         public Color norColor { get; set; } = Color.FromRgba(0, 0, 0, 0);   // if isUseImage is false, used
         #endregion
+
+        public Color[] selTextColors { get; set; } // cell Text Color
+        public Double selTextFontSize { get; set; } // cells Text Font Size
     }
 }

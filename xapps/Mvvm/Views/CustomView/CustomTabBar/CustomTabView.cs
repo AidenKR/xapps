@@ -48,6 +48,18 @@ namespace xapps
                 CustomTabCell cell = new CustomTabCell(tabText, index);
                 ChangeCellSelected(cell, index == selIndex);
 
+                // setting text color
+                if (null != TabCellLayoutData.selTextColors && (index + 1) <= TabCellLayoutData.selTextColors.Length)
+                {
+                    cell.TextColor = TabCellLayoutData.selTextColors[index];
+                }
+
+                // setting text font size
+                if (0 <= TabCellLayoutData.selTextFontSize)
+                {
+                    cell.FontSize = TabCellLayoutData.selTextFontSize;
+                }
+
                 if (index == selIndex)
                 {
                     selectedIndex = index;

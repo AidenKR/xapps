@@ -34,10 +34,13 @@ namespace xapps
         private void setTabBar(StackLayout layout)
         {
             List<string> arrTabs = new List<string> { "평점", "포토/트레일러", "감독/배우" };
+            Color[] arrTextColor = { Color.Aqua , Color.BlueViolet, Color.Red };
             CustomTabCellLayoutData tabLayout = new CustomTabCellLayoutData
             {
                 selColor = Color.FromHex("#F7D358"),
-                norColor = Color.FromHex("#F5ECCE")
+                norColor = Color.FromHex("#F5ECCE"),
+                selTextColors = arrTextColor,
+                selTextFontSize = 20.0
             };
 
             mdpTab.makeTabLayout(arrTabs, tabLayout);
