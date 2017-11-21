@@ -55,7 +55,7 @@ namespace xapps
                 }
 
                 // setting text font size
-                if (0 <= TabCellLayoutData.selTextFontSize)
+                if (0 < TabCellLayoutData.selTextFontSize)
                 {
                     cell.FontSize = TabCellLayoutData.selTextFontSize;
                 }
