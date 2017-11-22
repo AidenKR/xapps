@@ -172,30 +172,30 @@ namespace xapps
         }
         #endregion
 
-        #region Books - Recommand
+        #region Books - Recommend
         /// <summary>
-        /// Recommand 리스트를 반환한다.
+        /// Recommend 리스트를 반환한다.
         /// </summary>
         /// <returns>BestSeller</returns>
-        public static Task<BookData> Recommand()
+        public static Task<BookData> Recommend()
         {
-            return MakeApiRecommand().GetAsync<BookData>();
+            return MakeApiRecommend().GetAsync<BookData>();
         }
 
         /// <summary>
-        /// Recommand 리스트를 반환한다.
+        /// Recommend 리스트를 반환한다.
         /// 전달 받은 Callback 으로 전달한다.
         /// </summary>
         /// <param name="callback">응답 받을 Callback</param>
-        public static void RecommandToCallback(NetworkCallbackDelegate callback)
+        public static void RecommendToCallback(NetworkCallbackDelegate callback)
         {
-            MakeApiRecommand().GetAsyncToCallback<BookData>(callback);
+            MakeApiRecommend().GetAsyncToCallback<BookData>(callback);
         }
 
-        static BaseApi MakeApiRecommand()
+        static BaseApi MakeApiRecommend()
         {
             // Make Api
-            ApiBooksRecommand api = new ApiBooksRecommand();
+            ApiBooksRecommend api = new ApiBooksRecommend();
             return api;
         }
         #endregion

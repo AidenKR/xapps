@@ -7,29 +7,32 @@ namespace xapps
 {
     public partial class ListPage : ContentPage, CustomTabInterface
     {
-        class Tab
+        public class Tab
         {
             public string Title { get; set; }
             public int Type { get; set; }
+            public bool IsSelected { get; set; } = false;
         }
-
-        List<Tab> TypeList = new List<Tab>(){
-            new Tab{ Title = "현재 상영작", Type = ListPageViewModel.TYPE_NOW_PLAYING },
-            new Tab{ Title = "개봉 예정작", Type = ListPageViewModel.TYPE_UPCOMING }
-        };
 
         ListPageViewModel viewModel;
 
-        int selectIndex = 0;
-        int pageNumber = 0;
+        List<Tab> TypeList;
+        Tab selectedTab;
+        int pageNumber;
+
         bool dataLoading;
 
-        public ListPage(int type = ListPageViewModel.TYPE_NOW_PLAYING)
+        public ListPage(List<Tab> tabs)
         {
             InitializeComponent();
 
-            selectIndex = TypeList.FindIndex( (obj) => obj.Type == type );
-            Debug.WriteLine("Select Type : " + selectIndex);
+            TypeList = tabs ?? throw new ArgumentNullException();
+
+            selectedTab = tabs.Find(x => x.IsSelected);
+            if (selectedTab == null) {
+                selectedTab = tabs[0];
+            }
+            Debug.WriteLine("Select Tab : " + selectedTab);
 
             BindingContext = viewModel = new ListPageViewModel();
 
@@ -38,19 +41,24 @@ namespace xapps
 
         void InitView()
         {
-            setTabBar();
+            MakeTabBar();
         }
 
-        void setTabBar()
+        void MakeTabBar()
         {
             List<string> arrTabs = new List<string>();
 
+            int nSelIndex = 0;
             foreach (Tab item in TypeList)
             {
                 arrTabs.Add(item.Title);
+
+                if (item.IsSelected) {
+                    nSelIndex = TypeList.IndexOf(item);
+                }
             }
 
-            TabButton.makeTabLayout(arrTabs, null, selectIndex);
+            TabButton.makeTabLayout(arrTabs, null, nSelIndex);
             TabButton.Listener = this;
         }
 
@@ -60,7 +68,7 @@ namespace xapps
 
             if (viewModel.Items.Count == 0)
             {
-                SelectedCategory(selectIndex);
+                SelectedCategory(selectedTab);
             }
 
             pageNumber++;
@@ -69,11 +77,19 @@ namespace xapps
         #region EventHandler
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as results;
+            var item = args.SelectedItem as ListPageItem;
             if (item == null)
                 return;
-
-            await Navigation.PushAsync(new DetailPage(item.id));
+            
+            // Movie
+            if ((selectedTab.Type & ListPageViewModel.TYPE_MOVIE) != 0) {
+                await Navigation.PushAsync(new DetailPage(item.Id));
+            }
+            // Books
+            else if ((selectedTab.Type & ListPageViewModel.TYPE_BOOKS) != 0) {
+                // TODO URL 전달 필요
+                await Navigation.PushAsync(new WebviewPage());
+            }
 
             // Manually deselect item
             listView.SelectedItem = null;
@@ -81,7 +97,7 @@ namespace xapps
 
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            var item = e.Item as results;
+            var item = e.Item as ListPageItem;
             int index = viewModel.Items.IndexOf(item);
             if (viewModel.Items.Count - 1 <= index)
             {
@@ -90,37 +106,37 @@ namespace xapps
             }
         }
 
-        public void onClickTabButton(object index)
+        public void onClickTabButton(int index)
         {
-            SelectedCategory(Convert.ToInt32(index));
+            SelectedCategory(TypeList[index]);
         }
         #endregion
 
-        private void SelectedCategory(int index)
+        void SelectedCategory(Tab selectTab)
         {
-            if (selectIndex != index) {
+            if (selectedTab != selectTab) {
                 // category 가 변경되었을경우에는 pageNumber를 초기화해준다.
                 pageNumber = 1;
                 viewModel.Items.Clear();
             }
 
-            selectIndex = index;
+            selectedTab = selectTab;
 
-            viewModel.LoadItemsCommand.Execute(TypeList[index].Type);
+            viewModel.SelectedCategoryType = selectedTab.Type;
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         void NextDataReqeust()
         {
-            if (dataLoading)
+            if (dataLoading || (selectedTab.Type & ListPageViewModel.TYPE_MOVIE) == 0)
             {
                 return;
             }
 
             dataLoading = true;
             pageNumber++;
-            int[] reqValues = { TypeList[selectIndex].Type, pageNumber };
 
-            viewModel.MoreItemsCommand.Execute(reqValues);
+            viewModel.MoreItemsCommand.Execute(pageNumber);
 
             dataLoading = false;
         }

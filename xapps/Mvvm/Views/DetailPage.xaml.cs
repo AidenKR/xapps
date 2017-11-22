@@ -84,7 +84,7 @@ namespace xapps
             base.OnDisappearing();
         }
 
-        public void onClickTabButton(object index)
+        public void onClickTabButton(int index)
         {
             // Event
             printLog("onClickTabButton() index : " + index);

@@ -34,7 +34,7 @@
             <!-- Ebook Area -->
             <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
                 <StackLayout HeightRequest="150" />
-                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" />
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="BooksViewAllClick"/>
             </StackLayout>
 
             <!-- Event Area -->

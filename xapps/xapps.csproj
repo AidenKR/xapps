@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -155,8 +155,9 @@
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ConstsBooksApi.cs" />
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksBestSeller.cs" />
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksNewBook.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksRecommand.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomButton\CustomButton.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksRecommend.cs" />
+    <Compile Include="Mvvm\Model\View\ListPageItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

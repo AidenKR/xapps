@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
+using static xapps.ListPage;
 
 namespace xapps
 {
@@ -53,19 +54,20 @@ namespace xapps
                 Debug.WriteLine("HListView.HeightRequest : " + HListView.HeightRequest);
             }
 
-            if (viewModel.Items == null || viewModel.Items.Count == 0) {
+            if (viewModel.Items == null || viewModel.Items.Count == 0)
+            {
                 viewModel.LoadItemsCommand.Execute(HomePageViewModel.TYPE_NOW_PLAYING);
             }
         }
 
-        public void onClickTabButton(object index)
+        public void onClickTabButton(int index)
         {
             Debug.WriteLine("Tab Selected Index : " + index);
 
-            int type = ListPageViewModel.TYPE_NOW_PLAYING;
-            if (Convert.ToInt32(index) != 0)
+            int type = ListPageViewModel.TYPE_MOVIE_NOW_PLAYING;
+            if (index != 0)
             {
-                type = ListPageViewModel.TYPE_UPCOMING;
+                type = ListPageViewModel.TYPE_MOVIE_UPCOMING;
             }
             viewModel.LoadItemsCommand.Execute(type);
         }
@@ -84,7 +86,27 @@ namespace xapps
 
         async void ViewAllClick(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new ListPage(viewModel.SelectedCategoryType));
+            // TODO 정리 필요
+            List<Tab> TypeList = new List<Tab>
+            {
+                new Tab{ Title = "현재 상영작", Type = ListPageViewModel.TYPE_MOVIE_NOW_PLAYING, IsSelected = true },
+                new Tab{ Title = "개봉 예정작", Type = ListPageViewModel.TYPE_MOVIE_UPCOMING }
+            };
+
+            await Navigation.PushAsync(new ListPage(TypeList));
+        }
+
+        async void BooksViewAllClick(object sender, System.EventArgs e)
+        {
+            // TODO 정리 필요
+            List<Tab> TypeList = new List<Tab>
+            {
+                new Tab{ Title = "베스트셀러", Type = ListPageViewModel.TYPE_BOOKS_BEST_SELLER, IsSelected = true },
+                new Tab{ Title = "추천도서", Type = ListPageViewModel.TYPE_BOOKS_RECOMMEND },
+                new Tab{ Title = "신간도서", Type = ListPageViewModel.TYPE_BOOKS_NEW_BOOK }
+            };
+
+            await Navigation.PushAsync(new ListPage(TypeList));
         }
     }
 }

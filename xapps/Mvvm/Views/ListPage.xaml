@@ -14,16 +14,16 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <!-- 1st column -->
-                            <Image Grid.Column="0" Source="{Binding poster_path}" Aspect="AspectFit" />
+                            <Image Grid.Column="0" Source="{Binding ThumbUrl}" Aspect="AspectFit" />
                             <!-- 2nd Column -->
                             <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
-                                <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding original_title}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding Description}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                                     <Image Source="star.png" WidthRequest="10" />
-                                    <Label Text="{Binding vote_average}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Rank}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
                                 </StackLayout>
-                                <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding SubDescription}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </Grid>
                     </ViewCell>

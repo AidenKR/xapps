@@ -3,6 +3,6 @@ namespace xapps
 {
     public interface CustomTabInterface
     {
-        void onClickTabButton(object index);
+        void onClickTabButton(int index);
     }
 }

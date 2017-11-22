@@ -3,11 +3,11 @@ using System.Diagnostics;
 
 namespace xapps
 {
-    public class ApiBooksRecommand : BaseApi
+    public class ApiBooksRecommend : BaseApi
     {
         protected override string MakeRequestUrl()
         {
-            String url = ConstsBooksApi.BaseUrl + "/recommand.api" + ConstsBooksApi.ApiKey + ConstsBooksApi.DefaultSetting;
+            String url = ConstsBooksApi.BaseUrl + "/recommend.api" + ConstsBooksApi.ApiKey + ConstsBooksApi.DefaultSetting;
 
             Debug.WriteLine("## Req URL : " + url);
 

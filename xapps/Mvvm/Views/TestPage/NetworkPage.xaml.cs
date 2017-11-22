@@ -32,7 +32,7 @@ namespace xapps
             mainStack.Children.Add(tabView);
         }
 
-        async public void onClickTabButton(object tag)
+        async public void onClickTabButton(int tag)
         {
             Debug.WriteLine("tag = " + tag);
 
