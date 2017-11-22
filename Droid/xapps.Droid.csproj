@@ -173,6 +173,7 @@
     <Compile Include="Mvvm\Services\Notification\NotificationUtil.cs" />
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
     <Compile Include="Mvvm\Services\Database\SQLiteService.cs" />
+    <Compile Include="Mvvm\Views\CustomButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -203,6 +204,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\img_wishlist_p.png" />
+    <AndroidResource Include="Resources\drawable\selector_wishlist.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

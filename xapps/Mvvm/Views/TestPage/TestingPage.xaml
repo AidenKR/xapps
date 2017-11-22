@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.TestingPage">
-	<ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
-            <Button Text="Network Test" BorderWidth="1" Clicked="NetTestBtnClicked" />
-            <Button Text="Database Test" BorderWidth="1" Clicked="DBTestBtnClicked" />
-            <Button Text="즐겨찾기화면 Test" BorderWidth="1" Clicked="FavoriteBtnClicked" />
-            <Button Text="Movie Play Test" BorderWidth="1" Clicked="MovieBtnClicked" />
-            <Button Text="Toast Popup Test" BorderWidth="1" Clicked="ToastBtnClicked" />
-        </StackLayout>
-	</ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:xapps;assembly=xapps" x:Class="xapps.TestingPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="CenterAndExpand" Padding="20,0,20,0">
+                <Button Text="Network Test" BorderWidth="1" Clicked="NetTestBtnClicked" />
+                <Button Text="Database Test" BorderWidth="1" Clicked="DBTestBtnClicked" />
+                <Button Text="즐겨찾기화면 Test" BorderWidth="1" Clicked="FavoriteBtnClicked" />
+                <Button Text="Movie Play Test" BorderWidth="1" Clicked="MovieBtnClicked" />
+                <Button Text="Toast Popup Test" BorderWidth="1" Clicked="ToastBtnClicked" />
+                <local:CustomButton BorderWidth="1" BackgroundSource="selector_wishlist" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
