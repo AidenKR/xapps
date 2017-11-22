@@ -148,6 +148,7 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\ViewModel\HomePageViewModel.cs" />
+    <Compile Include="Mvvm\ViewModel\FavoriteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
