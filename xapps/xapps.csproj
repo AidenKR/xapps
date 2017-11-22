@@ -70,7 +70,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Model\Network\subData\belongs_to_collection.cs" />
     <Compile Include="Mvvm\Model\View\IMovieUrl.cs" />
     <Compile Include="Mvvm\NativeInterface\IBackgroundService.cs" />
     <Compile Include="Mvvm\ViewModel\DetailPageViewModel.cs" />
@@ -103,15 +102,6 @@
     </Compile>
     <Compile Include="Mvvm\ViewModel\BaseViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\ListPageViewModel.cs" />
-    <Compile Include="Mvvm\Model\Network\NowPlayingData.cs" />
-    <Compile Include="Mvvm\Model\Network\UpcomingData.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\dates.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\results.cs" />
-    <Compile Include="Mvvm\Model\Network\DetailData.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\genres.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\production_companies.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\production_contries.cs" />
-    <Compile Include="Mvvm\Model\Network\subData\spoken_languages.cs" />
     <Compile Include="Mvvm\Views\TestPage\DatabasePage.xaml.cs">
       <DependentUpon>DatabasePage.xaml</DependentUpon>
     </Compile>
@@ -121,19 +111,12 @@
     <Compile Include="Mvvm\Views\TestPage\TestingPage.xaml.cs">
       <DependentUpon>TestingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mvvm\Model\Network\subData\cast.cs" />
-    <Compile Include="Mvvm\Model\Network\CreditsData.cs" />
     <Compile Include="Mvvm\NativeInterface\IToastAlert.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabCell.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabCellLayoutData.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabInterface.cs" />
     <Compile Include="Mvvm\Views\CustomView\CustomTabBar\CustomTabView.cs" />
     <Compile Include="Mvvm\Manager\ImageManager.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieCredits.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieDetail.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieNowPlaying.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\ApiMovieUpcoming.cs" />
-    <Compile Include="Mvvm\Manager\Network\Api\BaseApi.cs" />
     <Compile Include="Mvvm\Manager\Network\Connector.cs" />
     <Compile Include="Mvvm\Manager\Network\ResponseData.cs" />
     <Compile Include="Mvvm\Manager\Network\NetworkManager.cs" />
@@ -149,6 +132,31 @@
     </Compile>
     <Compile Include="Mvvm\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Mvvm\ViewModel\FavoriteViewModel.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\belongs_to_collection.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\cast.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\dates.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\genres.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\production_companies.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\production_contries.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\results.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\spoken_languages.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\CreditsData.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\DetailData.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\NowPlayingData.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\UpcomingData.cs" />
+    <Compile Include="Mvvm\Model\Network\InterparkBooks\SubData\BookItem.cs" />
+    <Compile Include="Mvvm\Model\Network\InterparkBooks\BookData.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ApiMovieCredits.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ApiMovieDetail.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ApiMovieNowPlaying.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ApiMovieUpcoming.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\BaseApi.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ConstsMovieApi.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ConstsBooksApi.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksBestSeller.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksNewBook.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksRecommand.cs" />
+    <Compile Include="Mvvm\Model\View\ListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -195,6 +203,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mvvm\Model\Network\TheMovieDB\" />
+    <Folder Include="Mvvm\Model\Network\TheMovieDB\SubData\" />
+    <Folder Include="Mvvm\Model\Network\InterparkBooks\" />
+    <Folder Include="Mvvm\Model\Network\InterparkBooks\SubData\" />
+    <Folder Include="Mvvm\Manager\Network\Api\TheMovieDB\" />
+    <Folder Include="Mvvm\Manager\Network\Api\InterparkBooks\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>

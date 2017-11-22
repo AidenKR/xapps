@@ -20,7 +20,7 @@ namespace xapps
                 throw new Exception("Request invalide Params. reqParam is NULL.");
             }
 
-            String url = BaseUrl + "now_playing" + ApiKey + Language + Param.Page;
+            String url = ConstsMovieApi.BaseUrl + "now_playing" + ConstsMovieApi.ApiKey + ConstsMovieApi.Language + Param.Page;
 
             Debug.WriteLine("## Req URL : " + url);
 

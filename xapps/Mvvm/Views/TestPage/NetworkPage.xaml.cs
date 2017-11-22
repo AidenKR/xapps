@@ -89,7 +89,11 @@ namespace xapps
 
                 case 4:
                     {
-                        await NetworkManager.Detail("284053");
+                        var result = await NetworkManager.BestSeller();
+                        foreach (var item in result.item)
+                        {
+                            Debug.WriteLine("Network BestSeller item..." + item);
+                        }
                     }
                     break;
 

@@ -20,7 +20,7 @@ namespace xapps
                 throw new Exception("Request invalide Params. reqParam is NULL.");
             }
 
-            String url = BaseUrl + Param.MovieId + "/credits" + ApiKey;
+            String url = ConstsMovieApi.BaseUrl + Param.MovieId + "/credits" + ConstsMovieApi.ApiKey;
 
             Debug.WriteLine("## Req URL : " + url);
 

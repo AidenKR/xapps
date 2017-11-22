@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace xapps
 {
     public abstract class BaseApi
     {
-        protected const string BaseUrl = "https://api.themoviedb.org/3/movie/"; // 기본 URL
-
-        protected const string ApiKey = "?api_key=54284155412142a62e518c006e50d5ce";    // key
-        protected const string Language = "&language=ko-KR";     // 언어 설정
-
         public async Task<T> GetAsync<T>()
         {
             string url = MakeRequestUrl();

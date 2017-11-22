@@ -5,7 +5,7 @@ namespace xapps
 {
     public static class NetworkManager
     {
-        #region NowPlaying
+        #region Movie - NowPlaying
         /// <summary>
         /// 현재 상영작 리스트를 반환한다.
         /// </summary>
@@ -41,7 +41,7 @@ namespace xapps
         }
         #endregion
 
-        #region Upcoming
+        #region Movie - Upcoming
         public static Task<UpcomingData> Upcoming(string page)
         {
             return MakeApiUpcoming(page).GetAsync<UpcomingData>();
@@ -66,7 +66,7 @@ namespace xapps
         }
         #endregion Upcoming
 
-        #region Detail
+        #region Movie - Detail
         public static Task<DetailData> Detail(string moveId)
         {
             return MakeApiDetail(moveId).GetAsync<DetailData>();
@@ -89,9 +89,9 @@ namespace xapps
             ApiMovieDetail api = new ApiMovieDetail(param);
             return api;
         }
-        #endregion Detail
+        #endregion
 
-        #region Credits
+        #region Movie - Credits
         public static Task<CreditsData> Credits(string moveId)
         {
             return MakeApiCredits(moveId).GetAsync<CreditsData>();
@@ -114,6 +114,90 @@ namespace xapps
             ApiMovieCredits api = new ApiMovieCredits(param);
             return api;
         }
-        #endregion Credits
+        #endregion
+
+        #region Books - BestSeller
+        /// <summary>
+        /// BestSeller 리스트를 반환한다.
+        /// </summary>
+        /// <returns>BestSeller</returns>
+        public static Task<BookData> BestSeller()
+        {
+            return MakeApiBestSeller().GetAsync<BookData>();
+        }
+
+        /// <summary>
+        /// BestSeller 리스트를 반환한다.
+        /// 전달 받은 Callback 으로 전달한다.
+        /// </summary>
+        /// <param name="callback">응답 받을 Callback</param>
+        public static void BestSellerToCallback(NetworkCallbackDelegate callback)
+        {
+            MakeApiBestSeller().GetAsyncToCallback<BookData>(callback);
+        }
+
+        static BaseApi MakeApiBestSeller()
+        {
+            // Make Api
+            ApiBooksBestSeller api = new ApiBooksBestSeller();
+            return api;
+        }
+        #endregion
+
+        #region Books - NewBook
+        /// <summary>
+        /// NewBook 리스트를 반환한다.
+        /// </summary>
+        /// <returns>BestSeller</returns>
+        public static Task<BookData> NewBook()
+        {
+            return MakeApiNewBook().GetAsync<BookData>();
+        }
+
+        /// <summary>
+        /// NewBook 리스트를 반환한다.
+        /// 전달 받은 Callback 으로 전달한다.
+        /// </summary>
+        /// <param name="callback">응답 받을 Callback</param>
+        public static void NewBookToCallback(NetworkCallbackDelegate callback)
+        {
+            MakeApiNewBook().GetAsyncToCallback<BookData>(callback);
+        }
+
+        static BaseApi MakeApiNewBook()
+        {
+            // Make Api
+            ApiBooksNewBook api = new ApiBooksNewBook();
+            return api;
+        }
+        #endregion
+
+        #region Books - Recommand
+        /// <summary>
+        /// Recommand 리스트를 반환한다.
+        /// </summary>
+        /// <returns>BestSeller</returns>
+        public static Task<BookData> Recommand()
+        {
+            return MakeApiRecommand().GetAsync<BookData>();
+        }
+
+        /// <summary>
+        /// Recommand 리스트를 반환한다.
+        /// 전달 받은 Callback 으로 전달한다.
+        /// </summary>
+        /// <param name="callback">응답 받을 Callback</param>
+        public static void RecommandToCallback(NetworkCallbackDelegate callback)
+        {
+            MakeApiRecommand().GetAsyncToCallback<BookData>(callback);
+        }
+
+        static BaseApi MakeApiRecommand()
+        {
+            // Make Api
+            ApiBooksRecommand api = new ApiBooksRecommand();
+            return api;
+        }
+        #endregion
     }
 }

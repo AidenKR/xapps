@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace xapps
 {
-    public class ApiMovieUpcoming : BaseApi
+    public class ApiMovieDetail : BaseApi
     {
         ReqParam Param = null;
 
-        public ApiMovieUpcoming(ReqParam param)
+        public ApiMovieDetail(ReqParam param)
         {
             Param = param;
         }
@@ -20,7 +20,7 @@ namespace xapps
                 throw new Exception("Request invalide Params. reqParam is NULL.");
             }
 
-            String url = BaseUrl + "upcoming" + ApiKey + Language + Param.Page;
+            String url = ConstsMovieApi.BaseUrl + Param.MovieId + ConstsMovieApi.ApiKey + ConstsMovieApi.Language;
 
             Debug.WriteLine("## Req URL : " + url);
 
@@ -29,13 +29,8 @@ namespace xapps
 
         public class ReqParam
         {
-            // Param Page.
-            string page = "";
-            public string Page
-            {
-                get { return "&page=" + page; }
-                set { page = value; }
-            }
+            // movie id.
+            public string MovieId { get; set; }
         }
     }
 }
