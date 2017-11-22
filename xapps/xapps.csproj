@@ -156,7 +156,7 @@
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksBestSeller.cs" />
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksNewBook.cs" />
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksRecommand.cs" />
-    <Compile Include="Mvvm\Views\CustomView\CustomButton\CustomButton.cs" />
+    <Compile Include="Mvvm\Model\View\ListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
