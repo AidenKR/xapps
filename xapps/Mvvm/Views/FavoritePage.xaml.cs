@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Xamarin.Forms;
+using static xapps.FavoriteViewModel;
 
 namespace xapps
 {
@@ -24,33 +25,26 @@ namespace xapps
             BindingContext = favoriteViewModel = new FavoriteViewModel();
             Debug.WriteLine("favorite list count = " + favoriteViewModel.favorite.Count);
 
-            if (favoriteViewModel.favorite.Count <= 0)
-            {
-                emptyView.IsVisible = true;
-                favoriteListView.IsVisible = false;
-                editBtn.IsVisible = false;
-            }
-            else
-            {
-                emptyView.IsVisible = false;
-                favoriteListView.IsVisible = true;
-                editBtn.IsVisible = true;
-            }
+            showEmptyUI(favoriteViewModel.favorite.Count <= 0);
+            
         }
 
         void onClickEditButton(object sender, System.EventArgs e)
         {
             Debug.WriteLine("clicked edit button");
-            favoriteViewModel.isEditingMode = !favoriteViewModel.isEditingMode;
-   //         FavoriteItem data = dbList[index];
-   //         IEnumerator<FavoriteItem> enumdata = database.getFilteredMovieId(data.movieId).GetEnumerator();
-   //         if (enumdata.MoveNext() == false) {
-   //             database.SaveItem(data);
-   //             Debug.WriteLine("adding data[ " + index + " ] : title = " + data.title);
-   //         } else {
-   //             Debug.WriteLine("has item");
-   //         }
-			//index += 1;
+            if (favoriteViewModel.favorite.Count > 0)
+            {
+                toggleEditingUI();
+            }
+        }
+
+        void onClickCancleFavorite(object sender, System.EventArgs e)
+        {
+            Debug.WriteLine("clicked CancleFavorite button");
+            favoriteViewModel.removeFavorite();
+            toggleEditingUI();
+
+            showEmptyUI(favoriteViewModel.favorite.Count <= 0);
         }
 
         // show list item
@@ -62,11 +56,47 @@ namespace xapps
         void OnItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             Debug.WriteLine("clicked item");
+            FavoriteListItem item = e.SelectedItem as FavoriteViewModel.FavoriteListItem;
+            if(item != null) {
+				item.isSelectedItem = !item.isSelectedItem;
+
+                if(item.isSelectedItem) {
+                    item.imageName = "co_btn_check_normal";
+                } else {
+                    item.imageName = "co_btn_check_unsel";
+                }
+
+                favoriteListView.ItemsSource = null;
+                favoriteListView.ItemsSource = favoriteViewModel.favorite;
+            }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        void toggleEditingUI() {
+            if (favoriteViewModel.toggleEditButton())
+            {
+                editBtn.Text = "취소";
+                deleteBtn.IsVisible = true;
+            }
+            else
+            {
+                editBtn.Text = "편집";
+                deleteBtn.IsVisible = false;
+            }
+
+            favoriteListView.ItemsSource = null;
+            favoriteListView.ItemsSource = favoriteViewModel.refreshList();
+        }
+
+        void showEmptyUI(bool isEmpty) {
+            if(isEmpty) {
+                emptyView.IsVisible = true;
+                favoriteListView.IsVisible = false;
+                editBtn.IsVisible = false;
+            } else {
+                emptyView.IsVisible = false;
+                favoriteListView.IsVisible = true;
+                editBtn.IsVisible = true;
+            }
         }
     }
 }

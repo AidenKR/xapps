@@ -3,49 +3,52 @@
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="10,10,10,0" />
-            <On Platform="Android, UWP" Value="20" />
+            <On Platform="iOS" Value="0,0,0,0" />
+            <On Platform="Android, UWP" Value="0" />
         </OnPlatform>
     </ContentPage.Padding>
     
 	<ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                
-                <Button x:Name="editBtn" Clicked="onClickEditButton" Text="edit" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
-            </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White">
             
-            <ListView  x:Name="favoriteListView" ItemsSource="{Binding favorite}" RowHeight="100" SeparatorColor="Black" ItemAppearing="OnAppearing" ItemSelected="OnItemSelected" IsVisible="true" SeparatorVisibility="None">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White" HeightRequest="40" Padding="10,10,20,10">
+                <Button x:Name="deleteBtn" Clicked="onClickCancleFavorite" Text="즐겨찾기 취소" WidthRequest="120" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" BackgroundColor="Green" IsVisible="false"/>
+                <Button x:Name="editBtn" Clicked="onClickEditButton" Text="편집" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" BackgroundColor="Yellow" WidthRequest="80"/>
+            </StackLayout>
+
+            <StackLayout x:Name="topLine" VerticalOptions="Start" Orientation="Horizontal" HeightRequest="1" BackgroundColor="Black" >
+			</StackLayout>
+            
+            <ListView x:Name="favoriteListView" ItemsSource="{Binding favorite}" RowHeight="100" SeparatorColor="Black" ItemAppearing="OnAppearing" ItemSelected="OnItemSelected" IsVisible="true" SeparatorVisibility="None" >
+                
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         
-                        <ViewCell x:Name="favoriteListViewCell">
-                            <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                                
-                                <Button x:Name="CheckBtn" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" IsVisible="{Binding isEditingMode}" Image="co_btn_check_normal" >
-    <Button.Triggers>
-        <Trigger TargetType="Button" Property="IsVisible" Value="True">
-            <Setter Property="WidthRequest" Value="0" />
-        </Trigger>
-    </Button.Triggers>
-                                </Button>
-                                
-                                
-                                <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Center" WidthRequest="90" HeightRequest="90" VerticalOptions="Center"/>
-                                <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
-                                    <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
-                                    <Label Text="{Binding original_title}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
-                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                                        <Image Source="star.png" WidthRequest="10"/>
-                                        <Label Text="{Binding vote_average}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White" Padding="0,10,0,10" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White" Padding="10,0,10,0">
+                                    
+                                    <Button x:Name="checkBtn" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" IsVisible="{Binding isEditingMode}" Image="{Binding imageName}" Margin="10"/>
+                                    <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Start" WidthRequest="90" HeightRequest="90" VerticalOptions="Center" Margin="0" />
+                                    
+                                    <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center" HorizontalOptions="End" Padding="10,0,0,0" >
+                                        <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding original_title}" FontAttributes="Italic" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                        
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                            <Image Source="star.png" WidthRequest="10"/>
+                                            <Label Text="{Binding vote_average}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                        
+                                        <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                        
                                     </StackLayout>
-                                    <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                    
                                 </StackLayout>
                                 
+                                <StackLayout VerticalOptions="End" Orientation="Horizontal" HeightRequest="1" BackgroundColor="Black" >
+								</StackLayout>
                             </StackLayout>
-                                <StackLayout VerticalOptions="End" Orientation="Horizontal" HeightRequest="1" BackgroundColor="Black" />
-                                </StackLayout>
                         </ViewCell>
                         
                     </DataTemplate>
@@ -53,7 +56,7 @@
             </ListView>
 
             <StackLayout x:Name="emptyView" Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White" IsVisible="false">
-                <Label Text = "regist favorite item" FontSize="24" HorizontalOptions="CenterAndExpand"  XAlign="Center"/>
+                <Label Text = "regist favorite item" FontSize="24" HorizontalOptions="Center"  XAlign="Center" VerticalOptions="Center"/>
             </StackLayout>
             
         </StackLayout>
