@@ -12,16 +12,16 @@
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                 
-                <Button x:Name="editBtn" Clicked="Handle_Clicked" Text="edit" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
+                <Button x:Name="editBtn" Clicked="onClickEditButton" Text="edit" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
             </StackLayout>
             
-            <ListView  x:Name="favoriteListView" RowHeight="100" SeparatorColor="Red" ItemAppearing="Handle_ItemAppearing" ItemSelected="Handle_ItemSelected" IsVisible="true">
+            <ListView  x:Name="favoriteListView" ItemsSource="{Binding favorite}" RowHeight="100" SeparatorColor="Black" ItemAppearing="OnAppearing" ItemSelected="OnItemSelected" IsVisible="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                                <Button x:Name="CheckBtn" HorizontalOptions="Center" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" IsVisible="false" Image="co_btn_check_normal" />
+                                <Button x:Name="CheckBtn" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" IsVisible="{Binding isVisible}" Image="co_btn_check_normal" />
                                 <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Center" WidthRequest="90" HeightRequest="90" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
                                     <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />

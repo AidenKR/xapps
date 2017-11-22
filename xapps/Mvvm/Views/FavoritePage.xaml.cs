@@ -32,23 +32,29 @@ namespace xapps
 
         public void initData()
         {
+            List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
 
 #if USE_TEST_DATA
-            DatabaseManager.Instance.GetTable<FavoriteItem>().CreateTable();
-            for (int i = 0; i < 20; i++)
+            if (dbItems == null || dbItems.Count <= 0)
             {
-                var item = new FavoriteItem
+                DatabaseManager.Instance.GetTable<FavoriteItem>().CreateTable();
+                for (int i = 0; i < 20; i++)
                 {
-                    movieId = "id" + i,
-                    favoriteYN = true,
-                    original_title = "original_title " + i,
-                    title = "title" + i
-                };
-                var result = DatabaseManager.Instance.GetTable<FavoriteItem>().InsertItem(item);
-                Debug.WriteLine("save item index {0}: result = {1}", i, result);
-            }
+                    var item = new FavoriteItem
+                    {
+                        movieId = "id" + i,
+                        favoriteYN = true,
+                        original_title = "original_title " + i,
+                        title = "title" + i
+                    };
+
+                    dbItems.Add(item);
+                    var result = DatabaseManager.Instance.GetTable<FavoriteItem>().InsertItem(item);
+                    Debug.WriteLine("save item index {0}: result = {1}", i, result);
+                }
+			}
 #endif
-            List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
+
             if (dbItems != null && dbItems.Count > 0)
             {
                 emptyView.IsVisible = false;
@@ -64,7 +70,7 @@ namespace xapps
             }
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
+        void onClickEditButton(object sender, System.EventArgs e)
         {
             Debug.WriteLine("clicked edit button");
    //         FavoriteItem data = dbList[index];
@@ -79,12 +85,12 @@ namespace xapps
         }
 
         // show list item
-        void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        void OnAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
         {
             Debug.WriteLine("appearing item");
         }
 
-        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        void OnItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             Debug.WriteLine("clicked item");
         }
