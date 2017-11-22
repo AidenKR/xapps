@@ -22,11 +22,26 @@ namespace xapps
         public void initData()
         {
             BindingContext = favoriteViewModel = new FavoriteViewModel();
+            Debug.WriteLine("favorite list count = " + favoriteViewModel.favorite.Count);
+
+            if (favoriteViewModel.favorite.Count <= 0)
+            {
+                emptyView.IsVisible = true;
+                favoriteListView.IsVisible = false;
+                editBtn.IsVisible = false;
+            }
+            else
+            {
+                emptyView.IsVisible = false;
+                favoriteListView.IsVisible = true;
+                editBtn.IsVisible = true;
+            }
         }
 
         void onClickEditButton(object sender, System.EventArgs e)
         {
             Debug.WriteLine("clicked edit button");
+            favoriteViewModel.isEditingMode = !favoriteViewModel.isEditingMode;
    //         FavoriteItem data = dbList[index];
    //         IEnumerator<FavoriteItem> enumdata = database.getFilteredMovieId(data.movieId).GetEnumerator();
    //         if (enumdata.MoveNext() == false) {
@@ -47,6 +62,11 @@ namespace xapps
         void OnItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             Debug.WriteLine("clicked item");
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
     }
 }

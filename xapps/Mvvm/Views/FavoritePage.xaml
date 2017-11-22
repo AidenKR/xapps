@@ -15,13 +15,23 @@
                 <Button x:Name="editBtn" Clicked="onClickEditButton" Text="edit" HorizontalOptions="EndAndExpand" BorderColor="Black" FontSize="16" TextColor="Red" />
             </StackLayout>
             
-            <ListView  x:Name="favoriteListView" ItemsSource="{Binding favorite}" RowHeight="100" SeparatorColor="Black" ItemAppearing="OnAppearing" ItemSelected="OnItemSelected" IsVisible="true">
+            <ListView  x:Name="favoriteListView" ItemsSource="{Binding favorite}" RowHeight="100" SeparatorColor="Black" ItemAppearing="OnAppearing" ItemSelected="OnItemSelected" IsVisible="true" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         
-                        <ViewCell>
+                        <ViewCell x:Name="favoriteListViewCell">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="Fill" BackgroundColor="White">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                                <Button x:Name="CheckBtn" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" IsVisible="{Binding isVisible}" Image="co_btn_check_normal" />
+                                
+                                <Button x:Name="CheckBtn" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" IsVisible="{Binding isEditingMode}" Image="co_btn_check_normal" >
+    <Button.Triggers>
+        <Trigger TargetType="Button" Property="IsVisible" Value="True">
+            <Setter Property="WidthRequest" Value="0" />
+        </Trigger>
+    </Button.Triggers>
+                                </Button>
+                                
+                                
                                 <Image x:Name="imageView" Aspect="AspectFit" Source="{Binding poster_path}" HorizontalOptions="Center" WidthRequest="90" HeightRequest="90" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Center">
                                     <Label Text="{Binding title}" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
@@ -32,7 +42,10 @@
                                     </StackLayout>
                                     <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" Font="Small" TextColor="Gray" LineBreakMode="TailTruncation" />
                                 </StackLayout>
+                                
                             </StackLayout>
+                                <StackLayout VerticalOptions="End" Orientation="Horizontal" HeightRequest="1" BackgroundColor="Black" />
+                                </StackLayout>
                         </ViewCell>
                         
                     </DataTemplate>
