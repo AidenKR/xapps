@@ -56,7 +56,7 @@ namespace xapps
 
             if (viewModel.Items == null || viewModel.Items.Count == 0)
             {
-                viewModel.LoadItemsCommand.Execute(HomePageViewModel.TYPE_NOW_PLAYING);
+                viewModel.LoadItemsCommand.Execute(ListPageViewModel.TYPE_MOVIE_NOW_PLAYING);
             }
         }
 

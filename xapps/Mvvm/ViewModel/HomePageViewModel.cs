@@ -9,14 +9,11 @@ namespace xapps
 {
     public class HomePageViewModel : BaseViewModel
     {
-        public const int TYPE_NOW_PLAYING = 100; // 현재 상영중
-        public const int TYPE_UPCOMING = TYPE_NOW_PLAYING + 1; // 개봉 예정 중
-
         public ObservableCollection<results> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         // selected Category index
-        public int SelectedCategoryType = TYPE_NOW_PLAYING;
+        public int SelectedCategoryType = ListPageViewModel.TYPE_MOVIE_NOW_PLAYING;
 
         public HomePageViewModel()
         {
@@ -39,14 +36,14 @@ namespace xapps
                 List<results> list = null;
                 switch (requestType)
                 {
-                    case TYPE_NOW_PLAYING:
+                    case ListPageViewModel.TYPE_MOVIE_NOW_PLAYING:
                         {
                             var result = await NetworkManager.NowPlaying("1");
                             list = result.results;
                             break;
                         }
 
-                    case TYPE_UPCOMING:
+                    case ListPageViewModel.TYPE_MOVIE_UPCOMING:
                         {
                             var result = await NetworkManager.Upcoming("1");
                             list = result.results;
