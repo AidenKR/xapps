@@ -193,6 +193,7 @@
     <BundleResource Include="Resources\img_share.png" />
     <BundleResource Include="Resources\img_wishlist.png" />
     <BundleResource Include="Resources\img_wishlist_p.png" />
+    <BundleResource Include="Resources\stop.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mvvm\Services\Toast\" />
