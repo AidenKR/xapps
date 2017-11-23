@@ -45,10 +45,8 @@ namespace xapps.iOS
             Console.WriteLine("OnElementChanged");
 
             asset = AVAsset.FromUrl(new NSUrl(MovieUrlData.previewUrl));
-            playerItem = new AVPlayerItem(asset);
+            asset.LoadValuesAsynchronously(new[] { "playable" }, loadMovieDataToUrl);
 
-            player = new AVPlayer(playerItem);
-            playerLayer = AVPlayerLayer.FromPlayer(player);
             isPlaying = false;
         }
 
@@ -68,42 +66,8 @@ namespace xapps.iOS
 
             Console.WriteLine("LayoutSubviews");
 
-            playerLayer = AVPlayerLayer.FromPlayer(player);
-            playerLayer.VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
-            playerLayer.NeedsDisplayOnBoundsChange = true;
-            playerLayer.Frame = NativeView.Bounds;
-            NativeView.Layer.AddSublayer(playerLayer);
-
-            player.AddObserver(this, (NSString)"status", NSKeyValueObservingOptions.New, IntPtr.Zero);
-            player.AddBoundaryTimeObserver(times: new[] { NSValue.FromCMTime(new CMTime(playerItem.Asset.Duration.Value, playerItem.Asset.Duration.TimeScale)) },
-                                            queue: null,
-                                            handler: () =>
-                                            {
-                                                player.Seek(new CMTime(0, 0));
-                                                controlPlayer(true);
-                                            });
-
-            CGRect rect = NativeView.Bounds;
-            playButton = new UIButton(new CGRect((rect.Size.Width / 2) - 25, (rect.Size.Height / 2) - 25, 50, 50));
-            stopButton = new UIButton(new CGRect((rect.Size.Width / 2) - 25, (rect.Size.Height / 2) - 25, 50, 50));
-
-            playButton.SetImage(new UIImage("play.png"), UIControlState.Normal);
-            playButton.SetImage(new UIImage("play.png"), UIControlState.Highlighted);
-            playButton.AddTarget(TouchUpInsidePlayEvent, UIControlEvent.TouchUpInside);
-            playButton.Hidden = false;
-
-            stopButton.SetImage(new UIImage("stop.png"), UIControlState.Normal);
-            stopButton.SetImage(new UIImage("stop.png"), UIControlState.Highlighted);
-            stopButton.AddTarget(TouchUpInsideStopEvent, UIControlEvent.TouchUpInside);
-            stopButton.Hidden = true;
-
-            NativeView.AddSubview(playButton);
-            NativeView.AddSubview(stopButton);
-
             UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
             this.BecomeFirstResponder();
-
-            //NativeView.Layer.AddSublayer(playButton);
 
             ////layout the elements depending on what screen orientation we are. 
             //if (DeviceHelper.iOSDevice.Orientation == UIDeviceOrientation.Portrait)
@@ -160,6 +124,79 @@ namespace xapps.iOS
         public override void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
         {
             Console.WriteLine("ObserveValue");
+        }
+
+        private void addLayerView(bool isSuccess) {
+            if(isSuccess) {
+                player = new AVPlayer(playerItem);
+                playerLayer = AVPlayerLayer.FromPlayer(player);
+
+                playerLayer.VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
+                playerLayer.NeedsDisplayOnBoundsChange = true;
+                playerLayer.Frame = NativeView.Bounds;
+                NativeView.Layer.AddSublayer(playerLayer);
+                player.AddObserver(this, (NSString)"status", NSKeyValueObservingOptions.New, IntPtr.Zero);
+                player.AddBoundaryTimeObserver(times: new[] { NSValue.FromCMTime(new CMTime(playerItem.Asset.Duration.Value, playerItem.Asset.Duration.TimeScale)) },
+                                                queue: null,
+                                                handler: () =>
+                                                {
+                                                    player.Seek(new CMTime(0, 0));
+                                                    controlPlayer(true);
+                                                });
+
+                makeControlButton();
+            } else {
+                isPlaying = false;
+                playButton.Hidden = true;
+                stopButton.Hidden = true;
+            }
+        }
+
+        void loadMovieDataToUrl()
+        {
+            Console.WriteLine("loadMovieDataToUrl");
+            NSError error = new NSError();
+            var status = asset.StatusOfValue("playable", out error);
+
+            switch(status) {
+                case AVKeyValueStatus.Loaded: {
+                        Console.WriteLine("AVKeyValueStatus.Loaded");
+                        playerItem = new AVPlayerItem(asset);
+
+                        InvokeOnMainThread(() => {
+							addLayerView(true);
+                        });
+                    }
+                    break;
+
+                case AVKeyValueStatus.Failed : {
+                        Console.WriteLine("AVKeyValueStatus.Failed");
+                        InvokeOnMainThread(() => {
+                            addLayerView(false);
+                        });
+                        // what to do.....
+                    }
+                    break;
+            }
+        }
+
+        private void makeControlButton() {
+            CGRect rect = NativeView.Bounds;
+            playButton = new UIButton(new CGRect((rect.Size.Width / 2) - 25, (rect.Size.Height / 2) - 25, 50, 50));
+            stopButton = new UIButton(new CGRect((rect.Size.Width / 2) - 25, (rect.Size.Height / 2) - 25, 50, 50));
+
+            playButton.SetImage(new UIImage("play.png"), UIControlState.Normal);
+            playButton.SetImage(new UIImage("play.png"), UIControlState.Highlighted);
+            playButton.AddTarget(TouchUpInsidePlayEvent, UIControlEvent.TouchUpInside);
+            playButton.Hidden = false;
+
+            stopButton.SetImage(new UIImage("stop.png"), UIControlState.Normal);
+            stopButton.SetImage(new UIImage("stop.png"), UIControlState.Highlighted);
+            stopButton.AddTarget(TouchUpInsideStopEvent, UIControlEvent.TouchUpInside);
+            stopButton.Hidden = true;
+
+            NativeView.AddSubview(playButton);
+            NativeView.AddSubview(stopButton);
         }
     }
 }
