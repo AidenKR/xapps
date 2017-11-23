@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -7,14 +6,14 @@ namespace xapps
 {
     public partial class WebviewPage : ContentPage
     {
-        public WebviewPage()
+        public WebviewPage(string url = "http://13.124.169.220/")
         {
             InitializeComponent();
 
-            Browser.Source = "http://13.124.169.220/movie.html";
+            Browser.Source = url;
         }
 
-        private void backClicked(object sender, EventArgs e)
+        void backClicked(object sender, EventArgs e)
         {
             // Check to see if there is anywhere to go back to
             if (Browser.CanGoBack)

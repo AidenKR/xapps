@@ -9,26 +9,16 @@ namespace xapps
 {
     public class ListPageViewModel : BaseViewModel
     {
-        public const int TYPE_MOVIE = 0x10000000; //
-        public const int TYPE_MOVIE_NOW_PLAYING = 0x10000001; // 현재 상영중
-        public const int TYPE_MOVIE_UPCOMING = 0x10000002; // 개봉 예정 중
-
-        public const int TYPE_BOOKS = 0x20000000; //
-        public const int TYPE_BOOKS_BEST_SELLER = 0x20000001; // best seller
-        public const int TYPE_BOOKS_NEW_BOOK = 0x20000002; // 신작
-        public const int TYPE_BOOKS_RECOMMEND = 0x20000004; // 추천
-
         public ObservableCollection<ListPageItem> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command RefreshItemsCommand { get; set; }
         public Command MoreItemsCommand { get; set; }
 
         // selected Category index
-        public int SelectedCategoryType = TYPE_MOVIE_NOW_PLAYING;
+        public int SelectedCategoryType = CategoryManager.TYPE_MOVIE_NOW_PLAYING;
 
         public ListPageViewModel()
         {
-            Title = "영화";
             Items = new ObservableCollection<ListPageItem>();
 
             LoadItemsCommand = new Command(async () => await ExecuteMoreItemsCommand());
@@ -46,11 +36,11 @@ namespace xapps
             try
             {
                 ObservableCollection<ListPageItem> result = null;
-                if ((SelectedCategoryType & TYPE_MOVIE) != 0)
+                if (CategoryManager.IsMovieCategory(SelectedCategoryType))
                 {
                     result = await RequestMovieServer(pageNumber.ToString());
                 }
-                else if ((SelectedCategoryType & TYPE_BOOKS) != 0)
+                else if (CategoryManager.IsBooksCategory(SelectedCategoryType))
                 {
                     result = await RequestBooksServer();
                 }
@@ -84,14 +74,14 @@ namespace xapps
             List<results> list = null;
             switch (SelectedCategoryType)
             {
-                case TYPE_MOVIE_NOW_PLAYING:
+                case CategoryManager.TYPE_MOVIE_NOW_PLAYING:
                     {
                         var result = await NetworkManager.NowPlaying(pageNum);
                         list = result.results;
                         break;
                     }
 
-                case TYPE_MOVIE_UPCOMING:
+                case CategoryManager.TYPE_MOVIE_UPCOMING:
                     {
                         var result = await NetworkManager.Upcoming(pageNum);
                         list = result.results;
@@ -127,21 +117,21 @@ namespace xapps
             List<BookItem> list = null;
             switch (SelectedCategoryType)
             {
-                case TYPE_BOOKS_BEST_SELLER:
+                case CategoryManager.TYPE_BOOKS_BEST_SELLER:
                     {
                         var result = await NetworkManager.BestSeller();
                         list = result.item;
                         break;
                     }
 
-                case TYPE_BOOKS_NEW_BOOK:
+                case CategoryManager.TYPE_BOOKS_NEW_BOOK:
                     {
                         var result = await NetworkManager.NewBook();
                         list = result.item;
                         break;
                     }
 
-                case TYPE_BOOKS_RECOMMEND:
+                case CategoryManager.TYPE_BOOKS_RECOMMEND:
                     {
                         var result = await NetworkManager.Recommend();
                         list = result.item;

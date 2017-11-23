@@ -33,8 +33,8 @@ namespace xapps
                 isBoldText = true
             };
 
-            mdpTab.makeTabLayout(tabs, layoutData);
-            mdpTab.Listener = this;
+            MovieTab.makeTabLayout(tabs, layoutData);
+            MovieTab.Listener = this;
         }
 
         bool hasAppearedOnce = false;
@@ -48,15 +48,23 @@ namespace xapps
             {
                 hasAppearedOnce = true;
 
-                HListView.HeightRequest = App.ScreenWidth;
+                MovieListView.HeightRequest = App.ScreenWidth;
+                BooksListView.HeightRequest = App.ScreenWidth;
 
-                Debug.WriteLine("HListViewLayout.HeightRequest : " + HListViewLayout.Width);
-                Debug.WriteLine("HListView.HeightRequest : " + HListView.HeightRequest);
+                Debug.WriteLine("MovieListViewLayout.HeightRequest : " + MovieListViewLayout.Width);
+                Debug.WriteLine("MovieListView.HeightRequest : " + MovieListView.HeightRequest);
+                Debug.WriteLine("BooksListViewLayout.HeightRequest : " + BooksListViewLayout.Width);
+                Debug.WriteLine("BooksListView.HeightRequest : " + BooksListView.HeightRequest);
             }
 
-            if (viewModel.Items == null || viewModel.Items.Count == 0)
+            if (viewModel.MovieItems == null || viewModel.MovieItems.Count == 0)
             {
-                viewModel.LoadItemsCommand.Execute(ListPageViewModel.TYPE_MOVIE_NOW_PLAYING);
+                viewModel.LoadItemsCommand.Execute(CategoryManager.TYPE_MOVIE_NOW_PLAYING);
+            }
+
+            if (viewModel.BooksItems == null || viewModel.BooksItems.Count == 0)
+            {
+                viewModel.LoadItemsCommand.Execute(CategoryManager.TYPE_BOOKS_BEST_SELLER);
             }
         }
 
@@ -64,15 +72,15 @@ namespace xapps
         {
             Debug.WriteLine("Tab Selected Index : " + index);
 
-            int type = ListPageViewModel.TYPE_MOVIE_NOW_PLAYING;
+            int type = CategoryManager.TYPE_MOVIE_NOW_PLAYING;
             if (index != 0)
             {
-                type = ListPageViewModel.TYPE_MOVIE_UPCOMING;
+                type = CategoryManager.TYPE_MOVIE_UPCOMING;
             }
             viewModel.LoadItemsCommand.Execute(type);
         }
 
-        async void HListItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void MovieListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as results;
             if (item == null)
@@ -81,7 +89,19 @@ namespace xapps
             await Navigation.PushAsync(new DetailPage(item.id));
 
             // Manually deselect item
-            HListView.SelectedItem = null;
+            MovieListView.SelectedItem = null;
+        }
+
+        async void BooksListItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as BookItem;
+            if (item == null)
+                return;
+
+            await Navigation.PushAsync(new WebviewPage(item.mobileLink));
+
+            // Manually deselect item
+            BooksListView.SelectedItem = null;
         }
 
         async void ViewAllClick(object sender, System.EventArgs e)
@@ -89,8 +109,8 @@ namespace xapps
             // TODO 정리 필요
             List<Tab> TypeList = new List<Tab>
             {
-                new Tab{ Title = "현재 상영작", Type = ListPageViewModel.TYPE_MOVIE_NOW_PLAYING, IsSelected = true },
-                new Tab{ Title = "개봉 예정작", Type = ListPageViewModel.TYPE_MOVIE_UPCOMING }
+                new Tab{ Title = "현재 상영작", Type = CategoryManager.TYPE_MOVIE_NOW_PLAYING, IsSelected = true },
+                new Tab{ Title = "개봉 예정작", Type = CategoryManager.TYPE_MOVIE_UPCOMING }
             };
 
             await Navigation.PushAsync(new ListPage(TypeList));
@@ -101,9 +121,9 @@ namespace xapps
             // TODO 정리 필요
             List<Tab> TypeList = new List<Tab>
             {
-                new Tab{ Title = "베스트셀러", Type = ListPageViewModel.TYPE_BOOKS_BEST_SELLER, IsSelected = true },
-                new Tab{ Title = "추천도서", Type = ListPageViewModel.TYPE_BOOKS_RECOMMEND },
-                new Tab{ Title = "신간도서", Type = ListPageViewModel.TYPE_BOOKS_NEW_BOOK }
+                new Tab{ Title = "베스트셀러", Type = CategoryManager.TYPE_BOOKS_BEST_SELLER, IsSelected = true },
+                new Tab{ Title = "추천도서", Type = CategoryManager.TYPE_BOOKS_RECOMMEND },
+                new Tab{ Title = "신간도서", Type = CategoryManager.TYPE_BOOKS_NEW_BOOK }
             };
 
             await Navigation.PushAsync(new ListPage(TypeList));

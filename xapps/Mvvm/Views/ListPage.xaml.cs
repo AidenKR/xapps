@@ -34,6 +34,17 @@ namespace xapps
             }
             Debug.WriteLine("Select Tab : " + selectedTab);
 
+            // Movie
+            if (CategoryManager.IsMovieCategory(selectedTab.Type))
+            {
+                Title = "영화";
+            }
+            // Books
+            else if (CategoryManager.IsBooksCategory(selectedTab.Type))
+            {
+                Title = "도서";
+            }
+
             BindingContext = viewModel = new ListPageViewModel();
 
             InitView();
@@ -80,17 +91,18 @@ namespace xapps
             var item = args.SelectedItem as ListPageItem;
             if (item == null)
                 return;
-            
+
             // Movie
-            if ((selectedTab.Type & ListPageViewModel.TYPE_MOVIE) != 0) {
+            if (CategoryManager.IsMovieCategory(selectedTab.Type))
+            {
                 await Navigation.PushAsync(new DetailPage(item.Id));
             }
             // Books
-            else if ((selectedTab.Type & ListPageViewModel.TYPE_BOOKS) != 0) {
-                // TODO URL 전달 필요
-                await Navigation.PushAsync(new WebviewPage());
+            else if (CategoryManager.IsBooksCategory(selectedTab.Type))
+            {
+                await Navigation.PushAsync(new WebviewPage(item.NextPageUrl));
             }
-
+            
             // Manually deselect item
             listView.SelectedItem = null;
         }
@@ -128,7 +140,7 @@ namespace xapps
 
         void NextDataReqeust()
         {
-            if (dataLoading || (selectedTab.Type & ListPageViewModel.TYPE_MOVIE) == 0)
+            if (dataLoading || !CategoryManager.IsMovieCategory(selectedTab.Type))
             {
                 return;
             }
