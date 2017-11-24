@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class ListPage : ContentPage, CustomTabInterface
+    public partial class ListPage : ContentPage, ICustomTabInterface
     {
-        public class Tab
+        public class ListPageTab
         {
             public string Title { get; set; }
             public int Type { get; set; }
@@ -16,13 +16,13 @@ namespace xapps
 
         ListPageViewModel viewModel;
 
-        List<Tab> TypeList;
-        Tab selectedTab;
+        List<ListPageTab> TypeList;
+        ListPageTab selectedTab;
         int pageNumber;
 
         bool dataLoading;
 
-        public ListPage(List<Tab> tabs)
+        public ListPage(List<ListPageTab> tabs)
         {
             InitializeComponent();
 
@@ -32,7 +32,7 @@ namespace xapps
             if (selectedTab == null) {
                 selectedTab = tabs[0];
             }
-            Debug.WriteLine("Select Tab : " + selectedTab);
+            Debug.WriteLine("Select Tab : " + selectedTab.Title);
 
             // Movie
             if (CategoryManager.IsMovieCategory(selectedTab.Type))
@@ -60,7 +60,7 @@ namespace xapps
             List<string> arrTabs = new List<string>();
 
             int nSelIndex = 0;
-            foreach (Tab item in TypeList)
+            foreach (ListPageTab item in TypeList)
             {
                 arrTabs.Add(item.Title);
 
@@ -69,7 +69,7 @@ namespace xapps
                 }
             }
 
-            TabButton.makeTabLayout(arrTabs, null, nSelIndex);
+            TabButton.MakeTabLayout(arrTabs, null, nSelIndex);
             TabButton.Listener = this;
         }
 
@@ -118,13 +118,13 @@ namespace xapps
             }
         }
 
-        public void onClickTabButton(int index)
+        public void OnClickTabButton(int index, Object tag)
         {
             SelectedCategory(TypeList[index]);
         }
         #endregion
 
-        void SelectedCategory(Tab selectTab)
+        void SelectedCategory(ListPageTab selectTab)
         {
             if (selectedTab != selectTab) {
                 // category 가 변경되었을경우에는 pageNumber를 초기화해준다.

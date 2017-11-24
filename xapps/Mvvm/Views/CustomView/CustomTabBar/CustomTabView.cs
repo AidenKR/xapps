@@ -7,9 +7,14 @@ namespace xapps
 {
     public class CustomTabView : StackLayout
     {
-        public CustomTabInterface Listener { get; set; } // Tab Changed Event Listener
+        public class TabData
+        {
+            public string Title { get; set; }
+            public Object Tag { get; set; }
+        }
 
-        List<string> TabTextList;
+        public ICustomTabInterface Listener { get; set; } // Tab Changed Event Listener
+
         CustomTabCellLayoutData TabCellLayoutData;
         int selectedIndex;
 
@@ -20,9 +25,28 @@ namespace xapps
             HorizontalOptions = LayoutOptions.Start;
         }
 
-        public void makeTabLayout(List<string> textList, CustomTabCellLayoutData layout = null, int selIndex = 0)
+        public void MakeTabLayout(List<string> titleList, CustomTabCellLayoutData layout = null, int selIndex = 0)
         {
-            if (textList == null || textList.Count <= 0)
+            if (titleList == null || titleList.Count <= 0)
+            {
+                return;
+            }
+
+            List<TabData> tabList = new List<TabData>();
+            foreach (string item in titleList)
+            {
+                tabList.Add(new TabData
+                {
+                    Title = item
+                });
+            }
+
+            MakeTabLayout(tabList, layout, selIndex);
+        }
+
+        public void MakeTabLayout(List<TabData> tabList, CustomTabCellLayoutData layout = null, int selIndex = 0)
+        {
+            if (tabList == null || tabList.Count <= 0)
             {
                 return;
             }
@@ -35,7 +59,6 @@ namespace xapps
                 HorizontalOptions = LayoutOptions.FillAndExpand;
             }
 
-            TabTextList = textList;
             int index = 0;
 
             if (TabCellLayoutData == null)
@@ -43,9 +66,9 @@ namespace xapps
                 TabCellLayoutData = new CustomTabCellLayoutData();
             }
 
-            foreach (string tabText in textList)
+            foreach (TabData tab in tabList)
             {
-                CustomTabCell cell = new CustomTabCell(tabText, index);
+                CustomTabCell cell = new CustomTabCell(tab.Title, index);
                 ChangeCellSelected(cell, index == selIndex);
 
                 // setting text color
@@ -65,12 +88,12 @@ namespace xapps
                     selectedIndex = index;
                 }
 
-                cell.WidthRequest = this.WidthRequest / textList.Count;
-                Debug.WriteLine("add textview text = " + tabText + "item width = " + cell.WidthRequest);
+                cell.WidthRequest = this.WidthRequest / tabList.Count;
+                Debug.WriteLine("add textview text = " + tab + "item width = " + cell.WidthRequest);
 
                 cell.Clicked += delegate
                 {
-                    ClickedCell(cell);
+                    ClickedCell(cell, tab.Tag);
                 };
 
                 Children.Add(cell);
@@ -79,7 +102,7 @@ namespace xapps
 
         }
 
-        void ClickedCell(CustomTabCell clickCell)
+        void ClickedCell(CustomTabCell clickCell, Object tag = null)
         {
             if (clickCell.index == selectedIndex)
             {
@@ -95,7 +118,7 @@ namespace xapps
             ChangeCellSelected(clickCell, true);
 
             // SEND LISTENER
-            Listener?.onClickTabButton(clickCell.index);
+            Listener?.OnClickTabButton(clickCell.index, tag);
         }
 
         void ChangeCellSelected(CustomTabCell cell, Boolean isSelected)

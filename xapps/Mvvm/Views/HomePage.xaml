@@ -28,13 +28,13 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </AbsoluteLayout>
-                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="ViewAllClick" />
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="MovieViewAllClick" />
             </StackLayout>
 
             <!-- List Area -->
             <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
                 <!-- TabView -->
-                <local:CustomTabView x:Name="BooksTab" WidthRequest="200" />
+                <local:CustomTabView x:Name="BooksTab" WidthRequest="300" />
                 <!-- Horizontal ListView -->
                 <AbsoluteLayout x:Name="BooksListViewLayout" IsClippedToBounds="true" HeightRequest="265" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <ListView x:Name="BooksListView" Rotation="270" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding BooksItems}" RowHeight="160" SeparatorVisibility="None" ItemSelected="BooksListItemSelected">
@@ -56,7 +56,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </AbsoluteLayout>
-                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="ViewAllClick" />
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="BooksViewAllClick" />
             </StackLayout>
 
             <!-- Event Area -->

@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class NetworkPage : ContentPage, CustomTabInterface//, INetworkManager
+    public partial class NetworkPage : ContentPage, ICustomTabInterface//, INetworkManager
     {
         public NetworkPage()
         {
@@ -26,17 +26,17 @@ namespace xapps
 
             CustomTabView tabView = new CustomTabView();
 
-            tabView.makeTabLayout(tabs, layoutData);
+            tabView.MakeTabLayout(tabs, layoutData);
             tabView.Listener = this;
 
             mainStack.Children.Add(tabView);
         }
 
-        async public void onClickTabButton(int tag)
+        async public void OnClickTabButton(int index, Object tag)
         {
-            Debug.WriteLine("tag = " + tag);
+            Debug.WriteLine("tag = " + index);
 
-            switch (tag)
+            switch (index)
             {
                 case 0:
                     {

@@ -14,7 +14,8 @@ namespace xapps
         public Command LoadItemsCommand { get; set; }
 
         // selected Category index
-        public int SelectedCategoryType = CategoryManager.TYPE_MOVIE_NOW_PLAYING;
+        public int SelectMovieCategoryType = CategoryManager.TYPE_MOVIE_NOW_PLAYING;
+        public int SelectBooksCategoryType = CategoryManager.TYPE_BOOKS_BEST_SELLER;
 
         public HomePageViewModel()
         {
@@ -40,6 +41,8 @@ namespace xapps
                         return;
                     }
 
+                    SelectMovieCategoryType = requestType;
+
                     MovieItems.Clear();
 
                     foreach (var item in MovieList)
@@ -56,6 +59,8 @@ namespace xapps
                     {
                         return;
                     }
+
+                    SelectBooksCategoryType = requestType;
 
                     BooksItems.Clear();
 

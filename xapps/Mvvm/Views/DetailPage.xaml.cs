@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace xapps
 {
-    public partial class DetailPage : ContentPage, CustomTabInterface
+    public partial class DetailPage : ContentPage, ICustomTabInterface
     {
         private DetailPageViewModel viewModel;
         private string mRequestId;
@@ -43,7 +43,7 @@ namespace xapps
                 selTextFontSize = 20.0
             };
 
-            mdpTab.makeTabLayout(arrTabs, tabLayout);
+            mdpTab.MakeTabLayout(arrTabs, tabLayout);
         }
 
         void onClickFullMoviePage(object sender, System.EventArgs e)
@@ -84,7 +84,7 @@ namespace xapps
             base.OnDisappearing();
         }
 
-        public void onClickTabButton(int index)
+        public void OnClickTabButton(int index, Object tag)
         {
             // Event
             printLog("onClickTabButton() index : " + index);

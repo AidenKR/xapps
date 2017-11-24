@@ -1,8 +1,8 @@
 ﻿using System;
 namespace xapps
 {
-    public interface CustomTabInterface
+    public interface ICustomTabInterface
     {
-        void onClickTabButton(int index);
+        void OnClickTabButton(int index, Object tag);
     }
 }
