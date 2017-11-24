@@ -56,6 +56,11 @@ namespace xapps
         void OnItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             Debug.WriteLine("clicked item");
+
+            if (!favoriteViewModel.isEditingMode) {
+                return;
+            }
+
             FavoriteListItem item = e.SelectedItem as FavoriteViewModel.FavoriteListItem;
             if(item != null) {
 				item.isSelectedItem = !item.isSelectedItem;

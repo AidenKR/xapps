@@ -9,7 +9,7 @@ namespace xapps
     {
         public const string MOVIE_URL_PREFIX = "https://image.tmdb.org/t/p/w500/";
         public ObservableCollection<FavoriteListItem> favorite { get; set; }
-        bool isEditingMode { get; set; }
+        public bool isEditingMode { get; set; }
 
         public FavoriteViewModel()
         {

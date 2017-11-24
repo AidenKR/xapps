@@ -24,6 +24,7 @@ namespace xapps
             {
                 Title = "Move To Bookmark",
                 //TargetType = typeof(DatabasePage)
+                TargetType = typeof(FavoritePage)
             });
             masterPageItems.Add(new MasterPageItem
             {
