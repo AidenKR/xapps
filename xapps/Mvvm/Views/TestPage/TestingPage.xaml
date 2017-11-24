@@ -9,6 +9,7 @@
                 <Button Text="Movie Play Test" BorderWidth="1" Clicked="MovieBtnClicked" />
                 <Button Text="Toast Popup Test" BorderWidth="1" Clicked="ToastBtnClicked" />
                 <local:CustomButton BorderWidth="1" BackgroundSource="selector_wishlist" />
+                <Button Text="Camera" BorderWidth="1" Clicked="CamearBtnClicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

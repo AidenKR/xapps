@@ -50,5 +50,10 @@ namespace xapps
                 toast.showToast(ToastMsg, longTime);
             }
         }
+
+        private void CamearBtnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CameraPage());
+        }
     }
 }
