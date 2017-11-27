@@ -222,6 +222,9 @@
     <AndroidResource Include="Resources\drawable\img_wishlist_p.png" />
     <AndroidResource Include="Resources\drawable\selector_wishlist.xml" />
     <AndroidResource Include="Resources\drawable\stop.png" />
+    <AndroidResource Include="Resources\drawable\icon_movie.png" />
+    <AndroidResource Include="Resources\drawable\icon_test.png" />
+    <AndroidResource Include="Resources\drawable\icon_books.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

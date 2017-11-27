@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mvvm\Views\BooksHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -162,6 +166,11 @@
     <Compile Include="Mvvm\Manager\Network\Api\InterparkBooks\ApiBooksRecommend.cs" />
     <Compile Include="Mvvm\Model\View\ListPageItem.cs" />
     <Compile Include="Mvvm\Manager\CategoryManager.cs" />
+    <Compile Include="Mvvm\Model\View\MasterPageGorupItem.cs" />
+    <Compile Include="Mvvm\Views\BooksHomePage.xaml.cs">
+      <DependentUpon>BooksHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\ViewModel\BooksHomePageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Media, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

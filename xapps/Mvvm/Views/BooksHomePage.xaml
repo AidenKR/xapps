@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.HomePage" xmlns:local="clr-namespace:xapps" Title="{Binding Title}" BackgroundColor="#DAD6CB">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.BooksHomePage" xmlns:local="clr-namespace:xapps" Title="{Binding Title}" BackgroundColor="#DAD6CB">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Padding="10">
             <!-- List Area -->
             <StackLayout BackgroundColor="White" Spacing="0" VerticalOptions="Start">
                 <!-- TabView -->
-                <local:CustomTabView x:Name="MovieTab" WidthRequest="200" />
+                <local:CustomTabView x:Name="BooksTab" WidthRequest="300" />
                 <!-- Horizontal ListView -->
-                <AbsoluteLayout x:Name="MovieListViewLayout" IsClippedToBounds="true" HeightRequest="265" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <ListView x:Name="MovieListView" Rotation="270" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding MovieItems}" RowHeight="160" SeparatorVisibility="None" ItemSelected="MovieListItemSelected">
+                <AbsoluteLayout x:Name="BooksListViewLayout" IsClippedToBounds="true" HeightRequest="265" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="BooksListView" Rotation="270" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding BooksItems}" RowHeight="160" SeparatorVisibility="None" ItemSelected="BooksListItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Rotation="90" WidthRequest="150" HorizontalOptions="End" Margin="0,0,0,10">
                                         <StackLayout BackgroundColor="#DAD6CB" Padding="1" Spacing="0" HorizontalOptions="FillAndExpand">
-                                            <Image Source="{Binding poster_path}" HeightRequest="200" Aspect="Fill" />
+                                            <Image Source="{Binding coverLargeUrl}" HeightRequest="200" Aspect="Fill" />
                                             <StackLayout Padding="10" BackgroundColor="White" HeightRequest="50" Spacing="0">
                                                 <Label Text="{Binding title}" FontSize="15" TextColor="Black" FontAttributes="Bold" LineBreakMode="TailTruncation" />
-                                                <Label Text="{Binding original_title}" FontSize="10" FontAttributes="Bold" TextColor="Gray" LineBreakMode="TailTruncation" />
-                                                <Label Text="{Binding release_date, StringFormat='개봉일 : {0:X0}'}" FontSize="10" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding author, StringFormat='저자 : {0}'}" FontSize="10" FontAttributes="Bold" TextColor="Gray" LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding priceSales, StringFormat='판매가격 : {0}'}" FontSize="10" TextColor="Gray" LineBreakMode="TailTruncation" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
@@ -28,7 +28,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </AbsoluteLayout>
-                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="MovieViewAllClick" />
+                <Button Text="모두 보기" TextColor="Black" BackgroundColor="#EAE9E4" BorderRadius="0" Clicked="BooksViewAllClick" />
             </StackLayout>
 
             <!-- Event Area -->

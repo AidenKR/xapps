@@ -200,6 +200,9 @@
     <BundleResource Include="Resources\img_wishlist.png" />
     <BundleResource Include="Resources\img_wishlist_p.png" />
     <BundleResource Include="Resources\stop.png" />
+    <BundleResource Include="Resources\icon_movie.png" />
+    <BundleResource Include="Resources\icon_test.png" />
+    <BundleResource Include="Resources\icon_books.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

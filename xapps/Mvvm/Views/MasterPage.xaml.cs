@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace xapps
@@ -13,36 +14,7 @@ namespace xapps
         {
             InitializeComponent();
 
-            var masterPageItems = new List<MasterPageItem>();
-
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Send Push & Notification",
-                //TargetType = typeof(DatabasePage)
-            });
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Move To Bookmark",
-                //TargetType = typeof(DatabasePage)
-                TargetType = typeof(FavoritePage)
-            });
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Move To WebviewPage",
-                TargetType = typeof(WebviewPage)
-            });
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Move To TestPage",
-                TargetType = typeof(TestingPage)
-            });
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Move To Background Music",
-                TargetType = typeof(MusicServicePage)
-            });
-
-            listView.ItemsSource = masterPageItems;
+            listView.ItemsSource = MasterPageGorupItem.All;
         }
     }
 }

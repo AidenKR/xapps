@@ -19,11 +19,18 @@ namespace xapps
             var item = e.SelectedItem as MasterPageItem;
             if (item != null && item.TargetType != null)
             {
-                var nextPage = (Page)Activator.CreateInstance(item.TargetType);
-                Detail.Navigation.PushAsync(nextPage);
-
-                masterPage.ListView.SelectedItem = null;
+                if (item.TargetType == typeof(HomePage))
+                {
+                    Detail.Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    var nextPage = (Page)Activator.CreateInstance(item.TargetType);
+                    Detail.Navigation.PushAsync(nextPage);
+                }
             }
+
+            masterPage.ListView.SelectedItem = null;
 
             IsPresented = false;
         }
