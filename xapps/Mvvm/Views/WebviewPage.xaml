@@ -5,6 +5,9 @@
         <ToolbarItem Text="Next" Clicked="forwardClicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <WebView x:Name="Browser" />
+        <StackLayout>
+            <ProgressBar HorizontalOptions="FillAndExpand" x:Name="Progress" IsVisible="false" />
+            <WebView x:Name="Browser" VerticalOptions="FillAndExpand" Navigating="OnNavigating" Navigated="OnNavigated" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

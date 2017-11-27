@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace xapps
@@ -11,6 +11,17 @@ namespace xapps
             InitializeComponent();
 
             Browser.Source = url;
+        }
+
+        public WebviewPage(): this("http://13.124.169.220/")
+        {
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Debug.WriteLine("WebviewPage OnAppearing()");
         }
 
         void backClicked(object sender, EventArgs e)
@@ -26,12 +37,22 @@ namespace xapps
             }
         }
 
-        private void forwardClicked(object sender, EventArgs e)
+        void forwardClicked(object sender, EventArgs e)
         {
             if (Browser.CanGoForward)
             {
                 Browser.GoForward();
             }
+        }
+
+        void OnNavigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
+        {
+            Debug.WriteLine("WebviewPage OnNavigating(e) : " + e.Url);
+        }
+
+        void OnNavigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
+        {
+            Debug.WriteLine("WebviewPage OnNavigated(e) : " + e.Url);
         }
     }
 }
