@@ -190,6 +190,8 @@
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
     <Compile Include="Mvvm\Services\Database\SQLiteService.cs" />
     <Compile Include="Mvvm\Views\CustomButtonRenderer.cs" />
+    <Compile Include="Mvvm\Views\CustomListSelectorViewRenderer.cs" />
+    <Compile Include="Mvvm\Views\ListSelectorViewAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -225,6 +227,9 @@
     <AndroidResource Include="Resources\drawable\icon_movie.png" />
     <AndroidResource Include="Resources\drawable\icon_test.png" />
     <AndroidResource Include="Resources\drawable\icon_books.png" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\drawable\selector_listview.xml" />
+    <AndroidResource Include="Resources\layout\ListSelectorViewCell.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />

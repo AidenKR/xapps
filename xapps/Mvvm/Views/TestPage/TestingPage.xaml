@@ -10,6 +10,7 @@
                 <Button Text="Toast Popup Test" BorderWidth="1" Clicked="ToastBtnClicked" />
                 <local:CustomButton BorderWidth="1" BackgroundSource="selector_wishlist" />
                 <Button Text="Camera" BorderWidth="1" Clicked="CamearBtnClicked" />
+                <Button Text="List Selector Test" BorderWidth="1" Clicked="ListSelectorBtnClicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

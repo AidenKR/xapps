@@ -181,6 +181,9 @@
     <Compile Include="Mvvm\Services\Toast\ToastAlert.cs" />
     <Compile Include="Mvvm\Services\Database\SQLiteService.cs" />
     <Compile Include="Mvvm\Views\CustomButtonRenderer.cs" />
+    <Compile Include="Mvvm\Views\CustomListSelectorViewRenderer.cs" />
+    <Compile Include="Mvvm\Views\ListSelectorViewCell.cs" />
+    <Compile Include="Mvvm\Views\ListSelectorViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\hamburger.png" />

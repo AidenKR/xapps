@@ -55,5 +55,10 @@ namespace xapps
         {
             Navigation.PushAsync(new CameraPage());
         }
+
+        private void ListSelectorBtnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ListSelectorPage());
+        }
     }
 }
