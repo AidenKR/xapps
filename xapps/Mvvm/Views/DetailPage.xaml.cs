@@ -1,3 +1,4 @@
+using Plugin.Badge;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -150,6 +151,9 @@ namespace xapps
             // ui
             mdpShareBtnWishList.Image.File = "img_wishlist_p.png";
             showToastPopup("즐겨찾기 목록에 '" + viewModel.DetailItem.title + "' 항목을 추가 했습니다.");
+
+            // Badge Setting
+            CrossBadge.Current.SetBadge(getFavoriteListCount());
         }
         private void delFavorite(string key)
         {
@@ -158,6 +162,17 @@ namespace xapps
             // ui
             mdpShareBtnWishList.Image.File = "img_wishlist.png";
             showToastPopup("즐겨찾기 목록에서 '" + viewModel.DetailItem.title + "' 항목을 제거 했습니다.");
+
+            var badgeCount = getFavoriteListCount();
+            if (badgeCount == 0)
+            {
+                // 초기화
+                CrossBadge.Current.ClearBadge();
+            }
+            else
+            {
+                CrossBadge.Current.SetBadge(badgeCount);
+            }
         }
         private void setWishListButton()
         {
@@ -182,6 +197,12 @@ namespace xapps
             {
                 toast.showToast(msg, false);
             }
+        }
+
+        int getFavoriteListCount()
+        {
+            List<FavoriteItem> dbItems = DatabaseManager.Instance.GetTable<FavoriteItem>().GetItems();
+            return dbItems.Count;
         }
     }
 }

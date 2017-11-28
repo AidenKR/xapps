@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Plugin.Badge;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
@@ -25,6 +26,9 @@ namespace xapps
                     list.Add(new FavoriteListItem(item, isEditingMode));
                 }
                 favorite = new ObservableCollection<FavoriteListItem>(list);
+
+                // Badge Setting
+                CrossBadge.Current.SetBadge(dbItems.Count);
             }
         }
 
@@ -44,6 +48,15 @@ namespace xapps
                     list.Add(new FavoriteListItem(item, isEditingMode));
                 }
                 favorite = new ObservableCollection<FavoriteListItem>(list);
+
+                // Badge Setting
+                CrossBadge.Current.SetBadge(dbItems.Count);
+            }
+
+            if (dbItems.Count == 0)
+            {
+                // 초기화
+                CrossBadge.Current.ClearBadge();
             }
 
             return favorite;

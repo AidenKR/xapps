@@ -81,6 +81,12 @@
     <CodesignProvision>iOS Team Provisioning Profile: *</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Plugin.Badge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Badge.Plugin.1.1.0\lib\Xamarin.iOS10\Plugin.Badge.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Badge.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Badge.Plugin.1.1.0\lib\Xamarin.iOS10\Plugin.Badge.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Plugin.Media, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
     </Reference>
