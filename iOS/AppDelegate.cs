@@ -21,6 +21,7 @@ namespace xapps.iOS
         {
             Console.WriteLine("FinishedLaunching");
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsGoogleMaps.Init(Config.GOOGLE_MAPS_IOS_API_KEY);
 
             //Set static double values in our app to size elements off of screen size
             //Important to note that iOS Forms utilizes real pixels to size elements 

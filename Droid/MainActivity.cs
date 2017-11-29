@@ -19,6 +19,7 @@ namespace xapps.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.FormsGoogleMaps.Init(this, bundle);
             LoadApplication(new App());
 
             try {

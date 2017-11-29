@@ -10,6 +10,10 @@ namespace xapps
         public TestingPage()
         {
             InitializeComponent();
+
+            map.Clicked += (sender, e) => {
+                Navigation.PushAsync(new MapPage());
+            };
         }
 
         // Move To Network Test Page. 

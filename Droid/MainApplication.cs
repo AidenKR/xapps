@@ -8,6 +8,7 @@ using Plugin.CurrentActivity;
 namespace xapps.Droid
 {
 	//You can specify additional application information in this attribute
+    [MetaData("com.google.android.maps.v2.API_KEY", Value = Config.GOOGLE_MAPS_ANDROID_API_KEY)]
     [Application]
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {

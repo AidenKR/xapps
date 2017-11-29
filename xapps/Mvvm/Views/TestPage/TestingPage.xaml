@@ -11,6 +11,7 @@
                 <local:CustomButton BorderWidth="1" BackgroundSource="selector_wishlist" />
                 <Button Text="Camera" BorderWidth="1" Clicked="CamearBtnClicked" />
                 <Button Text="List Selector Test" BorderWidth="1" Clicked="ListSelectorBtnClicked" />
+                <Button x:Name="map" Text="Map" BorderWidth="1" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="xapps.MapPage" Title="MapPage" xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
+    
+	<ContentPage.Content>
+
+        <StackLayout x:Name="stackView" Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White">
+            <Button x:Name="locationButton" Text="내위치" />
+
+            <StackLayout x:Name="searchView" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="White" HeightRequest="60" Padding="10, 10, 20, 10" >
+                <Entry x:Name="entryAddress" WidthRequest="300" HorizontalOptions="Start" Text="seoul"></Entry>
+                <Button x:Name="searchButton" WidthRequest="50" HorizontalOptions="End" Text="검색"/>
+            </StackLayout>
+
+            <maps:Map x:Name="mapView" InitialCameraUpdate="-23.68, -46.87, 13, 30, 60" VerticalOptions="FillAndExpand" />
+            
+        </StackLayout>
+        
+	</ContentPage.Content>
+    
+</ContentPage>
