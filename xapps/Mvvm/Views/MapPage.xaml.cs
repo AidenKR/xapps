@@ -9,7 +9,7 @@ namespace xapps
 {
     public partial class MapPage : ContentPage
     {
-        public MapPage()
+        public MapPage(string searchLocaleText)
         {
             InitializeComponent();
 
@@ -66,23 +66,20 @@ namespace xapps
 
             searchButton.Clicked += async (sender, e) =>
             {
-                var geocoder = new Xamarin.Forms.GoogleMaps.Geocoder();
-                IEnumerable<Position> positions = await geocoder.GetPositionsForAddressAsync(entryAddress.Text);
-                if (positions.ToList().Count() > 0)
-                {
-                    var pos = positions.First();
-                    mapView.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(10)));
-                    var reg = mapView.VisibleRegion;
-                    var format = "0.00";
-                    Debug.WriteLine($"Center = {reg.Center.Latitude.ToString(format)} , {reg.Center.Longitude.ToString(format)} ");
+                if(entryAddress.Text == null || entryAddress.Text.Length <= 0) {
+                    await this.DisplayAlert("Invalidate", "Input searchData", "Close");
+                    return;
                 }
-                else
-                {
-                    await this.DisplayAlert("Not found", "Geocoder returns no results", "Close");
-                }
+
+                searchLocale();
             };
 
             stackView.Children.Add(mapView);
+
+            if(searchLocaleText != null && searchLocaleText.Length > 0) {
+                entryAddress.Text = searchLocaleText;
+                searchLocale();
+            }
         }
 
         void pinClicked(object sender, Xamarin.Forms.GoogleMaps.PinClickedEventArgs e)
@@ -93,6 +90,23 @@ namespace xapps
         void mapClicked(object sender, Xamarin.Forms.GoogleMaps.MapClickedEventArgs e)
         {
             this.DisplayAlert("alert", "mapClicked", "Close");
+        }
+
+        async void searchLocale() {
+            var geocoder = new Xamarin.Forms.GoogleMaps.Geocoder();
+            IEnumerable<Position> positions = await geocoder.GetPositionsForAddressAsync(entryAddress.Text);
+            if (positions.ToList().Count() > 0)
+            {
+                var pos = positions.First();
+                mapView.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(10)));
+                var reg = mapView.VisibleRegion;
+                var format = "0.00";
+                Debug.WriteLine($"Center = {reg.Center.Latitude.ToString(format)} , {reg.Center.Longitude.ToString(format)} ");
+            }
+            else
+            {
+                await this.DisplayAlert("Not found", "Geocoder returns no results", "Close");
+            }
         }
     }
 }

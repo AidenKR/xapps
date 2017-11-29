@@ -12,7 +12,7 @@ namespace xapps
             InitializeComponent();
 
             map.Clicked += (sender, e) => {
-                Navigation.PushAsync(new MapPage());
+                Navigation.PushAsync(new MapPage(""));
             };
         }
 
