@@ -187,6 +187,9 @@
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\Model\View\Config.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\GetVideos.cs" />
+    <Compile Include="Mvvm\Model\Network\TheMovieDB\SubData\videos.cs" />
+    <Compile Include="Mvvm\Manager\Network\Api\TheMovieDB\ApiMovieGetVideos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Badge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

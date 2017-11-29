@@ -13,7 +13,7 @@ namespace xapps
 
             List<string> tabs = new List<string>();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 tabs.Add("one" + i);
             }
@@ -93,6 +93,15 @@ namespace xapps
                         foreach (var item in result.item)
                         {
                             Debug.WriteLine("Network BestSeller item..." + item);
+                        }
+                    }
+                    break;
+
+                case 5: {
+                        var result = await NetworkManager.GetVideos("284053");
+                        if (result != null)
+                        {
+                            Debug.WriteLine("GetVideo result.site = " + result.site);
                         }
                     }
                     break;

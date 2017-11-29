@@ -116,6 +116,42 @@ namespace xapps
         }
         #endregion
 
+        #region Movie - videos
+        async public static Task<videos> GetVideos(string movieId) {
+            var result = await MakeApiGetVideos(movieId).GetAsync<GetVideos>();
+            videos returnItem = new videos();
+            foreach (var item in result.results )
+            {
+                if(item.site.Equals("YouTube")) {
+                    returnItem = item;
+                    break;
+                }
+            }
+
+            return returnItem;
+        }
+
+        // return을 video로 하기에 추가 처리가 필요하다.(일단 await만 생성해놓음 )
+        //public static void GetVideosToCallback(string moveId, NetworkCallbackDelegate callback)
+        //{
+        //    MakeApiGetVideos(moveId).GetAsyncToCallback<GetVideos>(callback);
+        //}
+
+        static BaseApi MakeApiGetVideos(string moveId)
+        {
+            // Make Param
+            ApiMovieGetVideos.ReqParam param = new ApiMovieGetVideos.ReqParam
+            {
+                movieId = moveId
+            };
+
+            // Make Api
+            ApiMovieGetVideos api = new ApiMovieGetVideos(param);
+            return api;
+        }
+
+        #endregion
+
         #region Books - BestSeller
         /// <summary>
         /// BestSeller 리스트를 반환한다.
