@@ -27,10 +27,15 @@ namespace xapps.iOS
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (e.PropertyName == ListSelectorView.ItemsProperty.PropertyName)
-            {
-                Control.Source = new ListSelectorViewSource(Element as ListSelectorView);
-            }
+            //if (e.PropertyName == ListSelectorView.ItemsProperty.PropertyName)
+            //{
+            //    Control.Source = new ListSelectorViewSource(Element as ListSelectorView);
+            //}
+            //else 
+            //    if (e.PropertyName == ListSelectorView.ItemsSourceProperty.PropertyName)
+            //{
+            //    Control.Source = new ListSelectorViewSource(Element as ListSelectorView);
+            //}
         }
     }
 }

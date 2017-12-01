@@ -13,17 +13,18 @@ namespace xapps.iOS
         ListSelectorView listView;
         readonly NSString cellIdentifier = new NSString("TableCell");
 
-        public IEnumerable<ListPageItem> Items
-        {
-            set
-            {
-                tableItems = value.ToList();
-            }
-        }
+        //public IEnumerable<ListPageItem> Items
+        //{
+        //    set
+        //    {
+        //        tableItems = value.ToList();
+        //    }
+        //}
 
         public ListSelectorViewSource(ListSelectorView view)
         {
-            tableItems = view.Items.ToList();
+            //tableItems = view.Items.ToList();
+            tableItems = (System.Collections.Generic.IList<xapps.ListPageItem>)view.ItemsSource;
             listView = view;
         }
 

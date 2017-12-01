@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using Android.App;
-using Android.Graphics.Drawables;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Xamarin.Forms.Platform.Android;
 
 namespace xapps.Droid
 {
@@ -19,18 +17,11 @@ namespace xapps.Droid
         readonly Activity context;
         IList<ListPageItem> tableItems = new List<ListPageItem>();
 
-        public IEnumerable<ListPageItem> Items
-        {
-            set
-            {
-                tableItems = value.ToList();
-            }
-        }
-
         public ListSelectorViewAdapter(Activity context, ListSelectorView view)
         {
             this.context = context;
-            tableItems = view.Items.ToList();
+            tableItems = (System.Collections.Generic.IList<xapps.ListPageItem>)view.ItemsSource;
+            //Console.WriteLine("## ListSelectorViewAdapter() ItemsCount: " + tableItems.Count());
         }
 
         public override ListPageItem this[int position]
@@ -56,50 +47,72 @@ namespace xapps.Droid
             var item = tableItems[position];
 
             var view = convertView;
+            MyViewHolder vHolder;
+
             if (view == null)
             {
+                vHolder = new MyViewHolder();
+
                 // no view to re-use, create new
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListSelectorViewCell, null);
+                vHolder.MovieTitle = view.FindViewById<TextView>(Resource.Id.MovieTitle);
+                vHolder.MovieDesc = view.FindViewById<TextView>(Resource.Id.MovieDesc);
+                vHolder.MovieGrade = view.FindViewById<TextView>(Resource.Id.MovieGrade);
+                vHolder.MovieReleaseDate = view.FindViewById<TextView>(Resource.Id.MovieReleaseDate);
+                vHolder.MovieReleaseDate = view.FindViewById<TextView>(Resource.Id.MovieReleaseDate);
+                vHolder.MoviePoster = view.FindViewById<ImageView>(Resource.Id.MoviePoster);
+
+                view.Tag = vHolder;
             }
-            view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Title;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = item.Description;
+            else
+            {
+                vHolder = view.Tag as MyViewHolder;
+            }
 
-            // grab the old image and dispose of it
-            //if (view.FindViewById<ImageView>(Resource.Id.Image).Drawable != null)
-            //{
-            //    using (var image = view.FindViewById<ImageView>(Resource.Id.Image).Drawable as BitmapDrawable)
-            //    {
-            //        if (image != null)
-            //        {
-            //            if (image.Bitmap != null)
-            //            {
-            //                //image.Bitmap.Recycle ();
-            //                image.Bitmap.Dispose();
-            //            }
-            //        }
-            //    }
-            //}
+            // set data
+            vHolder.MovieTitle.Text = item.Title;
+            vHolder.MovieDesc.Text = item.Description;
+            vHolder.MovieGrade.Text = item.Rank;
+            vHolder.MovieReleaseDate.Text = item.SubDescription;
 
-            // If a new image is required, display it
-            //if (!String.IsNullOrWhiteSpace(item.ImageFilename))
-            //{
-            //    context.Resources.GetBitmapAsync(item.ImageFilename).ContinueWith((t) => {
-            //        var bitmap = t.Result;
-            //        if (bitmap != null)
-            //        {
-            //            view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(bitmap);
-            //            bitmap.Dispose();
-            //        }
-            //    }, TaskScheduler.FromCurrentSynchronizationContext());
-            //}
-            //else
-            //{
-            //    // clear the image
-            //    view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(null);
-            //}
+            if (!String.IsNullOrWhiteSpace(item.ThumbUrl))
+            {
+                //Console.WriteLine("############## ["+ item.Title +"]Drawable: " + vHolder.MoviePoster.Drawable);
+                setImage(vHolder.MoviePoster, item.ThumbUrl);
+            }
 
             return view;
         }
 
+        private void setImage(ImageView v, string url)
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                client.DownloadDataCompleted += delegate (object sender, DownloadDataCompletedEventArgs e)
+                {
+                    if (!string.IsNullOrEmpty(e.Error?.Message))
+                    {
+                        Console.WriteLine("DownloadDataCompleted() Error : " + e.Error.Message);
+                        return;
+                    }
+
+                    byte[] raw = e.Result;
+                    if (raw != null && raw.Length > 0)
+                    {
+                        Bitmap imageBitmap = BitmapFactory.DecodeByteArray(raw, 0, raw.Length);
+                        v.SetImageBitmap(imageBitmap);
+                    }
+
+                };
+                client.DownloadDataAsync(new System.Uri(url));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("setImage() error: " + e.Message);
+                v.SetImageBitmap(null);
+            }
+        }
     }
 }
+

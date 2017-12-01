@@ -29,7 +29,8 @@ namespace xapps
             TypeList = tabs ?? throw new ArgumentNullException();
 
             selectedTab = tabs.Find(x => x.IsSelected);
-            if (selectedTab == null) {
+            if (selectedTab == null)
+            {
                 selectedTab = tabs[0];
             }
             Debug.WriteLine("Select Tab : " + selectedTab.Title);
@@ -64,7 +65,8 @@ namespace xapps
             {
                 arrTabs.Add(item.Title);
 
-                if (item.IsSelected) {
+                if (item.IsSelected)
+                {
                     nSelIndex = TypeList.IndexOf(item);
                 }
             }
@@ -102,20 +104,27 @@ namespace xapps
             {
                 await Navigation.PushAsync(new WebviewPage(item.NextPageUrl));
             }
-            
+
             // Manually deselect item
             listView.SelectedItem = null;
         }
 
-        void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+        // iOS 참고
+        //void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+        //{
+        //    var item = e.Item as ListPageItem;
+        //    int index = viewModel.Items.IndexOf(item);
+        //    if (viewModel.Items.Count - 1 <= index)
+        //        // NextDataReqeust
+        //        NextDataReqeust();
+        //}
+
+        void OnMoreButtonSelected(object sender, System.EventArgs e)
         {
-            var item = e.Item as ListPageItem;
-            int index = viewModel.Items.IndexOf(item);
-            if (viewModel.Items.Count - 1 <= index)
-            {
-                // NextDataReqeust
-                NextDataReqeust();
-            }
+            Debug.WriteLine("### OnMoreButtonSelected()");
+
+            // NextDataReqeust
+            NextDataReqeust();
         }
 
         public void OnClickTabButton(int index, Object tag)
@@ -126,7 +135,8 @@ namespace xapps
 
         void SelectedCategory(ListPageTab selectTab)
         {
-            if (selectedTab != selectTab) {
+            if (selectedTab != selectTab)
+            {
                 // category 가 변경되었을경우에는 pageNumber를 초기화해준다.
                 pageNumber = 1;
                 viewModel.Items.Clear();

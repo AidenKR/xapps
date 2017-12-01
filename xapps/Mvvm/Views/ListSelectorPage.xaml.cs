@@ -11,7 +11,7 @@ namespace xapps
         {
             InitializeComponent();
 
-            listselectorview.Items = getData();
+            listselectorview.ItemsSource = getData();
         }
 
         private List<ListPageItem> getData() {

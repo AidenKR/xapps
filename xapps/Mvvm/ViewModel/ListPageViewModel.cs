@@ -32,6 +32,7 @@ namespace xapps
                 return;
 
             IsBusy = true;
+            IsLodingComplete = false;
 
             try
             {
@@ -64,6 +65,7 @@ namespace xapps
             finally
             {
                 IsBusy = false;
+                IsLodingComplete = true;
             }
         }
 

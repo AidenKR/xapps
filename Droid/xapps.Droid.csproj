@@ -207,6 +207,7 @@
     <Compile Include="Mvvm\Views\CustomButtonRenderer.cs" />
     <Compile Include="Mvvm\Views\CustomListSelectorViewRenderer.cs" />
     <Compile Include="Mvvm\Views\ListSelectorViewAdapter.cs" />
+    <Compile Include="Mvvm\Views\MyViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
